@@ -1,2 +1,1 @@
-s="            "
-column -t -s',' output.txt >> cleanoutput.txt
+column -t -s',' output.txt > cleanoutput.txt
