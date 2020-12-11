@@ -1,5 +1,5 @@
 # Methane
-Monitoring programs for an areal methane monitor.  
+Monitoring programs for an aerial methane monitor.  
   
 ### Included Program Files  
 #### ~~~~~~~~~~~~~~~~~~~~~~  
