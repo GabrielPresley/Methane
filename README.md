@@ -21,4 +21,4 @@ Air pollution is a dire health and environmental threat at the forefront of huma
 
 ### Install
 #### ~~~~~~~
-
+* Download all files to ~/
