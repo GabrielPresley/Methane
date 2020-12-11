@@ -11,6 +11,7 @@ for x in range (0,cycle,1):
         output = str(output)
 #
         w = open("output.txt", "a")
+        w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
         w.close()
