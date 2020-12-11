@@ -25,7 +25,7 @@ Air pollution is a dire health and environmental threat at the forefront of huma
 * Writes to cleanoutput.txt  
 * Formats output.txt in form:  
 * Pressure,              temp,              Humidity,              time  
-*[1004.05615234375    26.88888931274414    44.61138916015625    '18:07:30']  
+* [1004.05615234375    26.88888931274414    44.61138916015625    '18:07:30']  
 
 ### Dependencies 
 #### ~~~~~~~~~~~~
