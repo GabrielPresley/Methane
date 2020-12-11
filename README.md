@@ -37,3 +37,7 @@ Air pollution is a dire health and environmental threat at the forefront of huma
 ### Install
 #### ~~~~~~~
 * Download all files to ~/
+
+### Contributing
+#### ~~~~~~~~~~~~
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
