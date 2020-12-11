@@ -14,10 +14,11 @@ Air pollution is a dire health and environmental threat at the forefront of huma
 
 ### Purpose
 #### ~~~~~~~
-##### cam.py  
-* Current testing for R-Pi Camera Module  
+##### arduino-pi.py
+* Current testing file for arduino > pi communication
 ##### sensehat.py    
-* Main data collection program  
+* Main data collection program 
+* Responsible for photos
 * Writes to output.txt  
 * Collects Pressure, Temperature, Humidity, and time in form:  
 * ```[1004.05615234375, 26.88888931274414, 44.61138916015625, '18:07:30']  ```
