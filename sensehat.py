@@ -1,3 +1,4 @@
+
 import time
 from picamera import PiCamera
 from sense_hat import SenseHat
@@ -29,9 +30,9 @@ for x in range (0,cycle,1):
         yaw = o["yaw"]
         print("pitch {0} roll {1} yaw {2}".format(pitch, roll, yaw))
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~", x)
-#       
-        if (cycle % 5 == 0 ):
-	        t = strftime()
-                camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, i))
+#
+        if (x % 5 == 0 ):
+                t = strftime("%H:%M:%S")
+                camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
 #
 # LGPL-2.0  :  GNU Library General Public License v2 only
