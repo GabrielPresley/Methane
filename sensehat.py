@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3
 import time
 from picamera import PiCamera
 from sense_hat import SenseHat
@@ -10,7 +10,7 @@ camera.resolution = (100, 100)
 sense = SenseHat()
 sense.clear() #PRY 0
 #
-cycle = input("Number of cycles: ")
+cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
         output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), time.strftime("%H:%M:%S")]
