@@ -44,7 +44,8 @@ Monitoring programs for an aerial methane monitor.
 
 ### Install
 #### ~~~~~~~
-* Download all files to ~/
+* Download all files to ~/ on RPi
+* Flash arduino.ino to Arduino Nano
 
 ### Contributing
 #### ~~~~~~~~~~~~
