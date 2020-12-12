@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
 import time, Serial
+from Threading import Thread
 from picamera import PiCamera
 from sense_hat import SenseHat
 from time import sleep, strftime
+
+def ReadArdiuno():
+	if __name__ == '__main__':
+        ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+        ser.flush()
+        wait = True
+        while wait:
+            if ser.in_waiting > 0:
+                line = ser.readline().decode('utf-8').rstrip()
+                print(line)
+                wait = False;
+
 #
+
 camera = PiCamera()
 camera.resolution = (100, 100)
 #
