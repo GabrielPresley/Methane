@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import time, Serial
-from Threading import Thread
+from threading import Thread
 from picamera import PiCamera
 from sense_hat import SenseHat
 from time import sleep, strftime
@@ -32,6 +32,8 @@ w.close()
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
+        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+x)
+
         output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), time.strftime("%H:%M:%S")]
         output = str(output)
 #
