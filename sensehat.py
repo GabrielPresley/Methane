@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import time, Serial
+import Serial
 from threading import Thread
 from picamera import PiCamera
 from sense_hat import SenseHat
@@ -34,7 +34,7 @@ for x in range (0,cycle,1):
 #
         tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+x)
 
-        output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), time.strftime("%H:%M:%S")]
+        output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S")]
         output = str(output)
 #
         w = open("output.txt", "a")
@@ -43,7 +43,7 @@ for x in range (0,cycle,1):
         w.write("\n")
         w.close()
 #
-        time.sleep(1)
+        sleep(1)
 #
         o = sense.get_orientation()
         pitch = o["pitch"]
