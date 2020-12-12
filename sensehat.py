@@ -10,6 +10,11 @@ camera.resolution = (100, 100)
 sense = SenseHat()
 sense.clear() #PRY 0
 #
+w = open("output.txt", "a")
+w.write('Pressure, Temp, Humidity, Time')
+w.write("\n")
+w.close()
+        
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
