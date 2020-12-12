@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import time
+import time, Serial
 from picamera import PiCamera
 from sense_hat import SenseHat
 from time import sleep, strftime
