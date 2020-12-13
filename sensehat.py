@@ -5,9 +5,9 @@ from picamera import PiCamera
 from sense_hat import SenseHat
 from time import sleep, strftime
 from shutil import copyfile
-
-def ReadArdiuno():
-	if __name__ == '__main__':
+#
+def ReadArdiuno():0
+    if __name__ == '__main__':
         ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
         ser.flush()
         wait = True
@@ -16,9 +16,7 @@ def ReadArdiuno():
                 line = ser.readline().decode('utf-8').rstrip()
                 print(line)
                 wait = False;
-
 #
-
 camera = PiCamera()
 camera.resolution = (100, 100)
 #
@@ -28,13 +26,13 @@ sense.clear() #PRY 0
 w = open("output.csv", "a")
 w.write('Pressure,Temp,Humidity,Time')
 w.write("\n")
-        
+#
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
         tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+x)
         tr.start()
-
+#
         output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
         output = str(output)
 #
@@ -52,9 +50,8 @@ for x in range (0,cycle,1):
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~", x)
 #
         if (x % 5 == 0 ):
-                t = strftime("%H:%M:%S")
-                camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
-		for a in range (1,3)
-			#copyfile('output.txt' '/path/to/usb5s/output_%s.csv' % (a, a))
+            t = strftime("%H:%M:%S")
+            camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
+            for a in range (1,3)
+                #copyfile('output.txt' '/path/to/usb5s/output_%s.csv' % (a, a))
 #
-# LGPL-2.0  :  GNU Library General Public License v2 only
