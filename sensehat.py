@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import Serial
+import serial
 from threading import Thread
 from picamera import PiCamera
 from sense_hat import SenseHat
