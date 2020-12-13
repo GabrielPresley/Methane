@@ -55,6 +55,6 @@ for x in range (0,cycle,1):
                 t = strftime("%H:%M:%S")
                 camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
 		for a in range (1,3)
-			#copyfile('output.txt' '/path/to/usb1/output_%s.csv' % (a))
+			#copyfile('output.txt' '/path/to/usb5s/output_%s.csv' % (a, a))
 #
 # LGPL-2.0  :  GNU Library General Public License v2 only
