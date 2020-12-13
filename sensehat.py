@@ -35,14 +35,19 @@ for x in range (0,cycle,1):
         tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+x)
         tr.start()
 
-        output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S")]
+        output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
         output = str(output)
 #
-        w = open("output.txt", "a")
+	#r = open("/path/to/usb1/output1.csv", "a") #uncomment when usb storage is used
+	#m = open("/path/to/usb2/output2.csv", "a") #These can probably be done all at once?
+	#p = open("/path/to/usb3/output3.csv", "a")
         w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
         w.close()
+	#r.close() #uncomment when usb storage is used
+	#m.close() # ^^
+	#p.close() # ^^
 #
         sleep(1)
 #
