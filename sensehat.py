@@ -1,8 +1,10 @@
-#!/usr/bin/env python3
-import time
-from picamera import PiCamera
-from sense_hat import SenseHat
-from time import sleep, strftime
+        ser.flush()
+        wait = True
+        while wait:
+            if ser.in_waiting > 0:
+                line = ser.readline().decode('utf-8').rstrip()
+                wait = False;
+                return line
 #
 camera = PiCamera()
 camera.resolution = (100, 100)
@@ -10,19 +12,25 @@ camera.resolution = (100, 100)
 sense = SenseHat()
 sense.clear() #PRY 0
 #
+w = open("output.csv", "a")
+w.write('Pressure,Temp,Humidity,Time')
+w.write("\n")
+#
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
-        output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), time.strftime("%H:%M:%S")]
+        x = str(x)
+        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+x)
+        tr.start()
+#
+        output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
         output = str(output)
 #
-        w = open("output.txt", "a")
         w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
-        w.close()
 #
-        time.sleep(1)
+        sleep(1)
 #
         o = sense.get_orientation()
         pitch = o["pitch"]
@@ -32,7 +40,8 @@ for x in range (0,cycle,1):
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~", x)
 #
         if (x % 5 == 0 ):
-                t = strftime("%H:%M:%S")
-                camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
+            t = strftime("%H:%M:%S")
+            camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
+            #for a in range (1,3):
+                #copyfile('output.txt' '/path/to/usb5s/output_%s.csv' % (a, a))
 #
-# LGPL-2.0  :  GNU Library General Public License v2 only
