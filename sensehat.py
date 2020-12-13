@@ -24,6 +24,9 @@ camera.resolution = (100, 100)
 sense = SenseHat()
 sense.clear() #PRY 0
 #
+#r = open("/path/to/usb1/output1.csv", "a") #uncomment when usb storage is used
+#m = open("/path/to/usb2/output2.csv", "a") #These can probably be done all at once?
+#p = open("/path/to/usb3/output3.csv", "a")
 w = open("output.txt", "a")
 w.write('Pressure, Temp, Humidity, Time')
 w.write("\n")
@@ -38,9 +41,6 @@ for x in range (0,cycle,1):
         output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
         output = str(output)
 #
-	#r = open("/path/to/usb1/output1.csv", "a") #uncomment when usb storage is used
-	#m = open("/path/to/usb2/output2.csv", "a") #These can probably be done all at once?
-	#p = open("/path/to/usb3/output3.csv", "a")
         w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
