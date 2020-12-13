@@ -30,8 +30,7 @@ w.write("\n")
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
-        data = str(x)
-        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+data)
+        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+str(x))
         tr.start()
 #
         output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
