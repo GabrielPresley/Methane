@@ -4,6 +4,7 @@ from threading import Thread
 from picamera import PiCamera
 from sense_hat import SenseHat
 from time import sleep, strftime
+from shutil import copyfile
 
 def ReadArdiuno():
 	if __name__ == '__main__':
@@ -24,13 +25,9 @@ camera.resolution = (100, 100)
 sense = SenseHat()
 sense.clear() #PRY 0
 #
-#r = open("/path/to/usb1/output1.csv", "a") #uncomment when usb storage is used
-#m = open("/path/to/usb2/output2.csv", "a") #These can probably be done all at once?
-#p = open("/path/to/usb3/output3.csv", "a")
 w = open("output.txt", "a")
 w.write('Pressure, Temp, Humidity, Time')
 w.write("\n")
-w.close()
         
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
@@ -44,10 +41,6 @@ for x in range (0,cycle,1):
         w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
-        w.close()
-	#r.close() #uncomment when usb storage is used
-	#m.close() # ^^
-	#p.close() # ^^
 #
         sleep(1)
 #
@@ -61,5 +54,7 @@ for x in range (0,cycle,1):
         if (x % 5 == 0 ):
                 t = strftime("%H:%M:%S")
                 camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
+		for a in range (1,3)
+			#copyfile('output.txt' '/path/to/usb1/output_%s.csv' % (a))
 #
 # LGPL-2.0  :  GNU Library General Public License v2 only
