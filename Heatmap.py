@@ -16,7 +16,7 @@ x = []
 y = []
 altitude = []
 
-# Load data
+# Load data. I used the raw data from output.txt for testing
 data = pd.read_csv('DroneTestData.csv')
 
 # Remove once we have GPS data
