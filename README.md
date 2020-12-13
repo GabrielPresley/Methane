@@ -4,8 +4,9 @@ Monitoring programs for an aerial methane monitor.
 ### Included Program Files  
 #### ~~~~~~~~~~~~~~~~~~~~~~  
 * README.md  
-* cam.py  
-* sensehat.py  
+* arduino.ino
+* sensehat.py
+* heatmap.py  
 * clean.sh  
 ### Introduction
 #### ~~~~~~~~~~~~
@@ -45,9 +46,18 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 ### Dependencies
 #### ~~~~~~~~~~~~
 ##### Python
-* time
-* SenseHat
 * PiCamera
+* random
+* SenseHat
+* math
+* matplotlib.pyplot
+* pandas
+* serial
+* shutil
+* threading
+* time
+##### C++
+* Adafruit_GPS.h
 
 ### Install
 #### ~~~~~~~

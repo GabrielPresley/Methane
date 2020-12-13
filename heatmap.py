@@ -19,7 +19,7 @@ ax2 = fig2.gca(projection='3d')
 x = []
 y = []
 #
-# Load data. I used the raw data from output.txt for testing
+# Load data. I used the raw data from output.csv for testing
 data = pd.read_csv('DroneTestData.csv')
 #
 altitude = []

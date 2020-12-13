@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 import serial
-from threading import Thread
 from picamera import PiCamera
 from sense_hat import SenseHat
-from time import sleep, strftime
 from shutil import copyfile
+from threading import Thread
+from time import sleep, strftime
 #
 camera = PiCamera()
 sense = SenseHat()
