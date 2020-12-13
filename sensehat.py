@@ -6,9 +6,14 @@ from sense_hat import SenseHat
 from time import sleep, strftime
 from shutil import copyfile
 #
+camera = PiCamera()
+sense = SenseHat()
+#
+ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+w = open("output.csv", "a")
+#
 def ReadArduino():
     if __name__ == '__main__':
-        ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
         ser.flush()
         wait = True
         while wait:
@@ -17,13 +22,9 @@ def ReadArduino():
                 wait = False;
                 return line
 #
-camera = PiCamera()
 camera.resolution = (100, 100)
-#
-sense = SenseHat()
 sense.clear() #PRY 0
 #
-w = open("output.csv", "a")
 w.write('Pressure,Temp,Humidity,Time')
 w.write("\n")
 #
@@ -55,4 +56,5 @@ for x in range (0,cycle,1):
             camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
             #for a in range (1,3):
                 #copyfile('output.txt' '/path/to/usb5s/output_%s.csv' % (a, a))
+                #Also need to do images to at least on drive.
 #
