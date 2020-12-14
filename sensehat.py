@@ -51,6 +51,6 @@ for x in range (0,cycle,1):
             camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
             if (x % 100 == 0)
             for a in range (1,3):
-                copyfile('output.txt' '/path/to/usb5s/output_%s.csv' % (a, a))
+                copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
                 #Also need to do images to at least on drive.
 #

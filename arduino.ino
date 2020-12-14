@@ -1,11 +1,12 @@
 #include <Adafruit_GPS.h>
-const int VOL_PIN = A0; // Need to put input pin here
+const int VOL_PIN = A0; //(Methane) [CAN BE A0-A7]
 //
 void setup(){
     Adafruit_GPS GPS(&mySerial);
     Serial.begin( 9600 );
     GPS.begin( 9600 );
-    SoftwareSerial myserial(x, y) // Need to put input pins here.
+    SoftwareSerial myserial(A4, A5) //(GPS) [THESE ARE THE 12c SERIAL PINS]
+    //A4 as SDA (serial data) and A5 as SCL (serial clock)
     GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA); // GPS output format
     GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); // one cycle per second
 }
@@ -24,7 +25,7 @@ void loop(){
       Serial.print("Altitude: "); Serial.println(GPS.altitude);
     }
 }
-  // Start Methane stuff
+    // Start Methane stuff
     int value;
     float volt;
 //
@@ -36,6 +37,4 @@ void loop(){
     Serial.print( value );
     Serial.print( "  Volt: " );
     Serial.println( volt );
-//
-    delay( 500 );
 }
