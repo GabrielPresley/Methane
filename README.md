@@ -1,14 +1,14 @@
-# Methane
+# Methane ✈️
 Monitoring programs for an aerial methane monitor.  
 
-### Included Program Files  
+### Included Program Files 🎪  
 #### ~~~~~~~~~~~~~~~~~~~~~~  
 * README.md  
 * arduino.ino
 * sensehat.py
 * heatmap.py  
 * clean.sh  
-### Introduction
+### Introduction ✍️
 #### ~~~~~~~~~~~~
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Air pollution is a dire health and
@@ -20,12 +20,12 @@ environmental threat at the forefront of humanity's concerns. As a result, there
    limited by their battery life. Theoretically, one can create a more effective
     drone for environmental monitoring by using a symmetrical fixed wing design.
 
-### Purpose
+### Purpose 🥅
 #### ~~~~~~~
 ##### arduino.ino
 * Reads data from Methane sensor
 * Reads data from GPS sensor
-* Runs on Arduino Nano  
+* Runs on Arduino Nano ✈️
 ##### sensehat.py    
 * Main data collection program
 * Responsible for photos
@@ -33,17 +33,17 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 * Writes to output.csv   
 * Collects Pressure, Temperature, Humidity, and time in form:  
 * ```[1004.05615234375, 26.88888931274414, 44.61138916015625, '18:07:30']  ```
-* Runs on RPi
+* Runs on RPi 🛩️  
 ##### clean.sh    
 * Writes to cleanoutput.txt  
 * Formats output.txt in form:  
 * Pressure,              temp,              Humidity,              time  
 * ``` [1004.05615234375    26.88888931274414    44.61138916015625    '18:07:30']  ```  
-* Runs on Data analysis computer
+* Runs on Data analysis computer 🔌
 ##### heatmap.py   
 * Generates heat map of Methane data    
-* Runs on data analysis computer      
-### Dependencies
+* Runs on data analysis computer 🔌      
+### Dependencies 🏗️
 #### ~~~~~~~~~~~~
 ##### Python
 * PiCamera
@@ -59,11 +59,11 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 ##### C++
 * Adafruit_GPS.h
 
-### Install
+### Install ⬇️
 #### ~~~~~~~
 * Download all files to ~/ on RPi
 * Flash arduino.ino to Arduino Nano
 
-### Contributing
+### Contributing 🕸️
 #### ~~~~~~~~~~~~
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -1,5 +1,5 @@
 #include <Adafruit_GPS.h>
-const int VOL_PIN = A0;
+const int VOL_PIN = A0; // Need to put input pin here
 //
 void setup(){
     Adafruit_GPS GPS(&mySerial);
