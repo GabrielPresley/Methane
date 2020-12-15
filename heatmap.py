@@ -15,12 +15,22 @@ import time
 #BUTTONS
 class ButtonWindow(Gtk.Window):
     def __init__(self):
+
         Gtk.Window.__init__(self, title="Methane - Drone")
-        self.set_border_width(10)
-#
         hbox = Gtk.Box(spacing=6)
         self.add(hbox)
+        self.set_border_width(2)
+        Gtk.Widget.set_size_request(self,1000,1000)
+
+        # Make lable
+        vbox = Gtk.Box()
+        hbox.pack_start(vbox, True, True, 0)
+
+        label = Gtk.Label()
+        label.set_text("Thank you for choosing Methane")
+        vbox.pack_start(label, True, True, 0)
 #
+        # Make buttons
         button = Gtk.Button.new_with_label("Temperature")
         button.connect("clicked", self.temp)
         hbox.pack_start(button, True, True, 0)
@@ -95,7 +105,7 @@ humidity = data.iloc[:,2].tolist()
 for i in range(len(pressure)):
     altitude.append((((1013.25/pressure[i])**(1/5.257)-1)*(temperature[i]+273.15))/0.0065)
 #
-# Plot the data to two different plots
+# Plot the data to three different plots
 if (which == "temp"):
     ax1.scatter(x, y, altitude, c=temperature)
     ax1.set_title("Temperature Heatmap")
