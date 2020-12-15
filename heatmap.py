@@ -7,7 +7,6 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 #
 import pandas as pd
-#
 # Remove once we have GPS data
 import math
 import random
@@ -17,6 +16,30 @@ fig1 = plt.figure()
 fig2 = plt.figure()
 ax1 = fig1.gca(projection='3d')
 ax2 = fig2.gca(projection='3d')
+#
+# TOOL BAR BUTTON
+pos = 9  # where to insert this in the toolbar
+manager = fig1.canvas.manager
+toolbar = manager.toolbar
+button = Gtk.Button(label='Graph Humidity')
+button.show()
+button.connect('clicked', lambda button: print('IDK WHAT IM DOING')) #TODO
+toolitem = Gtk.ToolItem()
+toolitem.show()
+toolitem.add(button)
+toolbar.insert(toolitem, pos)
+# BUTTON IN FIG2
+manager = fig2.canvas.manager
+toolbar = manager.toolbar
+button = Gtk.Button(label='Graph Temperature')
+button.show()
+button.connect('clicked', lambda button: print("Need to change a var here")) #TODO
+toolitem = Gtk.ToolItem()
+toolitem.show()
+toolitem.add(button)
+#
+toolbar.insert(toolitem, pos)
+# End of toolbar BUTTON
 #
 # Add once we have methane data
 # fig3 = plt.figure()
