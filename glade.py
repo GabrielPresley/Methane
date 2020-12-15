@@ -1,42 +1,31 @@
-#!/usr/bin/python3
-
+import matplotlib
+matplotlib.use('GTK3Agg')  # or 'GTK3Cairo'
+import matplotlib.pyplot as plt
+#
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+#
+fig = plt.figure()
+ax = plt.axes(projection="3d")
 
-from matplotlib.figure import Figure
-from numpy import sin, cos, pi, linspace
-from matplotlib.backends.backend_gtk3cairo import FigureCanvasGTK3Cairo as FigureCanvas
-from matplotlib.backends.backend_gtk3 import NavigationToolbar2GTK3 as NavigationToolbar
+manager = fig.canvas.manager
+toolbar = manager.toolbar
+vbox = manager.vbox
 
-myfirstwindow = Gtk.Window()
-myfirstwindow.connect("delete-event", Gtk.main_quit)
-myfirstwindow.set_default_size(500, 500)
-myfirstwindow.set_title('Matplotlib')
+# Example button
+button = Gtk.Button(label='Click me')
+button.show()
+button.connect('clicked', lambda button: print('hi mom'))
 
-box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-myfirstwindow.add(box)
+# label = Gtk.Label()
+# def update(event):
+#     if event.xdata is None:
+#         label.set_markup('Drag mouse over axes for position')
+#     else:
+#         label.set_markup(
+#             f'<span color="#ef0000">x,y=({event.xdata}, {event.ydata})</span>')
+#
+# fig.canvas.mpl_connect('motion_notify_event', update)
 
-fig = Figure(figsize=(5,5), dpi=80) # set plot size
-ax = fig.add_subplot(111)
-#Start matplotlib
-
-
-
-
-ax = fig.gca()
-ax.spines['right'].set_color('none')
-ax.spines['top'].set_color('none')
-ax.xaxis.set_ticks_position('bottom')
-ax.spines['bottom'].set_position(('data',0))
-ax.yaxis.set_ticks_position('left')
-ax.spines['left'].set_position(('data',0))
-
-fig.tight_layout()
-
-canvas = FigureCanvas(fig)
-box.pack_start(canvas, True, True, 0)
-
-toolbar = NavigationToolbar(canvas, myfirstwindow)
-box.pack_start(toolbar, False, True, 0)
-
-myfirstwindow.show_all()
-Gtk.main()
+plt.show()
