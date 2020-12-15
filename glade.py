@@ -4,8 +4,6 @@ from gi.repository import Gtk
 
 from matplotlib.figure import Figure
 from numpy import sin, cos, pi, linspace
-#Possibly this rendering backend is broken currently
-#from matplotlib.backends.backend_gtk3agg import FigureCanvasGTK3Agg as FigureCanvas
 from matplotlib.backends.backend_gtk3cairo import FigureCanvasGTK3Cairo as FigureCanvas
 from matplotlib.backends.backend_gtk3 import NavigationToolbar2GTK3 as NavigationToolbar
 
