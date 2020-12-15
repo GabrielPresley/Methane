@@ -1,5 +1,12 @@
-import pandas as pd
+import matplotlib
+matplotlib.use('GTK3Agg')
 import matplotlib.pyplot as plt
+#
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+#
+import pandas as pd
 #
 # Remove once we have GPS data
 import math
@@ -66,5 +73,5 @@ ax2.set_zlabel("altitude (m)")
 ax1.view_init(35, 190)
 ax2.view_init(35, 190)
 #ax3.view_init(30, 135)
-plt.draw()
+plt.show()
 #
