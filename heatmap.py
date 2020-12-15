@@ -1,49 +1,71 @@
-import matplotlib
-matplotlib.use('GTK3Agg')
-import matplotlib.pyplot as plt
-#
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-#
-import pandas as pd
-# Remove once we have GPS data
+
 import math
+
+import matplotlib
+matplotlib.use('GTK3Agg')
+import matplotlib.pyplot as plt
+
+import pandas as pd
 import random
+import time
 #
-# Initialize plots
-fig1 = plt.figure()
-fig2 = plt.figure()
-ax1 = fig1.gca(projection='3d')
-ax2 = fig2.gca(projection='3d')
+#BUTTONS
+class ButtonWindow(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Methane - Drone")
+        self.set_border_width(10)
 #
-# TOOL BAR BUTTON
-pos = 9  # where to insert this in the toolbar
-manager = fig1.canvas.manager
-toolbar = manager.toolbar
-button = Gtk.Button(label='Graph Humidity')
-button.show()
-button.connect('clicked', lambda button: print('IDK WHAT IM DOING')) #TODO
-toolitem = Gtk.ToolItem()
-toolitem.show()
-toolitem.add(button)
-toolbar.insert(toolitem, pos)
-# BUTTON IN FIG2
-manager = fig2.canvas.manager
-toolbar = manager.toolbar
-button = Gtk.Button(label='Graph Temperature')
-button.show()
-button.connect('clicked', lambda button: print("Need to change a var here")) #TODO
-toolitem = Gtk.ToolItem()
-toolitem.show()
-toolitem.add(button)
+        hbox = Gtk.Box(spacing=6)
+        self.add(hbox)
 #
-toolbar.insert(toolitem, pos)
-# End of toolbar BUTTON
+        button = Gtk.Button.new_with_label("Temperature")
+        button.connect("clicked", self.temp)
+        hbox.pack_start(button, True, True, 0)
 #
-# Add once we have methane data
-# fig3 = plt.figure()
-# ax3 = fig3.add_subplot(111, projection='3d')
+        button = Gtk.Button.new_with_label("Humidity")
+        button.connect("clicked", self.humid)
+        hbox.pack_start(button, True, True, 0)
+#
+        button = Gtk.Button.new_with_label("Methane")
+        button.connect("clicked", self.methane)
+        hbox.pack_start(button, True, True, 0)
+#
+    def temp(self, button):
+        global which
+        which =  "temp"
+        Gtk.main_quit()
+#
+    def humid(self, button):
+        global which
+        which =  "humidity"
+        Gtk.main_quit()
+#
+    def methane(self, button):
+        global which
+        which =  "methane"
+        Gtk.main_quit()
+#
+#
+win = ButtonWindow()
+win.connect("destroy", Gtk.main_quit)
+win.show_all()
+Gtk.main()
+print(which)
+#END OF BUTTONS
+
+if (which == "temp"):
+    fig1 = plt.figure()
+    ax1 = fig1.gca(projection='3d')
+elif (which == "humidity"):
+    fig2 = plt.figure()
+    ax2 = fig2.gca(projection='3d')
+elif (which == "methane"):
+    fig3 = plt.figure()
+    ax3 = fig3.add_subplot(111, projection='3d')
+
 #
 # Remove once we have GPS data
 x = []
@@ -74,27 +96,27 @@ for i in range(len(pressure)):
     altitude.append((((1013.25/pressure[i])**(1/5.257)-1)*(temperature[i]+273.15))/0.0065)
 #
 # Plot the data to two different plots
-ax1.scatter(x, y, altitude, c=temperature)
-ax1.set_title("Temperature Heatmap")
-ax1.set_xlabel("x (m)")
-ax1.set_ylabel("y (m)")
-ax1.set_zlabel("altitude (m)")
-ax2.scatter(x, y, altitude, c=humidity)
-ax2.set_title("Humidity Heatmap")
-ax2.set_xlabel("x (m)")
-ax2.set_ylabel("y (m)")
-ax2.set_zlabel("altitude (m)")
-#ax3.scatter(x, y, altitude, c=methane)
-#ax3.set_title("Methane Heatmap")
-#ax3.set_xlabel("x (m)")
-#ax3.set_ylabel("y (m)")
-#ax3.set_zlabel("altitude (m)")
-#ax3.text2D(0.05, 0.07, "Colour = Methane")
-#plt.show()
-#
-# Rotate the plot to look nicer
-ax1.view_init(35, 190)
-ax2.view_init(35, 190)
-#ax3.view_init(30, 135)
+if (which == "temp"):
+    ax1.scatter(x, y, altitude, c=temperature)
+    ax1.set_title("Temperature Heatmap")
+    ax1.set_xlabel("x (m)")
+    ax1.set_ylabel("y (m)")
+    ax1.set_zlabel("altitude (m)")
+    ax1.view_init(35, 190)
+if (which == "humidity"):
+    ax2.scatter(x, y, altitude, c=humidity)
+    ax2.set_title("Humidity Heatmap")
+    ax2.set_xlabel("x (m)")
+    ax2.set_ylabel("y (m)")
+    ax2.set_zlabel("altitude (m)")
+    ax2.view_init(35, 190)
+if (which == "methane"):
+    ax3.scatter(x, y, altitude, c=methane)
+    ax3.set_title("Methane Heatmap")
+    ax3.set_xlabel("x (m)")
+    ax3.set_ylabel("y (m)")
+    ax3.set_zlabel("altitude (m)")
+    ax3.text2D(0.05, 0.07, "Colour = Methane")
+    ax3.view_init(30, 135)
 plt.show()
 #
