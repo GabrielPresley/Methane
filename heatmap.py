@@ -17,31 +17,39 @@ class ButtonWindow(Gtk.Window):
     def __init__(self):
 
         Gtk.Window.__init__(self, title="Methane - Drone")
-        hbox = Gtk.Box(spacing=6)
-        self.add(hbox)
-        self.set_border_width(2)
-        Gtk.Widget.set_size_request(self,1000,1000)
+        
+        """
+        From what I get, basically it uses a 9x9 grid and things are added to this grid.
+        So the label takes up the top 3 cells, and the buttons take up the middle row.
+        """
+        
+        # Initialize 9x9 grid (I think)
 
-        # Make lable
-        vbox = Gtk.Box()
-        hbox.pack_start(vbox, True, True, 0)
+        grid = Gtk.Grid()
+        self.add(grid)
 
+        self.set_border_width(5)
+        # Make label
         label = Gtk.Label()
+        label.set_size_request(900, 50) # Set label size
         label.set_text("Thank you for choosing Methane")
-        vbox.pack_start(label, True, True, 0)
+        grid.attach(label, 0, 0, 3, 1) # x pos, y pos, width, height (in terms of 9x9 grid)
 #
         # Make buttons
-        button = Gtk.Button.new_with_label("Temperature")
-        button.connect("clicked", self.temp)
-        hbox.pack_start(button, True, True, 0)
+        button1 = Gtk.Button.new_with_label("Temperature")
+        button1.set_size_request(300, 200)
+        button1.connect("clicked", self.temp) # Event "temp" on click
+        grid.attach_next_to(button1, label, Gtk.PositionType.BOTTOM, 1, 1) # Put the button below the label
 #
-        button = Gtk.Button.new_with_label("Humidity")
-        button.connect("clicked", self.humid)
-        hbox.pack_start(button, True, True, 0)
+        button2 = Gtk.Button.new_with_label("Humidity")
+        button2.set_size_request(300, 200)
+        button2.connect("clicked", self.humid)
+        grid.attach_next_to(button2, button1, Gtk.PositionType.RIGHT, 1, 1) # Put the button next to button1
 #
-        button = Gtk.Button.new_with_label("Methane")
-        button.connect("clicked", self.methane)
-        hbox.pack_start(button, True, True, 0)
+        button3 = Gtk.Button.new_with_label("Methane")
+        button3.set_size_request(300, 200)
+        button3.connect("clicked", self.methane)
+        grid.attach_next_to(button3, button2, Gtk.PositionType.RIGHT, 1, 1) # Put the button next to button2
 #
     def temp(self, button):
         global which
@@ -74,7 +82,7 @@ elif (which == "humidity"):
     ax2 = fig2.gca(projection='3d')
 elif (which == "methane"):
     fig3 = plt.figure()
-    ax3 = fig3.add_subplot(111, projection='3d')
+    ax3 = fig3.gca(projection='3d')
 
 #
 # Remove once we have GPS data
