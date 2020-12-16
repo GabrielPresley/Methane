@@ -18,11 +18,11 @@ class ButtonWindow(Gtk.Window):
 		Gtk.Window.__init__(self, title="Methane - Drone")
 		
 		"""
-		From what I get, basically it uses a 9x9 grid and things are added to this grid.
+		From what I get, basically it uses a 3x3 grid and things are added to this grid.
 		So the label takes up the top 3 cells, and the buttons take up the middle row.
 		"""
 		
-		# Initialize 9x9 grid (I think)
+		# Initialize 3x3 grid (I think)
 		grid = Gtk.Grid()
 		self.add(grid)
 
@@ -31,7 +31,7 @@ class ButtonWindow(Gtk.Window):
 		label = Gtk.Label()
 		label.set_size_request(900, 50) # Set label size
 		label.set_text("Thank you for choosing Methane")
-		grid.attach(label, 0, 0, 3, 1) # x pos, y pos, width, height (in terms of 9x9 grid)
+		grid.attach(label, 0, 0, 3, 1) # x pos, y pos, width, height (in terms of 3x3 grid)
 #
 		# Make buttons
 		button1 = Gtk.Button.new_with_label("Temperature")
