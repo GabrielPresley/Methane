@@ -16,7 +16,7 @@ def ReadArduino():
         while wait:
             if ser.in_waiting > 0:
                 line = ser.readline().decode('utf-8').rstrip()
-                wait = False;
+                wait = False
                 return line
 #
 camera.resolution = (100, 100)
