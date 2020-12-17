@@ -4,8 +4,8 @@ from gi.repository import Gtk
 
 import math
 
-import matplotlib
-matplotlib.use('GTK3Agg')
+import matplotlib.use
+use('GTK3Agg')
 import matplotlib.pyplot as plt
 
 import pandas as pd
