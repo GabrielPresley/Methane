@@ -1,48 +1,41 @@
 #!/usr/bin/env python3
-import Serial
+import serial
+from picamera import PiCamera as camera
+from sense_hat import SenseHat as sense
+from shutil import copyfile
 from threading import Thread
-from picamera import PiCamera
-from sense_hat import SenseHat
 from time import sleep, strftime
-
-def ReadArdiuno():
-	if __name__ == '__main__':
-        ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+#
+ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
+w = open("output.csv", "a")
+#
+def ReadArduino():
+    if __name__ == '__main__':
         ser.flush()
         wait = True
         while wait:
             if ser.in_waiting > 0:
                 line = ser.readline().decode('utf-8').rstrip()
-                print(line)
-                wait = False;
-
+                wait = False
+                return line
 #
-
-camera = PiCamera()
 camera.resolution = (100, 100)
 #
-sense = SenseHat()
-sense.clear() #PRY 0
+w.write('Pressure,Temp,Humidity,Time' "\n")
 #
-w = open("output.txt", "a")
-w.write('Pressure, Temp, Humidity, Time')
-w.write("\n")
-w.close()
-        
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
-        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+x)
+        y = str(x)
+        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+y)
         tr.start()
-
-        output =  [sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S")]
+#
+        output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
         output = str(output)
 #
-        w = open("output.txt", "a")
         w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
-        w.close()
 #
         sleep(1)
 #
@@ -54,7 +47,10 @@ for x in range (0,cycle,1):
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~", x)
 #
         if (x % 5 == 0 ):
-                t = strftime("%H:%M:%S")
-                camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
+            t = strftime("%H:%M:%S")
+            camera.capture('/home/pi/images/image_%s_%s.jpg' % (t, x))
+            if (x % 100 == 0)
+            for a in range (1,3):
+                copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
+                #Also need to do images to at least on drive.
 #
-# LGPL-2.0  :  GNU Library General Public License v2 only
