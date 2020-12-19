@@ -16,38 +16,24 @@ import time
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
 		Gtk.Window.__init__(self, title="Methane - Drone")
-		
-		"""
-		From what I get, basically it uses a 3x3 grid and things are added to this grid.
-		So the label takes up the top 3 cells, and the buttons take up the middle row.
-		"""
-		
-		# Initialize 3x3 grid (I think)
+
+		# the label takes up the top 3 cells, and the button takes up the middle row.
+		# Initialize 3x3 grid
 		grid = Gtk.Grid()
 		self.add(grid)
 
 		self.set_border_width(5)
 		# Make label
 		label = Gtk.Label()
-		label.set_size_request(900, 50) # Set label size
+		label.set_size_request(1, 1) # Set label size
 		label.set_text("Thank you for choosing Methane")
 		grid.attach(label, 0, 0, 3, 1) # x pos, y pos, width, height (in terms of 3x3 grid)
 #
 		# Make buttons
-		button1 = Gtk.Button.new_with_label("Temperature")
-		button1.set_size_request(300, 200)
-		button1.connect("clicked", self.temp) # Event "temp" on click
-		grid.attach_next_to(button1, label, Gtk.PositionType.BOTTOM, 1, 1) # Put the button below the label
-#
-		button2 = Gtk.Button.new_with_label("Humidity")
-		button2.set_size_request(300, 200)
-		button2.connect("clicked", self.humid)
-		grid.attach_next_to(button2, button1, Gtk.PositionType.RIGHT, 1, 1) # Put the button next to button1
-#
-		button3 = Gtk.Button.new_with_label("Methane")
-		button3.set_size_request(300, 200)
-		button3.connect("clicked", self.methane)
-		grid.attach_next_to(button3, button2, Gtk.PositionType.RIGHT, 1, 1) # Put the button next to button2
+		button = Gtk.Button.new_with_label("Graph!")
+		button.set_size_request(3, 1)
+		button.connect("clicked", self.graph) # Event "graph" on click
+		grid.attach_next_to(button, label, Gtk.PositionType.BOTTOM, 1, 1) # Put the button below the label
 #
 		# Make dropdown
 		# Create list to go into the dropdown
@@ -55,39 +41,25 @@ class ButtonWindow(Gtk.Window):
 		combo.append([0, "Select Graph to Display..."])
 		combo.append([1, "Temperature"])
 		combo.append([2, "Humidity"])
-		combo.append([3, "Methane"])
+		combo.append([3, "Methane (No test data)"])
 #
-		# Put the list into the box. I'm too lazy to explain all of it
+		# Put the list into the box
 		dropdown = Gtk.ComboBox.new_with_model_and_entry(combo)
 		dropdown.connect("changed", self.on_name_combo_changed)
 		dropdown.set_entry_text_column(1)
 		dropdown.set_active(0)
-		grid.attach_next_to(dropdown, button2, Gtk.PositionType.BOTTOM, 1, 1)
+		grid.attach_next_to(dropdown, button, Gtk.PositionType.BOTTOM, 1, 1)
 #
-	def temp(self, button):
-		global which
-		which =  1
+	def graph(self, button):
 		Gtk.main_quit()
 #
-	def humid(self, button):
-		global which
-		which =  2
-		Gtk.main_quit()
-#
-	def methane(self, button):
-		global which
-		which =  3
-		Gtk.main_quit()
-#
-	# I don't really know how it works but it basically sets "which" to the index of the option
+	#sets "which" to the index of the option
 	def on_name_combo_changed(self, combo):
 		global which
 		tree_iter = combo.get_active_iter()
 		if tree_iter is not None:
 			model = combo.get_model()
 			which = model[tree_iter][0]
-		Gtk.main_quit()
-		
 #
 win = ButtonWindow()
 win.connect("destroy", Gtk.main_quit)
@@ -96,13 +68,13 @@ Gtk.main()
 print(which)
 #END OF BUTTONS
 #
-fig = plt.figure()
-#
+if (which != 0):
+	fig = plt.figure()
 if (which == 1):
 	ax1 = fig.gca(projection='3d')
 elif (which == 2):
 	ax2 = fig.gca(projection='3d')
-elif (which == 2):
+elif (which == 3):
 	ax3 = fig.gca(projection='3d')
 #
 # Remove once we have GPS data
