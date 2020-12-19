@@ -1,3 +1,10 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|*    This code was written by     |
+|*               MMM               |
+|*  MMM Monitors Methane was made  |
+|*   for grad 2021 BSS SRM Class   |
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 #include <Adafruit_GPS.h>
 const int VOL_PIN = A0; //(Methane) [CAN BE A0-A7]
 //

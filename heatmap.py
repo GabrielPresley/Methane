@@ -15,7 +15,7 @@ import time
 #BUTTONS
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
-		Gtk.Window.__init__(self, title="Methane - Drone")
+		Gtk.Window.__init__(self, title="MMM Monitors Methane - Drone")
 
 		# the label takes up the top 3 cells, and the button takes up the middle row.
 		# Initialize 3x3 grid
@@ -26,7 +26,7 @@ class ButtonWindow(Gtk.Window):
 		# Make label
 		label = Gtk.Label()
 		label.set_size_request(1, 1) # Set label size
-		label.set_text("Thank you for choosing Methane")
+		label.set_text("Thank you for choosing MMM")
 		grid.attach(label, 0, 0, 3, 1) # x pos, y pos, width, height (in terms of 3x3 grid)
 #
 		# Make buttons

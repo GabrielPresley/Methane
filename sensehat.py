@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|*    This code was written by     |
+|*               MMM               |
+|*  MMM Monitors Methane was made  |
+|*   for grad 2021 BSS SRM Class   |
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
+
 import serial
 from picamera import PiCamera as camera
 from sense_hat import SenseHat as sense
