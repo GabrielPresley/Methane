@@ -65,6 +65,7 @@ for x in range (0,cycle,1):
             camera.capture(n)
             if (x % 100 == 0):
                 for a in range (1,3):
+                    #please note the pass here is temporary and meant to be removed when we have usbs to copy to
                     pass
                     #copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
                     #Also need to do images to at least one drive.
