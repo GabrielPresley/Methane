@@ -57,9 +57,11 @@ for x in range (0,cycle,1):
 #
         if (x % 5 == 0 ):
             t = strftime("%H:%M:%S")
-            camera.capture(("/home/pi/images/image_%s_%s.jpg" % (t, x)))
+            n = "/home/pi/images/image_%s_%s.jpg" % (t, x)
+            camera.capture(n)
             if (x % 100 == 0):
                 for a in range (1,3):
-                    copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
+                    pass
+                    #copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
                     #Also need to do images to at least one drive.
 #
