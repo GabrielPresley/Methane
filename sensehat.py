@@ -6,7 +6,7 @@
 |*   for grad 2021 BSS SRM Class   |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
 
-import pyserial as serial
+import serial
 from picamera import PiCamera as camera
 from sense_hat import SenseHat as sense
 from shutil import copyfile
