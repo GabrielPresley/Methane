@@ -7,7 +7,7 @@
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
 
 import serial
-from picamera import PiCamera as camera
+from picamera import PiCamera
 from sense_hat import SenseHat
 from shutil import copyfile
 from threading import Thread
@@ -26,7 +26,9 @@ def ReadArduino():
                 wait = False
                 return line
 #
-camera.start_preview()
+#camera.start_preview()
+
+camera = PiCamera()
 
 camera.resolution = (100, 100)
 #
@@ -67,4 +69,4 @@ for x in range (0,cycle,1):
                     #copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
                     #Also need to do images to at least one drive.
 #
-camera.stop_preview()
+#camera.stop_preview()
