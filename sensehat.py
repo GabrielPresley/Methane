@@ -24,10 +24,10 @@ def ReadArduino():
             if ser.in_waiting > 0:
                 line = ser.readline().decode('utf-8').rstrip()
                 wait = False
+                print(line);
+                
                 return line
 #
-#camera.start_preview()
-
 camera = PiCamera()
 
 camera.resolution = (100, 100)
@@ -69,4 +69,3 @@ for x in range (0,cycle,1):
                     #copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
                     #Also need to do images to at least one drive.
 #
-#camera.stop_preview()
