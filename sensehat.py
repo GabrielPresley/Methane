@@ -8,7 +8,7 @@
 
 import serial
 from picamera import PiCamera as camera
-from sense_hat import SenseHat as sense
+from sense_hat import SenseHat
 from shutil import copyfile
 from threading import Thread
 from time import sleep, strftime
@@ -29,6 +29,8 @@ def ReadArduino():
 camera.resolution = (100, 100)
 #
 w.write('Pressure,Temp,Humidity,Time' "\n")
+
+sense = SenseHat()
 #
 cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
