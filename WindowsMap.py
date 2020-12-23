@@ -3,7 +3,7 @@ import tkinter
 main = tkinter.Tk()
 
 selection1 = tkinter.StringVar(main)
-selection.value = "thing"
+selection1.set("thing")
 
 dropdown = tkinter.OptionMenu(main, selection1, "stuff")
 dropdown.pack()
