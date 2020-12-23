@@ -6,7 +6,7 @@
 |*   for grad 2021 BSS SRM Class   |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
 
-#imports required moduals
+#import modules
 import serial
 from picamera import PiCamera
 from sense_hat import SenseHat
@@ -14,6 +14,7 @@ from shutil import copyfile
 from threading import Thread
 from time import sleep, strftime
 #
+camera = PiCamera()
 #opens the serial port to communicate with the arduino
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 #opens the file to write data to
@@ -30,12 +31,8 @@ def ReadArduino():
                 line = ser.readline().decode('utf-8').rstrip()
                 wait = False
                 print(line);
-                
-                return line
-#
-#defines an instance of the PiCamera class under camera
-camera = PiCamera()
 
+                return line
 #sets the cameras resolution
 camera.resolution = (100, 100)
 #
@@ -52,23 +49,20 @@ cycle = int(input("Number of cycles: "))
 for x in range (0,cycle,1):
 #
         #starts a new thread which waits for a reading from the arduino
-        y = str(x)
-        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+y)
+        tr = Thread(target = ReadArduino, args=(), name="ardiunodata"+str(x))
         tr.start()
 #
         #defines output as the string for the array of the data from the sensehat and the time
         output =  str( [ sense.get_pressure(), sense.get_temperature(), sense.get_humidity(), strftime("%H:%M:%S") ] )
         output = str(output)
-#  
+#
         #writes the output to the data file along with its titles
-        w.write('Pressure, Temp, Humidity, Time')
         w.write(output)
         w.write("\n")
-#       
-        #waits one second
+#
         sleep(1)
 #
-        #records the orientation of the pi and prints it to the terminal
+        #print orientation to terminal
         o = sense.get_orientation()
         pitch = o["pitch"]
         roll = o["roll"]
@@ -78,17 +72,17 @@ for x in range (0,cycle,1):
 #
         #takes a picture every 5 cycles
         if (x % 5 == 0 ):
-        
-            #determines the time
+
+            #Updates time
             t = strftime("%H:%M:%S")
-            n = "/home/pi/images/image_%s_%s.jpg" % (t, x)
             #takes a photo and saves it with the time and number
-            camera.capture(n)
-            
+            camera.capture(("/home/pi/images/image_%s_%s.jpg" % (t, x)))
+
+
             #every 100 cycles it backs up the data to a usb drive
             if (x % 100 == 0):
                 for a in range (1,3):
-                    #please note the pass here is temporary and meant to be removed when we have usbs to copy to
+                    #Remove pass when Usb's
                     pass
                     #copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
                     #Also need to do images to at least one drive.
