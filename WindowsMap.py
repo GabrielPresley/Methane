@@ -1,5 +1,20 @@
 import tkinter
 
+def readlist(string):
+    item = ""
+    lis = []
+    string = list(string)
+    
+    for i in string:
+        if(i == "\n"):
+            return lis
+        elif(i == ","):
+            lis.append(float(item))
+        elif(i == "["):
+            pass
+        else:
+            item = item + i
+
 def loadData(slot, key):
     file = open("TransposedTestData.csv", "r")
 
@@ -7,7 +22,7 @@ def loadData(slot, key):
     
     for i, content in enumerate(file):
         if(i == line):
-            data[slot] = list(content)
+            data[slot] = readlist(content)
             
     file.close()
 
