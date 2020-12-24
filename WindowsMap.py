@@ -1,4 +1,4 @@
-import tkinter
+"""import tkinter
 
 main = tkinter.Tk()
 
@@ -10,22 +10,22 @@ for i in range(4):
     dropdown.append(tkinter.OptionMenu(main, selection[i], "thing", "stuff", "doohicker"))
     dropdown[i].pack()
 
-main.mainloop()
+main.mainloop()"""
 
 
-#import tkinter
+import tkinter
 
-#main = tkinter.Tk()
+main = tkinter.Tk()
 
 
 
-#dropdown = []
-#selection = []
-#for i in range(4):
-#	selection.append(tkinter.StringVar(main))
-#	selection[i].set("thing")
+dropdown = []
+selection = []
+for i in range(4):
+	selection.append(tkinter.StringVar(main))
+	selection[i].set("thing")
 	
-#	dropdown.append(tkinter.OptionMenu(main, selection[i], "thing", "stuff", "doohicker"))
-#	dropdown[i].pack()
+	dropdown.append(tkinter.OptionMenu(main, selection[i], "thing", "stuff", "doohicker"))
+	dropdown[i].pack()
 
-#main.mainloop()
+main.mainloop()
