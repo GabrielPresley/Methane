@@ -31,8 +31,7 @@ for i in range(4):
     selection.append(tkinter.StringVar(main))
     selection[i].set("thing")
     
-    dropdown.append(tkinter.OptionMenu(main, selection[i], "thing", "stuff", "doohicker"))
-    dropdown[i].bind('<Button-1>', updateGraph)
+    dropdown.append(tkinter.OptionMenu(main, selection[i], "thing", "stuff", "doohicker", command = updateGraph))
     dropdown[i].pack()
 
 main.mainloop()
