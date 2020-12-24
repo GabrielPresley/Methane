@@ -12,8 +12,8 @@ def loadData(slot, key):
     file.close()
 
 def updateGraph(event):
-    print(event)
-    loadData(0, "Pressure")
+    print(data)
+    loadData(0, event)
     print("works")
 
 main = tkinter.Tk()
