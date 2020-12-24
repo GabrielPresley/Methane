@@ -1,7 +1,19 @@
 import tkinter
 
+def loadData(slot, key):
+    file = open("TransposedTestData.csv", "r")
+
+    line = datamap[key]
+    
+    for i, content in enumerate(file):
+        if(i == line):
+            data[slot] = list(content)
+            
+    file.close()
+
 def updateGraph(event):
-    #will update the graph when the event is called. to be edited later
+    print(event)
+    loadData(0, "Pressure")
     print("works")
 
 main = tkinter.Tk()
