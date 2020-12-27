@@ -1,5 +1,20 @@
 import tkinter
 
+def readtime(string):
+    item = ""
+    lis = [] 
+    string = list(string)
+    
+    for i in string:
+        if(i == "\n"):
+            return lis
+        elif(i == ","):
+            lis.append((int(item[0:2]) * 3600) + (int(item[3:5]) * 60) + int(item[6:])
+            item = ""
+            
+        else:
+            item = item + i
+
 def readlist(string):
     item = ""
     lis = []
@@ -10,6 +25,8 @@ def readlist(string):
             return lis
         elif(i == ","):
             lis.append(float(item))
+            item = ""
+
         elif(i == "["):
             pass
         else:
@@ -22,7 +39,10 @@ def loadData(slot, key):
     
     for i, content in enumerate(file):
         if(i == line):
-            data[slot] = readlist(content)
+            if(line == 3):
+                data[slot] = readtime(content)
+            else:
+                data[slot] = readlist(content)
             
     file.close()
 
