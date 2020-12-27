@@ -14,6 +14,7 @@ def readtime(string):
             
         else:
             item = item + i
+    return lis
 
 def readlist(string):
     item = ""
@@ -31,6 +32,7 @@ def readlist(string):
             pass
         else:
             item = item + i
+    return lis
 
 def loadData(slot, key):
     file = open("TransposedTestData.csv", "r")
