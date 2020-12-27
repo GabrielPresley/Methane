@@ -9,9 +9,11 @@ def readtime(string):
         if(i == "\n"):
             return lis
         elif(i == ","):
-            lis.append((int(item[0:2]) * 3600) + (int(item[3:5]) * 60) + int(item[6:])
+            print(item)
+            lis.append((int(item[0:2]) * 3600) + (int(item[3:5]) * 60) + int(item[6:]))
             item = ""
-            
+        elif(i == " "):
+            pass
         else:
             item = item + i
     return lis
