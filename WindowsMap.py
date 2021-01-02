@@ -78,6 +78,7 @@ for i in range(4):
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.figure import Figure
+from matplotlib.backend_bases import key_press_handler
 
 fig = Figure(figsize=(5, 4), dpi=100)
 t = np.arange(0, 3, .01)
