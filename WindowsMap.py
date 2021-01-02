@@ -76,6 +76,7 @@ for i in range(4):
    # making a graph 
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 fig = Figure(figsize=(5, 4), dpi=100)
 t = np.arange(0, 3, .01)
