@@ -79,9 +79,15 @@ main.mainloop()
 
 fig = Figure(figsize=(5, 4), dpi=100)
 t = np.arange(0, 3, .01)
-fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+plot = fig.add_subplot(111)
+plot.plot(t, 2 * np.sin(2 * np.pi * t))
+plot.set_xlabel('X Axis')
+plot.set_ylabel ('Y Axis')
+set_title('Title')
+                 
 
 canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
 canvas.draw()
 canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+
 
