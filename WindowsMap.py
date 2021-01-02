@@ -74,3 +74,14 @@ for i in range(4):
     dropdown[i].pack()
 
 main.mainloop()
+
+# making a graph 
+
+fig = Figure(figsize=(5, 4), dpi=100)
+t = np.arange(0, 3, .01)
+fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+
+canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
+canvas.draw()
+canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+
