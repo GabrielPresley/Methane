@@ -83,7 +83,7 @@ plot = fig.add_subplot(111)
 plot.plot(t, 2 * np.sin(2 * np.pi * t))
 plot.set_xlabel('X Axis')
 plot.set_ylabel ('Y Axis')
-set_title('Title')
+plot.set_title('Title')
                  
 
 canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
