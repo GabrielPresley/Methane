@@ -52,7 +52,9 @@ def loadData(slot, key):
 
 def updateGraph(event):
     print(data)
-    loadData(0, event)
+    caller = event.widget
+    
+    loadData(index(caller), event)
     print("works")
 
 main = tkinter.Tk()
