@@ -61,7 +61,7 @@ main = tkinter.Tk()
 
 datamap = {"Pressure": 0, "Tempature": 1, "Humidity": 2, "Time": 3}
 
-data = [[1, 2, 3, 4, 5],
+data = numpy.array[[1, 2, 3, 4, 5],
         [1, 3, 2, 5, 4],
         [5, 4, 3, 2, 1], 
         [3, 4, 5, 1, 2]]
@@ -85,7 +85,7 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 fig = Figure(figsize=(5, 4), dpi=100)
 t = np.arange(0, 3, .01)
 plot = fig.add_subplot(111)
-plt.plot(x, y, parameters)
+plt.plot(data[0], data[1], parameters)
 plot.set_xlabel('X Axis')
 plot.set_ylabel ('Y Axis')
 plot.set_title('Title')
