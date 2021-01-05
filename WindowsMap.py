@@ -18,6 +18,8 @@ def readtime(string):
             item = item + i
     return lis 
 
+canvas = 1
+
 def redrawGraph():
     fig = Figure(figsize=(5, 4), dpi=100)
     plot = fig.add_subplot(111)
@@ -29,9 +31,7 @@ def redrawGraph():
     plot.set_title('Title')
     
     global canvas
-                 
-    if(canvas != 1):
-        canvas.pack_forget()
+    
     canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
     canvas.draw()
     canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
