@@ -9,7 +9,6 @@ def readtime(string):
         if(i == "\n"):
             return lis
         elif(i == ","):
-            print(item)
             lis.append((int(item[0:2]) * 3600) + (int(item[3:5]) * 60) + int(item[6:]))
             item = ""
         elif(i == " "):
@@ -75,37 +74,29 @@ def loadData(slot, key):
     
 
 def updateGraph(event):
-    print(data)
     
     
     loadData(0, event)
                     
     redrawGraph()
-    print("works")
     
 def updateGraph1(event):
-    print(data)
     
     loadData(1, event)
                     
     redrawGraph()
-    print("works")
     
 def updateGraph2(event):
-    print(data)
     
     loadData(2, event)
                     
     redrawGraph()
-    print("works")
     
 def updateGraph3(event):
-    print(data)
     
     loadData(3, event)
                     
     redrawGraph()
-    print("works")
 
 main = tkinter.Tk()
 
