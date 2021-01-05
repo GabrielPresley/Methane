@@ -28,7 +28,7 @@ def redrawGraph():
     plot.plot(x, y, ".")
     plot.set_xlabel(selection[0].get())
     plot.set_ylabel (selection[1].get())
-    plot.set_title('Title')
+    plot.set_title(selection[1].get() + " vs. " + selection[0].get())
     
     global canvas
     
