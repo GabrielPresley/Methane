@@ -96,7 +96,7 @@ def updateGraph3(event):
 
 main = tkinter.Tk()
 
-
+canvas = 1
 
 updates  = [updateGraph, updateGraph1, updateGraph2, updateGraph3]
 
@@ -122,8 +122,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-
-canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
 
 redrawGraph()
 
