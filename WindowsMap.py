@@ -26,8 +26,8 @@ def redrawGraph():
     x = data[0]
     y = data[1]
     plot.plot(x, y, ".")
-    plot.set_xlabel('X Axis')
-    plot.set_ylabel ('Y Axis')
+    plot.set_xlabel(selection[0].get())
+    plot.set_ylabel (selection[1].get())
     plot.set_title('Title')
     
     global canvas
