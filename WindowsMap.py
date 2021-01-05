@@ -52,12 +52,31 @@ def loadData(slot, key):
 
 def updateGraph(event):
     print(data)
-    caller = event.widget
     
-    loadData(index(caller), event)
+    loadData(0, event)
+    print("works")
+    
+def updateGraph1(event):
+    print(data)
+    
+    loadData(1, event)
+    print("works")
+    
+def updateGraph2(event):
+    print(data)
+    
+    loadData(2, event)
+    print("works")
+    
+def updateGraph3(event):
+    print(data)
+    
+    loadData(3, event)
     print("works")
 
 main = tkinter.Tk()
+
+updates  = [updateGraph, updateGraph1, updateGraph2, updateGraph3]
 
 datamap = {"Pressure": 0, "Tempature": 1, "Humidity": 2, "Time": 3}
 
@@ -72,7 +91,7 @@ for i in range(4):
     selection.append(tkinter.StringVar(main))
     selection[i].set("thing")
     
-    dropdown.append(tkinter.OptionMenu(main, selection[i], "Pressure", "Tempature", "Humidity", "Time", command = updateGraph))
+    dropdown.append(tkinter.OptionMenu(main, selection[i], "Pressure", "Tempature", "Humidity", "Time", command= updates[i]))
     dropdown[i].pack()
 
    # making a graph 
