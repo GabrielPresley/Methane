@@ -17,6 +17,22 @@ def readtime(string):
         else:
             item = item + i
     return lis
+    
+def redrawGraph():
+    fig = Figure(figsize=(5, 4), dpi=100)
+    plot = fig.add_subplot(111)
+    x = data[0]
+    y = data[1]
+    plot.plot(x, y, ".")
+    plot.set_xlabel('X Axis')
+    plot.set_ylabel ('Y Axis')
+    plot.set_title('Title')
+                 
+
+    canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+
 
 def readlist(string):
     item = ""
@@ -47,8 +63,12 @@ def loadData(slot, key):
                 data[slot] = readtime(content)
             else:
                 data[slot] = readlist(content)
+                
+    redrawGraph()
             
     file.close()
+    
+    
 
 def updateGraph(event):
     print(data)
@@ -76,6 +96,8 @@ def updateGraph3(event):
 
 main = tkinter.Tk()
 
+
+
 updates  = [updateGraph, updateGraph1, updateGraph2, updateGraph3]
 
 datamap = {"Pressure": 0, "Tempature": 1, "Humidity": 2, "Time": 3}
@@ -101,20 +123,9 @@ import numpy as np
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
-fig = Figure(figsize=(5, 4), dpi=100)
-t = np.arange(0, 3, .01)
-plot = fig.add_subplot(111)
-x = data[0]
-y = data[1]
-plot.plot(x, y, ".")
-plot.set_xlabel('X Axis')
-plot.set_ylabel ('Y Axis')
-plot.set_title('Title')
-                 
-
 canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
-canvas.draw()
-canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+
+redrawGraph()
 
 main.mainloop()
 
