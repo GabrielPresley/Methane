@@ -87,7 +87,7 @@ t = np.arange(0, 3, .01)
 plot = fig.add_subplot(111)
 x = data[0]
 y = data[1]
-plt.plot(x, y, ".")
+plot.plot(x, y, ".")
 plot.set_xlabel('X Axis')
 plot.set_ylabel ('Y Axis')
 plot.set_title('Title')
