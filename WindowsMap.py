@@ -61,7 +61,7 @@ main = tkinter.Tk()
 
 datamap = {"Pressure": 0, "Tempature": 1, "Humidity": 2, "Time": 3}
 
-data = numpy.array[[1, 2, 3, 4, 5],
+data = [[1, 2, 3, 4, 5],
         [1, 3, 2, 5, 4],
         [5, 4, 3, 2, 1], 
         [3, 4, 5, 1, 2]]
