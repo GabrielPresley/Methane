@@ -85,7 +85,9 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 fig = Figure(figsize=(5, 4), dpi=100)
 t = np.arange(0, 3, .01)
 plot = fig.add_subplot(111)
-plt.plot(data[0], data[1], parameters)
+x = data[0]
+y = data[1]
+plt.plot(x, y, scatter())
 plot.set_xlabel('X Axis')
 plot.set_ylabel ('Y Axis')
 plot.set_title('Title')
