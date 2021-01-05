@@ -32,6 +32,9 @@ def redrawGraph():
     
     global canvas
     
+    if(canvas != 1):
+        canvas.get_tk_widget().destroy()
+    
     canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
     canvas.draw()
     canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
