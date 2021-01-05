@@ -16,8 +16,8 @@ def readtime(string):
             pass
         else:
             item = item + i
-    return lis
-    
+    return lis 
+
 def redrawGraph():
     fig = Figure(figsize=(5, 4), dpi=100)
     plot = fig.add_subplot(111)
@@ -27,8 +27,11 @@ def redrawGraph():
     plot.set_xlabel('X Axis')
     plot.set_ylabel ('Y Axis')
     plot.set_title('Title')
+    
+    global canvas
                  
-
+    if(canvas != 1):
+        canvas.pack_forget()
     canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
     canvas.draw()
     canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
@@ -63,8 +66,6 @@ def loadData(slot, key):
                 data[slot] = readtime(content)
             else:
                 data[slot] = readlist(content)
-                
-    redrawGraph()
             
     file.close()
     
@@ -73,30 +74,37 @@ def loadData(slot, key):
 def updateGraph(event):
     print(data)
     
+    
     loadData(0, event)
+                    
+    redrawGraph()
     print("works")
     
 def updateGraph1(event):
     print(data)
     
     loadData(1, event)
+                    
+    redrawGraph()
     print("works")
     
 def updateGraph2(event):
     print(data)
     
     loadData(2, event)
+                    
+    redrawGraph()
     print("works")
     
 def updateGraph3(event):
     print(data)
     
     loadData(3, event)
+                    
+    redrawGraph()
     print("works")
 
 main = tkinter.Tk()
-
-canvas = 1
 
 updates  = [updateGraph, updateGraph1, updateGraph2, updateGraph3]
 
@@ -115,6 +123,8 @@ for i in range(4):
     
     dropdown.append(tkinter.OptionMenu(main, selection[i], "Pressure", "Tempature", "Humidity", "Time", command= updates[i]))
     dropdown[i].pack()
+    
+    loadData(i, "Pressure")
 
    # making a graph 
 
