@@ -34,24 +34,40 @@ canvas = 1
 
 #defines redraw graph
 def redrawGraph():
+    #defines the figure as a new figure
     fig = Figure(figsize=(5, 4), dpi=100)
+    
+    #pulls a 3d projection from the current figure
     plot = fig.gca(projection='3d')
+    
+    #sets the x, y, z, etc. values to the values from the data array
     x = data[0]
     y = data[1]
     z = data[2]
     c = data[3]
+    
+    #creates a 3d colored scatterplot 
     plot.scatter(x, y, z, c=c)
+    
+    #labels the axises and the title
     plot.set_xlabel(selection[0].get())
     plot.set_ylabel (selection[1].get())
     plot.set_title(selection[1].get() + " vs. " + selection[0].get())
     
+    #retrieves globabl vlaue canvas
     global canvas
     
+    #checks if canvas is equal to one and destroys the canvas if it isn't
     if(canvas != 1):
         canvas.get_tk_widget().destroy()
     
+    #defines the canvas as a tk drawing area
     canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
+    
+    #draws the canvas
     canvas.draw()
+    
+    #accesses the tk widget and addes it to the main
     canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 
 
