@@ -12,14 +12,20 @@ def readtime(string):
     
     #repeats for each character in the data list
     for i in string:
+        #checks if the character is the newline character and returns the list
         if(i == "\n"):
             return lis
+        #checks if the character is a comma and interprets the data
         elif(i == ","):
+            #adds data in seconds found with hours * 3600 + mins * 60 + seconds
             lis.append((int(item[0:2]) * 3600) + (int(item[3:5]) * 60) + int(item[6:]))
+            #resets item
             item = ""
+        #checks for a space and skips it
         elif(i == " "):
             pass
         else:
+            #in all otehr cases adds the current character to the end of the item string
             item = item + i
     return lis 
 
