@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #imports graphics libraries
 import tkinter
 
@@ -6,10 +7,10 @@ def readtime(string):
     #Defines  a variable for storing the data being read
     item = ""
     #the list to store the interperated data in
-    lis = [] 
+    lis = []
     #convers the data line to a list of characters
     string = list(string)
-    
+
     #repeats for each character in the data list
     for i in string:
         #checks if the character is the newline character and returns the list
@@ -27,7 +28,7 @@ def readtime(string):
         else:
             #in all otehr cases adds the current character to the end of the item string
             item = item + i
-    return lis 
+    return lis
 
 #defines canvas as 1 (because I can't use an empty variable
 canvas = 1
@@ -44,12 +45,12 @@ def redrawGraph():
     plot.set_xlabel(selection[0].get())
     plot.set_ylabel (selection[1].get())
     plot.set_title(selection[1].get() + " vs. " + selection[0].get())
-    
+
     global canvas
-    
+
     if(canvas != 1):
         canvas.get_tk_widget().destroy()
-    
+
     canvas = FigureCanvasTkAgg(fig, master=main)  # A tk.DrawingArea.
     canvas.draw()
     canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
@@ -59,7 +60,7 @@ def readlist(string):
     item = ""
     lis = []
     string = list(string)
-    
+
     for i in string:
         if(i == "\n"):
             return lis
@@ -77,41 +78,41 @@ def loadData(slot, key):
     file = open("TransposedTestData.csv", "r")
 
     line = datamap[key]
-    
+
     for i, content in enumerate(file):
         if(i == line):
             if(line == 3):
                 data[slot] = readtime(content)
             else:
                 data[slot] = readlist(content)
-            
+
     file.close()
-    
-    
+
+
 
 def updateGraph(event):
-    
-    
+
+
     loadData(0, event)
-                    
+
     redrawGraph()
-    
+
 def updateGraph1(event):
-    
+
     loadData(1, event)
-                    
+
     redrawGraph()
-    
+
 def updateGraph2(event):
-    
+
     loadData(2, event)
-                    
+
     redrawGraph()
-    
+
 def updateGraph3(event):
-    
+
     loadData(3, event)
-                    
+
     redrawGraph()
 
 main = tkinter.Tk()
@@ -127,13 +128,13 @@ selection = []
 for i in range(4):
     selection.append(tkinter.StringVar(main))
     selection[i].set("thing")
-    
+
     dropdown.append(tkinter.OptionMenu(main, selection[i], "Pressure", "Tempature", "Humidity", "Time", command= updates[i]))
     dropdown[i].pack()
-    
+
     loadData(i, "Pressure")
 
-   # making a graph 
+   # making a graph
 
 import matplotlib.pyplot as plt
 import numpy as np
