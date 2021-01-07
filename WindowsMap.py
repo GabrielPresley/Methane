@@ -21,10 +21,12 @@ canvas = 1
 
 def redrawGraph():
     fig = Figure(figsize=(5, 4), dpi=100)
-    plot = fig.add_subplot(111)
+    plot = fig.gca(projection='3d')
     x = data[0]
     y = data[1]
-    plot.plot(x, y, ".")
+    z = data[2]
+    c = data[3]
+    plot.scatter(x, y, z, c=c)
     plot.set_xlabel(selection[0].get())
     plot.set_ylabel (selection[1].get())
     plot.set_title(selection[1].get() + " vs. " + selection[0].get())
@@ -130,7 +132,6 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 redrawGraph()
 
 main.mainloop()
-
 
 
 
