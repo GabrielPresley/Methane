@@ -29,8 +29,10 @@ def readtime(string):
             item = item + i
     return lis 
 
+#defines canvas as 1 (because I can't use an empty variable
 canvas = 1
 
+#defines redraw graph
 def redrawGraph():
     fig = Figure(figsize=(5, 4), dpi=100)
     plot = fig.gca(projection='3d')
