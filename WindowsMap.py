@@ -106,10 +106,7 @@ updates  = [updateGraph, updateGraph1, updateGraph2, updateGraph3]
 
 datamap = {"Pressure": 0, "Tempature": 1, "Humidity": 2, "Time": 3}
 
-data = [[1, 2, 3, 4, 5],
-        [1, 3, 2, 5, 4],
-        [5, 4, 3, 2, 1], 
-        [3, 4, 5, 1, 2]]
+data[5][4]
 
 dropdown = []
 selection = []
@@ -132,7 +129,3 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 redrawGraph()
 
 main.mainloop()
-
-
-
-
