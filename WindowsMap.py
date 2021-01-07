@@ -1,10 +1,16 @@
+#imports graphics libraries
 import tkinter
 
+#defines a function to read the time data
 def readtime(string):
+    #Defines  a variable for storing the data being read
     item = ""
+    #the list to store the interperated data in
     lis = [] 
+    #convers the data line to a list of characters
     string = list(string)
     
+    #repeats for each character in the data list
     for i in string:
         if(i == "\n"):
             return lis
