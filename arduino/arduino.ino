@@ -50,5 +50,5 @@ void loop()
   // output
   Serial.print("Methane (PPM) ");
   Serial.println(ppm);
-  delay(300);
+  delay(3000);
 }
