@@ -24,7 +24,6 @@ void setup()
 //
 void loop()
 {
-  unsigned int data[2];
 //
   // start I2C
   Wire.beginTransmission(Addr);
@@ -37,6 +36,7 @@ void loop()
   Wire.requestFrom(Addr, 2);
 //
   // read 2 bytes
+  unsigned int data[2];
   if(Wire.available() == 2)
   {
     data[0] = Wire.read();
@@ -48,7 +48,7 @@ void loop()
   float ppm = (10000.0 / 4096.0) * raw_adc + 200.0;
 //
   // output
-  Serial.print("Methane concentration : ");
+  Serial.print("Methane (PPM) ");
   Serial.println(ppm);
   delay(300);
 }
