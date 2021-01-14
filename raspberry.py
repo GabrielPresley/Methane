@@ -13,7 +13,7 @@ from time import sleep, strftime
 from picamera import PiCamera
 #
 # open serial port
-ser = serial('/dev/ttyUSB0', 9600, timeout=1)
+ser = serial('/dev/ttyUSB0', 9600, timeout=1)// wrng because were moving to i2c :)
 ser.open()
 camera = PiCamera()
 camera.resolution = (100, 100)
@@ -32,5 +32,5 @@ for x in range (0,cycle,1):
         camera.capture(("/home/pi/images/image_%s_%s.jpg" % (t, x)))
     #every 100 cycles it backs up the data to a usb drive
     if (x % 100 == 0):
-        for a in range (1,3):
+        for a in range (1,2):
             copyfile('output.txt' '/path/to/usb%s/output_%s.csv' % (a, a))
