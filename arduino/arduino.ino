@@ -76,6 +76,13 @@ void loop()
   Serial.print("Altitude (m) ");
   Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
   //
+  if(Serial.available()) // Chek for availablity of data at Serial Port
+  {
+    char data = Serial.read(); // Reading Serial Data and saving in data variable
+    Serial.print(data); // Printing the Serial data
+  }
+}
+  //
   delay(500);
   Serial.print("Humidity (%) ");
   Serial.println(bme.readHumidity());
