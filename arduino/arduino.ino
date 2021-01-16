@@ -79,7 +79,7 @@ void loop()
   if(Serial.available()) // Chek for availablity of data at Serial Port
   {
     char data = Serial.read(); // Reading Serial Data and saving in data variable
-    Serial.print(data); // Printing the Serial data
+    Serial.println(data); // Printing the Serial data
   }
   //
   delay(500);
