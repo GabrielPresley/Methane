@@ -81,7 +81,6 @@ void loop()
     char data = Serial.read(); // Reading Serial Data and saving in data variable
     Serial.print(data); // Printing the Serial data
   }
-}
   //
   delay(500);
   Serial.print("Humidity (%) ");
