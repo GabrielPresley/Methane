@@ -7,11 +7,21 @@
 //
 //
 #include <Wire.h>
+#include <SPI.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
 //
 // address is 0x50
 // This is according to the example code in the
 // wire library i2c_scanner
 #define Addr 0x50
+//Adafruit_BME280
+#define BME_SCK 13
+#define BME_MISO 12
+#define BME_MOSI 11
+#define BME_CS 10
+#define SEALEVELPRESSURE_HPA (1013.25)
+Adafruit_BME280 bme;
 //
 void setup()
 {
@@ -19,6 +29,9 @@ void setup()
   Wire.begin();
   // set baud rate = 9600
   Serial.begin(9600);
+  //Adafruit_BME280
+  bool status;
+  status = bme.begin();
   delay(300);
 }
 //
@@ -50,5 +63,20 @@ void loop()
   // output
   Serial.print("Methane (PPM) ");
   Serial.println(ppm);
-  delay(3000);
+  delay(500);
+  //
+  Serial.print("Temperature (*c) ");
+  Serial.println(bme.readTemperature());
+  //
+  delay(500);
+  Serial.print("Pressure (hPa) ");
+  Serial.println(bme.readPressure() / 100.0F);
+  //
+  delay(500);
+  Serial.print("Altitude (m) ");
+  Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
+  //
+  delay(500);
+  Serial.print("Humidity (%) ");
+  Serial.println(bme.readHumidity());
 }
