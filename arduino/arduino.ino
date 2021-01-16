@@ -82,10 +82,11 @@ void loop()
     char data = Serial.read(); // raw data input
     char *strcat(char *fivechar, const char *data); // concatenate fivechar + data
     if ( strlen(fivechar) > 5 ){
-      fivechar = fivechar.erase(0, 1);
+      fivechar[0]='\0';
     }
-    if ( fivechar = "GPGLL"){
-      char cleandata[10] = cleandata + data
+    char match[10] = "GPGLL";
+    if ( fivechar == match ){
+      char cleandata[10] = {cleandata + data};
     }
     Serial.println(data); // Printing the Serial data
   }
