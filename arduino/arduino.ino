@@ -78,14 +78,14 @@ void loop()
   //
   if(Serial.available()) // Chek for availablity of data at Serial Port
   {
-    string fivechar = "00000" // set fivechar all 0's
+    char fivechar[10] = "00000"; // set fivechar all 0's
     char data = Serial.read(); // raw data input
-    fivechar = fivechar + data // concatenate fivechar + data
-    if ( length(fivechar) > 5 ){
+    char *strcat(char *fivechar, const char *data); // concatenate fivechar + data
+    if ( strlen(fivechar) > 5 ){
       fivechar = fivechar.erase(0, 1);
     }
     if ( fivechar = "GPGLL"){
-      string cleandata = cleandata + data
+      char cleandata[10] = cleandata + data
     }
     Serial.println(data); // Printing the Serial data
   }
