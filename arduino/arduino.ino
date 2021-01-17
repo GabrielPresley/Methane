@@ -28,7 +28,7 @@ void setup()
   // open I2C comm. as master
   Wire.begin();
   // set baud rate = 9600
-  Serial.begin(9600);
+  Serial.begin(9600); //you initialized the serial port twice
   //Adafruit_BME280
   bool status;
   status = bme.begin();
