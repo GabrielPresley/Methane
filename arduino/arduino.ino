@@ -33,6 +33,8 @@ void setup()
   bool status;
   status = bme.begin();
   delay(300);
+  // GPS
+  Serial.begin(9600); // Serial Port initialization
 }
 //
 void loop()
@@ -77,21 +79,33 @@ void loop()
   Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
   //
   if(Serial.available()) // Chek for availablity of data at Serial Port
-  {
-    char fivechar[10] = "00000"; // set fivechar all 0's
-    char data = Serial.read(); // raw data input
-    char *strcat(char *fivechar, const char *data); // concatenate fivechar + data
-    if ( strlen(fivechar) > 5 ){
-      fivechar[0]='\0';
-    }
-    char match[10] = "GPGLL";
-    if ( fivechar == match ){
-      char cleandata[10] = {cleandata + data};
-    }
-    Serial.println(data); // Printing the Serial data
-  }
+    {
+      char data = Serial.read(); // Reading Serial Data and saving in data variable
+      if(data = "$"){
+        char data = Serial.read();
+          if(data = "G"){
+            char data = Serial.read();
+            if(data = "P"){
+              char data = Serial.read();
+              if(data = "G"){
+                char data = Serial.read();
+                if(data = "L"){
+                   for ( int i = 0; i < 300; i++ ) {
+                    char data = Serial.read();
+                    Serial.print(data);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+
+
   //
   delay(500);
+  Serial.println();
   Serial.print("Humidity (%) ");
   Serial.println(bme.readHumidity());
 }
