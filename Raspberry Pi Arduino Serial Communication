@@ -1,4 +1,6 @@
 import serial
+import time
+import csv
 
 if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
@@ -8,3 +10,9 @@ if __name__ == '__main__':
         if ser.in_waiting > 0:
             line = ser.readline().decode('utf-8').rstrip()
             print(line)
+            with open("test_data.csv","a") as f:
+            writer = csv.writer(f,delimiter=",")
+            writer.writerow([time.time(),decoded_bytes])
+    except:
+        print("Keyboard Interrupt")
+        break
