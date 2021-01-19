@@ -91,8 +91,7 @@ void loop()
                 char data = Serial.read();
                 if(data = "L"){
                    for ( int i = 0; i < 300; i++ ) {
-                    char data = Serial.read();
-                    Serial.print(data);
+                    Serial.print(Serial.read());
                     }
                   }
                 }
