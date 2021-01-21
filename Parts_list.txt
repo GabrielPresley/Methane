@@ -5,5 +5,3 @@ Methane Sensor: https://www.pololu.com/product/1633#:~:text=Overview,is%20suitab
 Probe (Methane Sensor):
 
 Frame/drone:
-
-This is a test, please delete this
