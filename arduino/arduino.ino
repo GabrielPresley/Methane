@@ -63,6 +63,7 @@ void loop()
   float ppm = (10000.0 / 4096.0) * raw_adc + 200.0;
 //
   // output
+  Serial.println() // fix methane data at end of gps :/
   Serial.print("Methane (PPM) ");
   Serial.println(ppm);
   delay(500);
@@ -95,7 +96,7 @@ void loop()
               char data = Serial.read();
               if(data == "G"){
                 char data = Serial.read();
-                if(data == "L"){
+                if(data == "R"){
                   for ( int i = 0; i < 300; i++ ) {q
                     Serial.print(Serial.read());
                   }
