@@ -83,25 +83,27 @@ void loop()
   Serial.print("Humidity (%) ");
   Serial.println(bme.readHumidity());
   //
-  if(Serial.available()) // Chek for availablity of data at Serial Port
+  while(Serial.available()) // Chek for availablity of data at Serial Port
     {
       char data = Serial.read(); // Reading Serial Data and saving in data variable
-      if(data = "$"){
+      Serial.print(data);
+      if(data == "$"){
         char data = Serial.read();
-          if(data = "G"){
+          if(data == "G"){
             char data = Serial.read();
-            if(data = "P"){
+            if(data == "P"){
               char data = Serial.read();
-              if(data = "G"){
+              if(data == "G"){
                 char data = Serial.read();
-                if(data = "L"){
-                   for ( int i = 0; i < 300; i++ ) {
+                if(data == "L"){
+                  for ( int i = 0; i < 300; i++ ) {q
                     Serial.print(Serial.read());
-                    }
                   }
+                  break;
                 }
               }
             }
           }
         }
+      }
 }
