@@ -10,6 +10,7 @@ matplotlib.use('GTK3Agg')
 import matplotlib.pyplot as plt
 #
 import pandas as pd
+#import numpy as np
 import random
 import time
 #
@@ -42,7 +43,10 @@ class ButtonWindow(Gtk.Window):
 		combo.append([0, "Select Graph to Display..."])
 		combo.append([1, "Temperature"])
 		combo.append([2, "Humidity"])
-		combo.append([3, "Methane (No test data)"])
+		combo.append([3, "Methane"])
+		#combo.append([4, "Latitude"])
+		#combo.append([5, "Longitude"])
+		#combo.append([6, "Altitude"])
 #
 		# Put the list into the box
 		dropdown = Gtk.ComboBox.new_with_model_and_entry(combo)
@@ -78,51 +82,35 @@ elif (which == 2):
 elif (which == 3):
 	ax3 = fig.gca(projection='3d')
 #
-# Remove once we have GPS data
-x = []
-y = []
-#
-# Load data. I used the raw data from output.csv for testing
-data = pd.read_csv('DroneTestData.csv')
-#
-altitude = []
-#
-# Remove once we have GPS data
-for i in range(3044):
-	x.append(i % 50)
-	y.append(math.floor(i / 50))
+data = pd.read_csv('newcartestdataV2.csv')
 #
 # Columns = pressure, temperature, humidity, time(not used), methane(need methane data), x(need GPS data), y(need GPS data)
-pressure = data.iloc[:, 0].tolist()
+pressure = data.iloc[:,0].tolist()
 temperature = data.iloc[:,1].tolist()
 humidity = data.iloc[:,2].tolist()
+methane = data.iloc[:,3].tolist()
+latitude = data.iloc[:,8].tolist()
+longitude = data.iloc[:,9].tolist()
+altitude = data.iloc[:,4].tolist()
 #
-# Add once we have GPS and methane data
-#methane = data.iloc[:,4].tolist()
-#x = data.iloc[:,5].tolist()
-#y = data.iloc[:,6].tolist()
-#
-# Get altitude from pressure
-for i in range(len(pressure)):
-	altitude.append((((1013.25/pressure[i])**(1/5.257)-1)*(temperature[i]+273.15))/0.0065)
-#
+print(data)
 # Plot the data to three different plots
 if (which == 1):
-	ax1.scatter(x, y, altitude, c=temperature)
+	ax1.scatter(latitude, longitude, altitude, c=temperature)
 	ax1.set_title("Temperature Heatmap")
 	ax1.set_xlabel("x (m)")
 	ax1.set_ylabel("y (m)")
 	ax1.set_zlabel("altitude (m)")
 	ax1.view_init(35, 190)
 if (which == 2):
-	ax2.scatter(x, y, altitude, c=humidity)
+	ax2.scatter(latitude, longitude, altitude, c=humidity)
 	ax2.set_title("Humidity Heatmap")
 	ax2.set_xlabel("x (m)")
 	ax2.set_ylabel("y (m)")
 	ax2.set_zlabel("altitude (m)")
 	ax2.view_init(35, 190)
 if (which == 3):
-	ax3.scatter(x, y, altitude, c=methane)
+	ax3.scatter(latitude, longitude, altitude, c=methane)
 	ax3.set_title("Methane Heatmap")
 	ax3.set_xlabel("x (m)")
 	ax3.set_ylabel("y (m)")
