@@ -61,9 +61,18 @@ void loop()
   // make 12-bits
   int raw_adc = ((data[0] & 0x0F) * 256) + data[1];
   float ppm = (10000.0 / 4096.0) * raw_adc + 200.0;
+  float time = millis();
+  float hours = floor(time / 1000 / 60 / 60)
+  float minutes = floor(time / 1000 / 60 - hours / 60)
+  float seconds = floor(time / 1000 - hours * 60 - minutes * 60)
+
 //
   // output
   Serial.println() // fix methane data at end of gps :/
+
+  Serial.print("Time () ");
+  sprintf("%f:%f:%f", hours, minutes, seconds)
+
   Serial.print("Methane (PPM) ");
   Serial.println(ppm);
   delay(500);
