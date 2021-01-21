@@ -890,7 +890,6 @@ Altitude (m) -56.65
 Humidity (%) 50.80
 
 4919.18863 -124 19.05625
-A,4919.18861 -124 19.05612
 Methane (PPM) 363.57
 Temperature (*c) 12.47
 Pressure (hPa) 1020.05
@@ -1823,7 +1822,7 @@ Altitude (m) -25.77
 Humidity (%) 58.96
 
 4918.65388 -124 19.36753
-ethane (PPM) 370.90
+Methane (PPM) 370.90
 Temperature (*c) 12.11
 Pressure (hPa) 1016.20
 Altitude (m) -23.98
