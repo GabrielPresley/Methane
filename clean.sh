@@ -4,6 +4,10 @@
 |*  MMM Monitors Methane was made  |
 |*   for grad 2021 BSS SRM Class   |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '
-
-column -t -s',' output.txt > cleanoutput.txt
-atom://teletype/portal/c1b73327-5fb2-4da3-8161-03fa4e306c75
+echo "" > $2
+ grep -oP '(?<=Methane\ \(PPM\)).*' $1 >> $2
+ grep -oP '(?<=Humidity\ \(%\)).*' $1 >> $2
+ grep -oP '(?<=Temperature\ \(\*c\)).*' $1 >> $2
+ grep -oP '(?<=Pressure\ \(hPa\)).*' $1 >> $2
+ grep -oP '(?<=Altitude\ \(m\)).*' $1 >> $2
+ grep ^49 $1 >> $2
