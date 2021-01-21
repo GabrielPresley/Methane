@@ -216,7 +216,7 @@ Pressure (hPa) 1020.21
 Altitude (m) -57.58
 
 Humidity (%) 41.11
-49 19.19027 -124 19.0297849 19.18914 -124 19.02943
+49 19.19027 -124 19.02978
 Methane (PPM) 368.46
 Temperature (*c) 18.41
 Pressure (hPa) 1020.22
@@ -279,7 +279,7 @@ Pressure (hPa) 1020.18
 Altitude (m) -57.60
 
 Humidity (%) 40.76
-49 19.18957 -124 19.0331549 19.19083 -124 19.03302
+49 19.18957 -124 19.03315
 Methane (PPM) 366.02
 Temperature (*c) 18.38
 Pressure (hPa) 1020.21
@@ -342,7 +342,7 @@ Pressure (hPa) 1020.02
 Altitude (m) -56.44
 
 Humidity (%) 39.97
-49 19.19170 -124 19.0444549 19.19192 -124 19.04673
+49 19.19170 -124 19.04445
 Methane (PPM) 363.57
 Temperature (*c) 17.04
 Pressure (hPa) 1020.06
@@ -468,7 +468,7 @@ Pressure (hPa) 1020.05
 Altitude (m) -56.58
 
 Humidity (%) 44.49
-49 19.18735 -124 19.0570249 19.18732 -124 19.05706
+49 19.18735 -124 19.05702
 Methane (PPM) 363.57
 Temperature (*c) 14.41
 Pressure (hPa) 1020.04
@@ -720,7 +720,7 @@ Pressure (hPa) 1020.04
 Altitude (m) -56.53
 
 Humidity (%) 49.03
-49 19.18825 -124 19.0565549 19.18829 -124 19.05646
+49 19.18825 -124 19.05655
 Methane (PPM) 361.13
 Temperature (*c) 12.74
 Pressure (hPa) 1020.06
@@ -1336,7 +1336,7 @@ Pressure (hPa) 1018.44
 Altitude (m) -42.90
 
 Humidity (%) 58.99
-49 18.93250 -124 19.1001549 18.92073 -124 19.11826
+49 18.93250 -124 19.10015
 Methane (PPM) 368.46
 Temperature (*c) 11.85
 Pressure (hPa) 1018.28
@@ -1456,7 +1456,7 @@ Pressure (hPa) 1017.21
 Altitude (m) -32.85
 
 Humidity (%) 58.39
-49 18.74369 -124 19.3304049 18.74376 -124 19.33046
+49 18.74369 -124 19.33040
 Methane (PPM) 368.46
 Temperature (*c) 11.95
 Pressure (hPa) 1017.21
@@ -1519,7 +1519,7 @@ Pressure (hPa) 1017.22
 Altitude (m) -32.81
 
 Humidity (%) 58.23
-49 18.74356 -124 19.3301649 18.74358 -124 19.33021
+49 18.74356 -124 19.33016
 Methane (PPM) 370.90
 Temperature (*c) 12.00
 Pressure (hPa) 1017.21
@@ -1638,7 +1638,7 @@ Pressure (hPa) 1015.41
 Altitude (m) -17.80
 
 Humidity (%) 58.86
-49 18.55019 -124 19.4108749 18.53416 -124 19.41753
+49 18.55019 -124 19.41087
 Methane (PPM) 373.34
 Temperature (*c) 12.17
 Pressure (hPa) 1015.19
@@ -1757,7 +1757,7 @@ Pressure (hPa) 1011.67
 Altitude (m) 13.80
 
 Humidity (%) 58.71
-49 18.28203 -124 19.6880749 18.27682 -124 19.71895
+49 18.28203 -124 19.68807
 Methane (PPM) 375.78
 Temperature (*c) 12.32
 Pressure (hPa) 1011.35
@@ -1813,7 +1813,7 @@ Pressure (hPa) 1010.69
 Altitude (m) 21.21
 
 Humidity (%) 58.66
-49 18.27541 -124 19.9684949 18.27605 -12420.00096
+49 18.27541 -124 19.96849
 Methane (PPM) 378.22
 Temperature (*c) 12.39
 Pressure (hPa) 1010.66
@@ -1932,7 +1932,7 @@ Pressure (hPa) 1010.76
 Altitude (m) 20.78
 
 Humidity (%) 59.09
-49 18.27788 -12420.5617949 18.27821 -12420.59360
+49 18.27788 -12420.56179
 Methane (PPM) 378.22
 Temperature (*c) 12.55
 Pressure (hPa) 1010.66
@@ -1988,7 +1988,7 @@ Pressure (hPa) 1010.04
 Altitude (m) 26.83
 
 Humidity (%) 58.93
-49 18.28136 -12420.8319049 18.28238 -12420.86411
+49 18.28136 -12420.83190
 Methane (PPM) 378.22
 Temperature (*c) 12.62
 Pressure (hPa) 1009.96
@@ -2107,7 +2107,7 @@ Pressure (hPa) 1009.57
 Altitude (m) 30.65
 
 Humidity (%) 58.71
-49 18.34549 -12421.3751949 18.34292 -12421.38368
+49 18.34549 -12421.37519
 Methane (PPM) 375.78
 Temperature (*c) 12.81
 Pressure (hPa) 1009.58
@@ -2163,7 +2163,7 @@ Pressure (hPa) 1009.25
 Altitude (m) 33.47
 
 Humidity (%) 58.22
-49 18.27227 -12421.3919749 18.26119 -12421.39283
+49 18.27227 -12421.39197
 Methane (PPM) 375.78
 Temperature (*c) 12.97
 Pressure (hPa) 1009.22
@@ -2219,7 +2219,7 @@ Pressure (hPa) 1009.30
 Altitude (m) 32.83
 
 Humidity (%) 57.23
-49 18.18771 -12421.4156749 18.17793 -12421.41060
+49 18.18771 -12421.41567
 Methane (PPM) 375.78
 Temperature (*c) 13.20
 Pressure (hPa) 1009.33
@@ -2275,7 +2275,7 @@ Pressure (hPa) 1009.33
 Altitude (m) 32.72
 
 Humidity (%) 57.58
-49 18.12046 -12421.3433449 18.11941 -12421.32416
+49 18.12046 -12421.34334
 Temperature (*c) 13.32
 Pressure (hPa) 1009.46
 Altitude (m) 31.66
