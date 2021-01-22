@@ -10,7 +10,8 @@ matplotlib.use('GTK3Agg')
 import matplotlib.pyplot as plt
 #
 import pandas as pd
-#import numpy as np
+import csv
+import numpy as np
 import random
 import time
 #
@@ -82,18 +83,25 @@ elif (which == 2):
 elif (which == 3):
 	ax3 = fig.gca(projection='3d')
 #
-data = pd.read_csv('./Data/newcartestdataV2.csv')
+# If this works im drinking several glasses of vodka
 #
-# Columns = pressure, temperature, humidity, time(not used), methane(need methane data), x(need GPS data), y(need GPS data)
-pressure = data.iloc[:,0].tolist()
-temperature = data.iloc[:,1].tolist()
-humidity = data.iloc[:,2].tolist()
-methane = data.iloc[:,3].tolist()
-latitude = data.iloc[:,8].tolist()
-longitude = data.iloc[:,9].tolist()
-altitude = data.iloc[:,4].tolist()
+results = []
+with open("./Data/transposedcardata.csv") as csvfile:
+    reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
+    for row in reader: # each row is a list
+        results.append(row)
+
+results = np.array(results)
+temperature = results[1][2:]
+humidity = results[2][2:]
+methane = results[0][2:]
+pressure = results[3][2:]
+latitude = results[5][2:]
+longitude = results[6][2:]
+altitude = results[4][2:]
+
+
 #
-print(data)
 # Plot the data to three different plots
 if (which == 1):
 	ax1.scatter(latitude, longitude, altitude, c=temperature)
