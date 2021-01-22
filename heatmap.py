@@ -93,7 +93,7 @@ latitude = data.iloc[:,8].tolist()
 longitude = data.iloc[:,9].tolist()
 altitude = data.iloc[:,4].tolist()
 #
-print(data)
+#print(data)
 # Plot the data to three different plots
 if (which == 1):
 	ax1.scatter(latitude, longitude, altitude, c=temperature)
