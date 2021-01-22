@@ -41,3 +41,4 @@ sed -i 's/$/, /' $2
 cat $2 | datamash transpose --field-separator=, > $3
 sed -i 's/! /\n./g' $3
 sed -i 's/^.,//g' $3
+sed -i '14, $ d' $3
