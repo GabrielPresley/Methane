@@ -34,12 +34,13 @@ echo "! Pressure! " >> $2
 grep -oP '(?<=Pressure\ \(hPa\)).*' $1 >> $2
 echo "! Altitude! " >> $2
 grep -oP '(?<=\ \(m\)).*' $1 >> $2
-#echo "! GPS! " >> $2
-#awk '/^49/' $1 >> $2
-#sed -i 's/$/, /' $2
-sed 's/-124/\n/g'
-
+echo "! LON!  " >> $2
+awk '/^49/' $1 | cut -c 1-11 >> $2
+echo "! LAT! " >> $2
+grep -oP '(?<=#).*' $1 >> $2
 cat $2 | datamash transpose --field-separator=, > $3
 sed -i 's/! /\n./g' $3
 sed -i 's/^.,//g' $3
-sed -i '14, $ d' $3 # delete all the commas
+sed -i 's/^. ,//g' $3
+#sed -i '20, $ d' $3 # delete all the commas
+echo "DONE"
