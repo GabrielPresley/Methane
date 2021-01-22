@@ -17,11 +17,15 @@ difference(){
 	}
 	// arduino bottom
 	color([0,0,1]){
-	translate([110,60-17,-1])cylinder(h=10,r=3);
-	translate([110-44,60-17,-1])cylinder(h=10,r=3);
+	translate([110,60-17,-1])cylinder(h=10,r=2);
+	translate([110-44,60-17,-1])cylinder(h=10,r=2);
 	}
 	// GPS top
-	color([0,0,1]){
+	color([0,1,1]){
 	translate([110-32,60-27,3])cube([20,20,6]);
+	}
+	// methane bottom
+	color([1,1,0]){
+	translate([30,30,-1])cylinder(h=10,r=3);
 	}
 }
