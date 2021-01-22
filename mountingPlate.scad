@@ -1,6 +1,8 @@
 $fn=25;
 difference(){
+	color([0,0,0]){
 	cube([120,60,5]);
+	}
 	// pi top
 	color([0,1,0]){
 	translate([3,3,-1])cylinder(h=10,r=2);
@@ -22,7 +24,7 @@ difference(){
 	}
 	// GPS top
 	color([0,1,1]){
-	translate([110-32,60-27,3])cube([20,20,6]);
+	translate([110-32,60-27,3])cube([22,22,6]);
 	}
 	// methane bottom
 	color([1,1,0]){
