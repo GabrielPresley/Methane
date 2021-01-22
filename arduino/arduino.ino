@@ -68,7 +68,7 @@ void loop()
 
 //
   // output
-  Serial.println() // fix methane data at end of gps :/
+  Serial.println(); // fix methane data at end of gps :/
 
   Serial.print("Time () ");
   sprintf("%f:%f:%f", hours, minutes, seconds)
