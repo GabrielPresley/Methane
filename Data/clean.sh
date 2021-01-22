@@ -25,15 +25,15 @@
 # > or >>
     # Replace all text in file, and concatenate respectively
 echo "! Methane! " > $2
-grep -oP '(?<=Methane\ \(PPM\)).*' $1 >> $2
+grep -oP '(?<=^!).*' $1 >> $2
 echo "! Humidity! " >> $2
-grep -oP '(?<=Humidity\ \(%\)).*' $1 >> $2
+grep -oP '(?<=^&).*' $1 >> $2
 echo "! Temperature! " >> $2
-grep -oP '(?<=Temperature\ \(\*c\)).*' $1 >> $2
+grep -oP '(?<=^@).*' $1 >> $2
 echo "! Pressure! " >> $2
-grep -oP '(?<=Pressure\ \(hPa\)).*' $1 >> $2
+grep -oP '(?<=^#).*' $1 >> $2
 echo "! Altitude! " >> $2
-grep -oP '(?<=\ \(m\)).*' $1 >> $2
+grep -oP '(?<=^%).*' $1 >> $2
 echo "! LON!  " >> $2
 awk '/^49/' $1 | cut -c 1-11 >> $2
 echo "! LAT! " >> $2
