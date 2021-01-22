@@ -62,9 +62,9 @@ void loop()
   int raw_adc = ((data[0] & 0x0F) * 256) + data[1];
   float ppm = (10000.0 / 4096.0) * raw_adc + 200.0;
   float time = millis();
-  float hours = floor(time / 1000 / 60 / 60)
-  float minutes = floor(time / 1000 / 60 - hours / 60)
-  float seconds = floor(time / 1000 - hours * 60 - minutes * 60)
+  float hours = floor(time / 1000 / 60 / 60);
+  float minutes = floor(time / 1000 / 60 - hours / 60);
+  float seconds = floor(time / 1000 - hours * 60 - minutes * 60);
 
 //
   // output
@@ -73,24 +73,24 @@ void loop()
   Serial.print("Time () ");
   sprintf("%f:%f:%f", hours, minutes, seconds)
 
-  Serial.print("Methane (PPM) ");
+  Serial.print("Methane (PPM) \n!");
   Serial.println(ppm);
   delay(500);
   //
-  Serial.print("Temperature (*c) ");
+  Serial.print("Temperature (*c) \n@");
   Serial.println(bme.readTemperature());
   //
   delay(500);
-  Serial.print("Pressure (hPa) ");
+  Serial.print("Pressure (hPa) \n#");
   Serial.println(bme.readPressure() / 100.0F);
   //
   delay(500);
-  Serial.print("Altitude (m) ");
+  Serial.print("Altitude (m) \n%");
   Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
   //
   delay(500);
   Serial.println();
-  Serial.print("Humidity (%) ");
+  Serial.print("Humidity (%) \n&");
   Serial.println(bme.readHumidity());
   //
   while(Serial.available()) // Chek for availablity of data at Serial Port
