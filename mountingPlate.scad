@@ -28,4 +28,9 @@ difference(){
 	color([1,1,0]){
 	translate([30,30,-1])cylinder(h=10,r=3);
 	}
+	// BME280 bottom
+	color([1,0,1]){
+	translate([80,10,-1])cylinder(h=10,r=1);
+	translate([80,20,-1])cylinder(h=10,r=1);
+	}
 }
