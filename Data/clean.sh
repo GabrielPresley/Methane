@@ -4,6 +4,7 @@
 |*  MMM Monitors Methane was made  |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '
 # example ./clean.sh datatata cartestdata transposedcardata
+# middle file is just a step between
 #grep
     #   grep  searches  for  PATTERNS  in  each  FILE.
 #echo
@@ -26,27 +27,27 @@
     # Replace all text in file, and concatenate respectively
 echo "! Methane! " > $2
 grep -oP '(?<=^!).*' $1 >> $2
-
+#
 echo "! Humidity! " >> $2
 grep -oP '(?<=^&).*' $1 >> $2
-
+#
 echo "! Temperature! " >> $2
 grep -oP '(?<=^@).*' $1 >> $2
-
+#
 echo "! Pressure! " >> $2
 grep -oP '(?<=^#).*' $1 >> $2
-
+#
 echo "! Altitude! " >> $2
 grep -oP '(?<=^%).*' $1 >> $2
-
+#
 echo "! LON!  " >> $2
 grep -oP '(?<=,A,).*(?=,N,)' $1 >> $2
+#
 echo "! LAT! " >> $2
 grep -oP '(?<=,N,).*(?=,W,)' $1 >> $2
-
+#
 cat $2 | datamash transpose --field-separator=, > $3
 sed -i 's/! /\n./g' $3
 sed -i 's/^.,//g' $3
 sed -i 's/^. ,//g' $3
-#sed -i '20, $ d' $3 # delete all the commas
 echo "DONE"
