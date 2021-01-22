@@ -82,7 +82,7 @@ elif (which == 2):
 elif (which == 3):
 	ax3 = fig.gca(projection='3d')
 #
-data = pd.read_csv('newcartestdataV2.csv')
+data = pd.read_csv('./Data/newcartestdataV2.csv')
 #
 # Columns = pressure, temperature, humidity, time(not used), methane(need methane data), x(need GPS data), y(need GPS data)
 pressure = data.iloc[:,0].tolist()
