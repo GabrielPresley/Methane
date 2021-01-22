@@ -1,4 +1,4 @@
-# Methane ✈️
+# MMM Monitors Methane ✈️
 Monitoring programs for an aerial methane monitor.  
 
 ### Included Program Files 🎪  
