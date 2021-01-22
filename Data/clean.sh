@@ -25,29 +25,21 @@
     #   Select from here to end of line
 # > or >>
     # Replace all text in file, and concatenate respectively
-echo "! Methane! " > $2
 grep -oP '(?<=^!).*' $1 >> $2
 #
-echo "! Humidity! " >> $2
 grep -oP '(?<=^&).*' $1 >> $2
 #
-echo "! Temperature! " >> $2
 grep -oP '(?<=^@).*' $1 >> $2
 #
-echo "! Pressure! " >> $2
 grep -oP '(?<=^#).*' $1 >> $2
 #
-echo "! Altitude! " >> $2
 grep -oP '(?<=^%).*' $1 >> $2
 #
-echo "! LON!  " >> $2
 grep -oP '(?<=,A,).*(?=,N,)' $1 >> $2
 #
-echo "! LAT! " >> $2
 grep -oP '(?<=,N,).*(?=,W,)' $1 >> $2
 #
 cat $2 | datamash transpose --field-separator=, > $3
-sed -i 's/! /\n./g' $3
 sed -i 's/^.,//g' $3
 sed -i 's/^. ,//g' $3
 echo "DONE"
