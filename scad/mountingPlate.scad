@@ -4,7 +4,7 @@ module chamfer(x){
 		cube([x,x,x]);
 		translate([x+.1,x+.1,-.1])cylinder(r=x,h=x+.2);
 	}
-}	
+}
 difference(){
 	union(){
 		color([0,0,0]){
@@ -26,13 +26,6 @@ difference(){
 	translate([61,51,-1])cylinder(h=10,r=1.5);
 	translate([61,3,-.01])cylinder(h=3,r=2.75);
 	translate([61,3,-1])cylinder(h=10,r=1.5);
-		}
-	// pi cam top
-	color([1,0,0]){
-	translate([117,3,-.01])cylinder(h=3,r=2.75);
-	translate([117,3,-1])cylinder(h=10,r=1.5);
-	translate([117,23,-.01])cylinder(h=3,r=2.75);
-	translate([117,23,-1])cylinder(h=10,r=1.5);
 		}
 	// methane bottom
 	color([1,1,0]){
@@ -70,19 +63,24 @@ difference(){
 		translate([30,10,-.1])cube([40,25.15,10]);
 		}
 }
-		//translate([55,35,-.1])chamfer(6);
 //GPS BRACKET
 translate([35,13,0]){
 	difference([]){
-		cube([30,8,7]);
+		cube([20,8,7]);
 		translate([15-(18/2),-.5,0])color([1,0,0])cube([18,9,6.77-2.1]);
 		translate([3,4,4.1])cylinder(h=3,r=3.5);
 		translate([3,4,-1])cylinder(h=10,r=1.75);
-		translate([30-3,4,4.1])cylinder(h=3,r=3.5);
-		translate([30-3,4,-1])cylinder(h=10,r=1.75);
 	}
-	
-	
+
+
+}
+//pi cam
+translate([110,5,4.9]){
+	difference(){
+		cube([10,24,3]);
+		translate([-1,2,-.01])cube([12,20.2,1.2]);
+		translate([-1,4,-.01])cube([12,16,5]);
+	}
 }
 
 // BME280 mounting plate
@@ -99,5 +97,5 @@ difference(){
 	}
 	translate([90,20,-.1])cylinder(h=3,r=4.2);
 	translate([90,20,-1])cylinder(h=10,r=2);
-	
+
 }
