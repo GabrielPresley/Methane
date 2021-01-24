@@ -85,11 +85,11 @@ translate([35,13,0]){
 	
 }
 
-//GPS BRACKET
+// BME280 mounting plate
 translate([35,25,0]){
 	difference([]){
-		cube([16,8,7]);
-		translate([3,4,4.1])cylinder(h=3,r=3.5);
+		cube([16,8,4]);
+		translate([3,4,1.5])cylinder(h=3,r=3.5);
 		translate([3,4,-1])cylinder(h=10,r=1.75);
 	}
 }
