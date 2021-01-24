@@ -9,6 +9,7 @@ difference(){
 	union(){
 		color([0,0,0]){
 		cube([120,60,5]); // defien main board
+
 		}
 		color([]){
 		cube([2,45,9.5]);
@@ -55,10 +56,10 @@ difference(){
 		}
 	// BME280 bottom
 	color([1,0,1]){
-	translate([80,10,2.01])cylinder(h=3,r=3.5);
-	translate([80,10,-1])cylinder(h=10,r=1.75);
-	translate([80,22.74,2.01])cylinder(h=3,r=3.5);
-	translate([80,22.74,-1])cylinder(h=10,r=1.75);
+	translate([86-25,10,2.1])cube([25,18,4.5]);
+	translate([86-20,11,-.1])cube([20,5,20]);
+	translate([90,20,-.1])cylinder(h=3,r=4.2);
+	translate([90,20,-1])cylinder(h=10,r=2);
 		}
 	//MASS REDUCTION HOLES / WIRING ROUTES
 	color([.5,.5,.5]){
@@ -70,9 +71,8 @@ difference(){
 		}
 }
 		//translate([55,35,-.1])chamfer(6);
-
 //GPS BRACKET
-translate([35,20,0]){
+translate([35,13,0]){
 	difference([]){
 		cube([30,8,7]);
 		translate([15-(18/2),-.5,0])color([1,0,0])cube([18,9,6.77-2.1]);
@@ -81,5 +81,23 @@ translate([35,20,0]){
 		translate([30-3,4,4.1])cylinder(h=3,r=3.5);
 		translate([30-3,4,-1])cylinder(h=10,r=1.75);
 	}
+	
+	
+}
+
+//GPS BRACKET
+translate([35,25,0]){
+	difference([]){
+		cube([16,8,7]);
+		translate([3,4,4.1])cylinder(h=3,r=3.5);
+		translate([3,4,-1])cylinder(h=10,r=1.75);
+	}
+}
+difference(){
+	color([0,0,0]){
+		translate([90,20,0])cylinder(h=5,r=4);
+	}
+	translate([90,20,-.1])cylinder(h=3,r=4.2);
+	translate([90,20,-1])cylinder(h=10,r=2);
 	
 }
