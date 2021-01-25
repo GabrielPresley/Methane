@@ -64,14 +64,15 @@ difference(){
 		}
 }
 //GPS BRACKET
-translate([35,13,0]){
+translate([35,20,7]){
+	rotate([180,0,0]){
 	difference([]){
 		cube([20,8,7]);
 		translate([15-(18/2),-.5,0])color([1,0,0])cube([18,9,6.77-2.1]);
 		translate([3,4,4.1])cylinder(h=3,r=3.5);
 		translate([3,4,-1])cylinder(h=10,r=1.75);
 	}
-
+}
 
 }
 //pi cam
