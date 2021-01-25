@@ -97,7 +97,11 @@ void loop()
     {
       char data = Serial.read(); // Reading Serial Data and saving in data variable
       Serial.print(data);
-      if(data == "$"){
+
+      if(data == "\n"){
+        break;
+      }
+      /*if(data == "$"){
         char data = Serial.read();
           if(data == "G"){
             char data = Serial.read();
@@ -114,6 +118,6 @@ void loop()
               }
             }
           }
-        }
+        }*/
       }
 }
