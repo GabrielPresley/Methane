@@ -63,4 +63,7 @@ sed -i 's/^. ,//g' $2
 #
 sed -i 's/.$//; s/^.//' $2
 #
+rm /tmp/step1
+rm /tmp/step2
+rm /tmp/step3
 echo "DONE"
