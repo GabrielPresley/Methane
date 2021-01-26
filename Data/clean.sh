@@ -25,21 +25,34 @@
     #   Select from here to end of line
 # > or >>
     # Replace all text in file, and concatenate respectively
-grep -oP '(?<=^!).*' $1 > $2
+echo "! -CH ! " > $2
+grep -oP '(?<=\+).*' $1 >> $2
 #
+echo "! -HUMID ! " >> $2
 grep -oP '(?<=^&).*' $1 >> $2
 #
+echo "! -°C ! " >> $2
 grep -oP '(?<=^@).*' $1 >> $2
 #
+echo "! -KPA ! " >> $2
 grep -oP '(?<=^#).*' $1 >> $2
 #
+echo "! -M-UP ! " >> $2
 grep -oP '(?<=^%).*' $1 >> $2
 #
+echo "! -LAT ! " >> $2
 grep -oP '(?<=,A,).*(?=,N,)' $1 >> $2
 #
+echo "! -LON ! " >> $2
 grep -oP '(?<=,N,).*(?=,W,)' $1 >> $2
+#
+sed -i 's/\(^.\{1,10\}\).*/\1/' $2
 #
 cat $2 | datamash transpose --field-separator=, > $3
 sed -i 's/^.,//g' $3
+sed -i 's/! /\n/g' $3
 sed -i 's/^. ,//g' $3
+#
+sed -i 's/^.//' $3
+#
 echo "DONE"
