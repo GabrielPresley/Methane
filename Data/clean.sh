@@ -3,7 +3,7 @@
 |*               MMM               |
 |*  MMM Monitors Methane was made  |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '
-# example ./clean.sh datatata cartestdata transposedcardata
+# example ./clean.sh input.txt output.txt
 # middle file is just a step between
 #grep
     #   grep  searches  for  PATTERNS  in  each  FILE.
@@ -25,34 +25,42 @@
     #   Select from here to end of line
 # > or >>
     # Replace all text in file, and concatenate respectively
-echo "! -CH ! " > $2
-grep -oP '(?<=\+).*' $1 >> $2
+
+
+touch /tmp/step1
+touch /tmp/step2
+touch /tmp/step3
+awk '{n=$2}l1!=n{if(p)print l0; print; p=0}l1==n{p=1}{l0=$0; l1=n}END{print}' $1 > /tmp/step1
+
+
+echo "! -CH ! " > /tmp/step2
+grep -oP '(?<=\+).*' /tmp/step1 >> /tmp/step2
 #
-echo "! -HUMID ! " >> $2
-grep -oP '(?<=^&).*' $1 >> $2
+echo "! -HMD ! " >> /tmp/step2
+grep -oP '(?<=^&).*' /tmp/step1 >> /tmp/step2
 #
-echo "! -°C ! " >> $2
-grep -oP '(?<=^@).*' $1 >> $2
+echo "! -°C ! " >> /tmp/step2
+grep -oP '(?<=^@).*' /tmp/step1 >> /tmp/step2
 #
-echo "! -KPA ! " >> $2
-grep -oP '(?<=^#).*' $1 >> $2
+echo "! -KPA ! " >> /tmp/step2
+grep -oP '(?<=^#).*' /tmp/step1 >> /tmp/step2
 #
-echo "! -M-UP ! " >> $2
-grep -oP '(?<=^%).*' $1 >> $2
+echo "! -M-UP ! " >> /tmp/step2
+grep -oP '(?<=^%).*' /tmp/step1 >> /tmp/step2
 #
-echo "! -LAT ! " >> $2
-grep -oP '(?<=,A,).*(?=,N,)' $1 >> $2
+echo "! -LAT ! " >> /tmp/step2
+grep -oP '(?<=,A,).*(?=,N,)' /tmp/step1 >> /tmp/step2
 #
-echo "! -LON ! " >> $2
-grep -oP '(?<=,N,).*(?=,W,)' $1 >> $2
+echo "! -LON ! " >> /tmp/step2
+grep -oP '(?<=,N,).*(?=,W,)' /tmp/step1 >> /tmp/step2
 #
-sed -i 's/\(^.\{1,10\}\).*/\1/' $2
+sed -i 's/\(^.\{1,10\}\).*/\1/' /tmp/step2
 #
-cat $2 | datamash transpose --field-separator=, > $3
-sed -i 's/^.,//g' $3
-sed -i 's/! /\n/g' $3
-sed -i 's/^. ,//g' $3
+cat /tmp/step2 | datamash transpose --field-separator=, > $2
+sed -i 's/^.,//g' $2
+sed -i 's/! /\n/g' $2
+sed -i 's/^. ,//g' $2
 #
-sed -i 's/^.//' $3
+sed -i 's/.$//; s/^.//' $2
 #
 echo "DONE"
