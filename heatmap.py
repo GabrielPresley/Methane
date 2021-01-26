@@ -45,7 +45,7 @@ class ButtonWindow(Gtk.Window):
 		combo.append([1, "Temperature"])
 		combo.append([2, "Humidity"])
 		combo.append([3, "Methane"])
-		#combo.append([4, "Latitude"])
+		combo.append([4, "Pressure (KPa)"])
 		#combo.append([5, "Longitude"])
 		#combo.append([6, "Altitude"])
 #
@@ -82,6 +82,8 @@ elif (which == 2):
 	ax2 = fig.gca(projection='3d')
 elif (which == 3):
 	ax3 = fig.gca(projection='3d')
+elif (which == 4):
+	ax4 = fig.gca(projection='3d')
 #
 # If this works im drinking several glasses of vodka
 #
@@ -124,5 +126,12 @@ if (which == 3):
 	ax3.set_ylabel("y (m)")
 	ax3.set_zlabel("altitude (m)")
 	ax3.view_init(30, 135)
+if (which == 4):
+	ax4.scatter(latitude, longitude, altitude, c=pressure)
+	ax4.set_title("Methane Heatmap")
+	ax4.set_xlabel("x (m)")
+	ax4.set_ylabel("y (m)")
+	ax4.set_zlabel("altitude (m)")
+	ax4.view_init(30, 135)
 plt.show()
 #
