@@ -25,7 +25,7 @@
     #   Select from here to end of line
 # > or >>
     # Replace all text in file, and concatenate respectively
-grep -oP '(?<=^!).*' $1 >> $2
+grep -oP '(?<=^!).*' $1 > $2
 #
 grep -oP '(?<=^&).*' $1 >> $2
 #

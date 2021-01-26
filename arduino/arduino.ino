@@ -7,7 +7,7 @@
 //
 //
 #include <Wire.h>
-#include <SPI.h>
+//#include <SPI.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 //
@@ -70,8 +70,8 @@ void loop()
   // output
   Serial.println(); // fix methane data at end of gps :/
 
-  Serial.print("Time () ");
-  sprintf("%f:%f:%f", hours, minutes, seconds)
+ // Serial.print("Time () ");
+//  sprintf("%f:%f:%f", hours, minutes, seconds)
 
   Serial.print("Methane (PPM) \n!");
   Serial.println(ppm);
