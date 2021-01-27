@@ -93,7 +93,12 @@ void loop()
   Serial.print("Humidity (%) \n&");
   Serial.println(bme.readHumidity());
   //
-  while(Serial.available()) // Chek for availablity of data at Serial Port
+  while(!Serial.available()) //waits for the serial port to be available
+  {
+    delay(10);
+  }
+
+  while(Serial.available()) // Check for availablity of data at Serial Port
     {
       char data = Serial.read(); // Reading Serial Data and saving in data variable
       Serial.print(data);
