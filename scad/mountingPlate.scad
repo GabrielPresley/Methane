@@ -17,7 +17,7 @@ difference(){
 			}
 		}
 
- // HOLES START HERE	
+ // HOLES START HERE
 	// pi top
 	color([0,1,0]){
 	translate([3,51,-.01])cylinder(h=3,r=2.75);
@@ -34,7 +34,7 @@ difference(){
 	}
 	// GPS top
 	color([0,1,1]){
-	translate([110-32,60-27,3])cube([18,18,2.1]);
+	translate([110-32,60-27,3])cube([19.5,19.5,2.1]);
 	translate([110-35,60-17,-.1])cylinder(h=3,r=4.2);
 	translate([110-35,60-17,-1])cylinder(h=10,r=2);
 	translate([110-10,60-17,-.1])cylinder(h=3,r=4.2);
