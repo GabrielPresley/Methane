@@ -55,6 +55,9 @@ class ButtonWindow(Gtk.Window):
 		dropdown.set_entry_text_column(1)
 		dropdown.set_active(0)
 		grid.attach_next_to(dropdown, button, Gtk.PositionType.BOTTOM, 1, 1)
+
+		checkbox = Gtk.CheckButton.new_with_label("Test")
+		grid.attach_next_to(checkbox, dropdown, Gtk.PositionType.BOTTOM, 1, 1)
 #
 	def graph(self, button):
 		Gtk.main_quit()
