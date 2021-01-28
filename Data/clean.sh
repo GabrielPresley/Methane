@@ -59,10 +59,11 @@ cat /tmp/step2 | datamash transpose --field-separator=, > $2
 sed -i 's/^.,//g' $2
 sed -i 's/! /\n/g' $2
 sed -i 's/^. ,//g' $2
+sed -i 's/\\r//g' $2
 #
 sed -i 's/.$//; s/^.//' $2
 #
-head -n 4 $2 | tail -n 4 | sed 's/[^,]//g' | wc -c
+#head -n 4 $2 | tail -n 4 | sed 's/[^,]//g' | wc -c
 rm /tmp/step1
 rm /tmp/step2
 rm /tmp/step3
