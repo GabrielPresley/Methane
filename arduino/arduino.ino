@@ -73,7 +73,7 @@ void loop()
  // Serial.print("Time () ");
 //  sprintf("%f:%f:%f", hours, minutes, seconds)
 
-  Serial.print("Methane (PPM) \n!");
+  Serial.print("Methane (PPM) \n+");
   Serial.println(ppm);
   delay(500);
   //

@@ -98,13 +98,13 @@ with open("./Data/transposedcardata.csv") as csvfile:
         results.append(row)
 
 results = np.array(results)
-temperature = results[1][2:]
-humidity = results[2][2:]
 methane = results[0][2:]
+humidity = results[1][2:]
+temperature = results[2][2:]
 pressure = results[3][2:]
+altitude = results[4][2:]
 latitude = results[5][2:]
 longitude = results[6][2:]
-altitude = results[4][2:]
 
 
 #
