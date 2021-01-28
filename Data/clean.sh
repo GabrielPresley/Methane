@@ -31,8 +31,7 @@ touch /tmp/step1
 touch /tmp/step2
 touch /tmp/step3
 awk '{n=$2}l1!=n{if(p)print l0; print; p=0}l1==n{p=1}{l0=$0; l1=n}END{print}' $1 > /tmp/step1
-
-
+#
 echo "! -CH ! " > /tmp/step2
 grep -oP '(?<=\+).*' /tmp/step1 >> /tmp/step2
 #
@@ -42,7 +41,7 @@ grep -oP '(?<=^&).*' /tmp/step1 >> /tmp/step2
 echo "! -°C ! " >> /tmp/step2
 grep -oP '(?<=^@).*' /tmp/step1 >> /tmp/step2
 #
-echo "! -KPA ! " >> /tmp/step2
+echo "! -hPA ! " >> /tmp/step2
 grep -oP '(?<=^#).*' /tmp/step1 >> /tmp/step2
 #
 echo "! -M-UP ! " >> /tmp/step2
@@ -63,6 +62,7 @@ sed -i 's/^. ,//g' $2
 #
 sed -i 's/.$//; s/^.//' $2
 #
+head -n 4 $2 | tail -n 4 | sed 's/[^,]//g' | wc -c
 rm /tmp/step1
 rm /tmp/step2
 rm /tmp/step3
