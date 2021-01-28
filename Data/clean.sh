@@ -69,7 +69,7 @@ rm /tmp/step2
 sed -i '2~2d' $2 #Remove Lables
 sed -i '1d' $2 # Remove Empty First Line
 
-length=$(head -n 7 $2 | tail -n 1 | sed 's/[^,]//g' | wc -c)
+length=$(($(head -n 7 $2 | tail -n 1 | sed 's/[^,]//g' | wc -c)-$3 ))
 echo $length p
 head -n 1 $2 | tail -n 1 | cut -d, -f1-$length > /tmp/step0
 head -n 2 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
@@ -77,6 +77,8 @@ head -n 3 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
 head -n 4 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
 head -n 5 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
 head -n 6 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
-head -n 7 $2 | tail -n 1  >> /tmp/step0
+head -n 7 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
+
 cat /tmp/step0 > $2
+rm /tmp/step0
 echo "DONE"
