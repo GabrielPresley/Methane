@@ -1,0 +1,6 @@
+Average methane: 484.34
+Minimum methane: 605.27
+Maximum methane: 405.08
+Latitude range: 1.47
+Longitude range: 2.52
+Average altitude: 99.47
