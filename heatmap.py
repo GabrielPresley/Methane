@@ -124,44 +124,32 @@ else:
 # Plot the data to three different plots
 if (which == 1):
 	ax1.scatter(latitude, longitude, altitude, c=temperature, s=1)
-<<<<<<< HEAD
 	ax1.set_xlim3d(x1, x2)
 	ax1.set_ylim3d(y1, y2)
-=======
->>>>>>> 90e49c87257d7edb40fa565628461a3156e37024
 	ax1.set_title("Temperature Heatmap")
 	ax1.set_xlabel("x (m)")
 	ax1.set_ylabel("y (m)")
 	ax1.set_zlabel("altitude (m)")
 if (which == 2):
 	ax2.scatter(latitude, longitude, altitude, c=humidity, s=1)
-<<<<<<< HEAD
 	ax2.set_xlim3d(x1, x2)
 	ax2.set_ylim3d(y1, y2)
-=======
->>>>>>> 90e49c87257d7edb40fa565628461a3156e37024
 	ax2.set_title("Humidity Heatmap")
 	ax2.set_xlabel("x (m)")
 	ax2.set_ylabel("y (m)")
 	ax2.set_zlabel("altitude (m)")
 if (which == 3):
 	ax3.scatter(latitude, longitude, altitude, c=methane, s=1)
-<<<<<<< HEAD
 	ax3.set_xlim3d(x1, x2)
 	ax3.set_ylim3d(y1, y2)
-=======
->>>>>>> 90e49c87257d7edb40fa565628461a3156e37024
 	ax3.set_title("Methane Heatmap")
 	ax3.set_xlabel("x (m)")
 	ax3.set_ylabel("y (m)")
 	ax3.set_zlabel("altitude (m)")
 if (which == 4):
 	ax4.scatter(latitude, longitude, altitude, c=pressure, s=1)
-<<<<<<< HEAD
 	ax4.set_xlim3d(x1, x2)
 	ax4.set_ylim3d(y1, y2)
-=======
->>>>>>> 90e49c87257d7edb40fa565628461a3156e37024
 	ax4.set_title("Methane Heatmap")
 	ax4.set_xlabel("x (m)")
 	ax4.set_ylabel("y (m)")
