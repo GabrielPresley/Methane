@@ -75,7 +75,6 @@ win = ButtonWindow()
 win.connect("destroy", Gtk.main_quit)
 win.show_all()
 Gtk.main()
-print(which)
 #END OF BUTTONS
 #
 if (which != 0):
@@ -106,36 +105,54 @@ altitude = results[4][2:]
 latitude = results[5][2:]
 longitude = results[6][2:]
 
+latmin = np.floor(latitude.min())
+latmax = np.ceil(latitude.max())
+lonmin = np.floor(longitude.min())
+lonmax = np.ceil(longitude.max())
 
+if (latmax - latmin > lonmax - lonmin):
+	x1 = latmin
+	x2 = latmax
+	y1 = lonmin
+	y2 = lonmin + (latmax - latmin)
+else:
+	x1 = latmin
+	x2 = latmin + (lonmax - lonmin)
+	y1 = lonmin
+	y2 = lonmax
 #
 # Plot the data to three different plots
 if (which == 1):
-	ax1.scatter(latitude, longitude, altitude, c=temperature)
+	ax1.scatter(latitude, longitude, altitude, c=temperature, s=1)
+	ax1.set_xlim3d(x1, x2)
+	ax1.set_ylim3d(y1, y2)
 	ax1.set_title("Temperature Heatmap")
 	ax1.set_xlabel("x (m)")
 	ax1.set_ylabel("y (m)")
 	ax1.set_zlabel("altitude (m)")
-	ax1.view_init(35, 190)
 if (which == 2):
-	ax2.scatter(latitude, longitude, altitude, c=humidity)
+	ax2.scatter(latitude, longitude, altitude, c=humidity, s=1)
+	ax2.set_xlim3d(x1, x2)
+	ax2.set_ylim3d(y1, y2)
 	ax2.set_title("Humidity Heatmap")
 	ax2.set_xlabel("x (m)")
 	ax2.set_ylabel("y (m)")
 	ax2.set_zlabel("altitude (m)")
-	ax2.view_init(35, 190)
 if (which == 3):
-	ax3.scatter(latitude, longitude, altitude, c=methane)
+	ax3.scatter(latitude, longitude, altitude, c=methane, s=1)
+	ax3.set_xlim3d(x1, x2)
+	ax3.set_ylim3d(y1, y2)
 	ax3.set_title("Methane Heatmap")
 	ax3.set_xlabel("x (m)")
 	ax3.set_ylabel("y (m)")
 	ax3.set_zlabel("altitude (m)")
-	ax3.view_init(30, 135)
 if (which == 4):
-	ax4.scatter(latitude, longitude, altitude, c=pressure)
+	ax4.scatter(latitude, longitude, altitude, c=pressure, s=1)
+	ax4.set_xlim3d(x1, x2)
+	ax4.set_ylim3d(y1, y2)
 	ax4.set_title("Methane Heatmap")
 	ax4.set_xlabel("x (m)")
 	ax4.set_ylabel("y (m)")
 	ax4.set_zlabel("altitude (m)")
-	ax4.view_init(30, 135)
 plt.show()
 #
