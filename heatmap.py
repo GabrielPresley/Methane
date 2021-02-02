@@ -40,7 +40,7 @@ class ButtonWindow(Gtk.Window):
 
 		# Open CSV and save into lists
 		results = []
-		with open("./transposedcardata.csv") as csvfile:
+		with open("./Data/transposedcardata.csv") as csvfile:
 			reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
 			for row in reader: # each row is a list
 				results.append(row)
