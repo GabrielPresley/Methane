@@ -30,6 +30,15 @@ class ButtonWindow(Gtk.Window):
 		grid3 = Gtk.Grid()
 		grid4 = Gtk.Grid()
 
+		grid1.set_row_spacing(5)
+		grid1.set_column_spacing(5)
+		grid2.set_row_spacing(5)
+		grid2.set_column_spacing(5)
+		grid3.set_row_spacing(5)
+		grid3.set_column_spacing(5)
+		grid4.set_row_spacing(5)
+		grid4.set_column_spacing(5)
+
 		# Set up figures
 		fig1 = Figure()
 		fig2 = Figure()
@@ -110,13 +119,14 @@ class ButtonWindow(Gtk.Window):
 		ax4.set_zlabel("altitude (m)")
 		ax4.view_init(30, 45)
 
-		#Create display
+		#Create notebook
 		notebook = Gtk.Notebook()
 		page1 = Gtk.Grid()
 		page2 = Gtk.Grid()
 		page3 = Gtk.Grid()
 		page4 = Gtk.Grid()
 
+		#Create canvases
 		met = FigureCanvas(fig1)
 		hum = FigureCanvas(fig2)
 		tem = FigureCanvas(fig3)
@@ -155,7 +165,7 @@ class ButtonWindow(Gtk.Window):
 		pslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
 		pslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
 
-		#Add to display
+		#Add everything to display
 		grid1.attach(mslide1, 1, 0, 1, 1)
 		grid1.attach(mslide2, 0, 1, 1, 1)
 		grid2.attach(hslide1, 1, 0, 1, 1)
@@ -179,19 +189,19 @@ class ButtonWindow(Gtk.Window):
 	def changex(self, slider, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4):
 		if (notebook.get_current_page() == 0):
 			grid1.remove(met)
-			ax1.view_init(azim=slider.get_value())
+			ax1.view_init(elev=ax1.elev, azim=slider.get_value())
 			grid1.attach(met, 1, 1, 1, 1)
 		elif (notebook.get_current_page() == 1):
 			grid2.remove(hum)
-			ax2.view_init(azim=slider.get_value())
+			ax2.view_init(elev=ax2.elev, azim=slider.get_value())
 			grid2.attach(hum, 1, 1, 1, 1)
 		elif (notebook.get_current_page() == 2):
 			grid3.remove(tem)
-			ax3.view_init(azim=slider.get_value())
+			ax3.view_init(elev=ax3.elev, azim=slider.get_value())
 			grid3.attach(tem, 1, 1, 1, 1)
 		else:
 			grid4.remove(pre)
-			ax4.view_init(azim=slider.get_value())
+			ax4.view_init(elev=ax4.elev, azim=slider.get_value())
 			grid4.attach(pre, 1, 1, 1, 1)
 		notebook.show_all()
 
@@ -199,19 +209,19 @@ class ButtonWindow(Gtk.Window):
 	def changey(self, slider, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4):
 		if (notebook.get_current_page() == 0):
 			grid1.remove(met)
-			ax1.view_init(elev=90 - slider.get_value())
+			ax1.view_init(azim=ax1.azim, elev=90 - slider.get_value())
 			grid1.attach(met, 1, 1, 1, 1)
 		elif (notebook.get_current_page() == 1):
 			grid2.remove(hum)
-			ax2.view_init(elev=90 - slider.get_value())
+			ax2.view_init(azim=ax2.azim, elev=90 - slider.get_value())
 			grid2.attach(hum, 1, 1, 1, 1)
 		elif (notebook.get_current_page() == 2):
 			grid3.remove(tem)
-			ax3.view_init(elev=90 - slider.get_value())
+			ax3.view_init(azim=ax3.azim, elev=90 - slider.get_value())
 			grid3.attach(tem, 1, 1, 1, 1)
 		else:
 			grid4.remove(pre)
-			ax4.view_init(elev=90 - slider.get_value())
+			ax4.view_init(azim=ax4.azim, elev=90 - slider.get_value())
 			grid4.attach(pre, 1, 1, 1, 1)
 		notebook.show_all()
 
