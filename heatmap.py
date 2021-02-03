@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 #
 import math
 #
@@ -22,11 +22,13 @@ dtype=object
 
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
-		Gtk.Window.__init__(self, title="MMM Monitors Methane - Drone")
+		Gtk.Window.__init__(self, title="MMM Monitors Methane")
 		self.set_border_width(10)
-		box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-		self.add(box)
 
+		grid1 = Gtk.Grid()
+		grid2 = Gtk.Grid()
+		grid3 = Gtk.Grid()
+		grid4 = Gtk.Grid()
 
 		# Set up figures
 		fig1 = Figure()
@@ -55,10 +57,10 @@ class ButtonWindow(Gtk.Window):
 		longitude = results[6][2:]
 
 		# Fix Scaling
-		latmin = np.floor(latitude.min())
-		latmax = np.ceil(latitude.max())
-		lonmin = np.floor(longitude.min())
-		lonmax = np.ceil(longitude.max())
+		latmin = latitude.min()
+		latmax = latitude.max()
+		lonmin = longitude.min()
+		lonmax = longitude.max()
 
 		if (latmax - latmin > lonmax - lonmin):
 			x1 = latmin
@@ -79,6 +81,7 @@ class ButtonWindow(Gtk.Window):
 		ax1.set_xlabel("x (m)")
 		ax1.set_ylabel("y (m)")
 		ax1.set_zlabel("altitude (m)")
+		ax1.view_init(30, 45)
 
 		ax2.scatter(latitude, longitude, altitude, c=humidity, s=1)
 		ax2.set_xlim3d(x1, x2)
@@ -87,6 +90,7 @@ class ButtonWindow(Gtk.Window):
 		ax2.set_xlabel("x (m)")
 		ax2.set_ylabel("y (m)")
 		ax2.set_zlabel("altitude (m)")
+		ax2.view_init(30, 45)
 
 		ax3.scatter(latitude, longitude, altitude, c=temperature, s=1)
 		ax3.set_xlim3d(x1, x2)
@@ -95,6 +99,7 @@ class ButtonWindow(Gtk.Window):
 		ax3.set_xlabel("x (m)")
 		ax3.set_ylabel("y (m)")
 		ax3.set_zlabel("altitude (m)")
+		ax3.view_init(30, 45)
 
 		ax4.scatter(latitude, longitude, altitude, c=pressure, s=1)
 		ax4.set_xlim3d(x1, x2)
@@ -103,34 +108,112 @@ class ButtonWindow(Gtk.Window):
 		ax4.set_xlabel("x (m)")
 		ax4.set_ylabel("y (m)")
 		ax4.set_zlabel("altitude (m)")
+		ax4.view_init(30, 45)
 
 		#Create display
-		main = Gtk.Stack()
-		main.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
-		main.set_transition_duration(300)
+		notebook = Gtk.Notebook()
+		page1 = Gtk.Grid()
+		page2 = Gtk.Grid()
+		page3 = Gtk.Grid()
+		page4 = Gtk.Grid()
 
 		met = FigureCanvas(fig1)
-		met.set_size_request(400, 400)
-		main.add_titled(met, "methane", "Methane")
-
 		hum = FigureCanvas(fig2)
-		hum.set_size_request(400, 400)
-		main.add_titled(hum, "methane", "Humidity")
-
 		tem = FigureCanvas(fig3)
-		tem.set_size_request(400, 400)
-		main.add_titled(tem, "temperature", "Temperature")
-
 		pre = FigureCanvas(fig4)
-		pre.set_size_request(400, 400)
-		main.add_titled(pre, "pressure", "Pressure")
 
-		switcher = Gtk.StackSwitcher()
-		switcher.set_stack(main)
-		box.pack_start(switcher, True, True, 0)
-		box.pack_start(main, True, True, 0)
+		met.set_size_request(800, 800)
+		hum.set_size_request(800, 800)
+		tem.set_size_request(800, 800)
+		pre.set_size_request(800, 800)
 
+		#Sliders
+		mad1 = Gtk.Adjustment(45, 0, 360, 5, 10, 0)
+		mad2 = Gtk.Adjustment(60, 0, 90, 5, 10, 0)
+		had1 = Gtk.Adjustment(45, 0, 360, 5, 10, 0)
+		had2 = Gtk.Adjustment(60, 0, 90, 5, 10, 0)
+		tad1 = Gtk.Adjustment(45, 0, 360, 5, 10, 0)
+		tad2 = Gtk.Adjustment(60, 0, 90, 5, 10, 0)
+		pad1 = Gtk.Adjustment(45, 0, 360, 5, 10, 0)
+		pad2 = Gtk.Adjustment(60, 0, 90, 5, 10, 0)
 
+		mslide1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=mad1)
+		mslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=mad2)
+		hslide1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=had1)
+		hslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=had2)
+		tslide1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=tad1)
+		tslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=tad2)
+		pslide1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=pad1)
+		pslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=pad2)
+
+		mslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		mslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		hslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		hslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		tslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		tslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		pslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		pslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+
+		#Add to display
+		grid1.attach(mslide1, 1, 0, 1, 1)
+		grid1.attach(mslide2, 0, 1, 1, 1)
+		grid2.attach(hslide1, 1, 0, 1, 1)
+		grid2.attach(hslide2, 0, 1, 1, 1)
+		grid3.attach(tslide1, 1, 0, 1, 1)
+		grid3.attach(tslide2, 0, 1, 1, 1)
+		grid4.attach(pslide1, 1, 0, 1, 1)
+		grid4.attach(pslide2, 0, 1, 1, 1)
+		grid1.attach(met, 1, 1, 1, 1)
+		grid2.attach(hum, 1, 1, 1, 1)
+		grid3.attach(tem, 1, 1, 1, 1)
+		grid4.attach(pre, 1, 1, 1, 1)
+
+		notebook.append_page(grid1, Gtk.Label("Methane"))
+		notebook.append_page(grid2, Gtk.Label("Humidity"))
+		notebook.append_page(grid3, Gtk.Label("Temperature"))
+		notebook.append_page(grid4, Gtk.Label("Pressure"))
+		self.add(notebook)
+
+		#Update azimuth
+	def changex(self, slider, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4):
+		if (notebook.get_current_page() == 0):
+			grid1.remove(met)
+			ax1.view_init(azim=slider.get_value())
+			grid1.attach(met, 1, 1, 1, 1)
+		elif (notebook.get_current_page() == 1):
+			grid2.remove(hum)
+			ax2.view_init(azim=slider.get_value())
+			grid2.attach(hum, 1, 1, 1, 1)
+		elif (notebook.get_current_page() == 2):
+			grid3.remove(tem)
+			ax3.view_init(azim=slider.get_value())
+			grid3.attach(tem, 1, 1, 1, 1)
+		else:
+			grid4.remove(pre)
+			ax4.view_init(azim=slider.get_value())
+			grid4.attach(pre, 1, 1, 1, 1)
+		notebook.show_all()
+
+		#Update elevation
+	def changey(self, slider, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4):
+		if (notebook.get_current_page() == 0):
+			grid1.remove(met)
+			ax1.view_init(elev=90 - slider.get_value())
+			grid1.attach(met, 1, 1, 1, 1)
+		elif (notebook.get_current_page() == 1):
+			grid2.remove(hum)
+			ax2.view_init(elev=90 - slider.get_value())
+			grid2.attach(hum, 1, 1, 1, 1)
+		elif (notebook.get_current_page() == 2):
+			grid3.remove(tem)
+			ax3.view_init(elev=90 - slider.get_value())
+			grid3.attach(tem, 1, 1, 1, 1)
+		else:
+			grid4.remove(pre)
+			ax4.view_init(elev=90 - slider.get_value())
+			grid4.attach(pre, 1, 1, 1, 1)
+		notebook.show_all()
 
 win = ButtonWindow()
 win.connect("destroy", Gtk.main_quit)
