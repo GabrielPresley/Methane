@@ -39,6 +39,11 @@ class ButtonWindow(Gtk.Window):
 		grid4.set_row_spacing(5)
 		grid4.set_column_spacing(5)
 
+		txt = open("Data/Report.txt", "r")
+
+		report = Gtk.Label(txt.read())
+		report.set_alignment(0, 0)
+
 		# Set up figures
 		fig1 = Figure()
 		fig2 = Figure()
@@ -125,6 +130,7 @@ class ButtonWindow(Gtk.Window):
 		page2 = Gtk.Grid()
 		page3 = Gtk.Grid()
 		page4 = Gtk.Grid()
+		page5 = Gtk.Grid()
 
 		#Create canvases
 		met = FigureCanvas(fig1)
@@ -183,6 +189,7 @@ class ButtonWindow(Gtk.Window):
 		notebook.append_page(grid2, Gtk.Label("Humidity"))
 		notebook.append_page(grid3, Gtk.Label("Temperature"))
 		notebook.append_page(grid4, Gtk.Label("Pressure"))
+		notebook.append_page(report, Gtk.Label("Report"))
 		self.add(notebook)
 
 		#Update azimuth

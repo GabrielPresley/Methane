@@ -22,12 +22,41 @@ Longitude = results[6]
 
 report = open("Data/Report.txt", "w")
 
-report.write("Average methane: " + str(round(np.mean(Methane), 2)))
-report.write("\nMinimum methane: "+ str(round(np.max(Methane), 2)))
-report.write("\nMaximum methane: "+ str(round(np.min(Methane), 2)))
-report.write("\nLatitude range: "+ str(round(np.max(Latitude) - np.min(Latitude), 2)))
-report.write("\nLongitude range: "+ str(round(np.max(Longitude) - np.min(Longitude), 2)))
-report.write("\nAverage altitude: "+ str(round(np.mean(Altitude), 2)))
+report.write("Methane:\n")
+
+report.write("\n\tAverage methane: " + str(round(np.mean(Methane), 2)) + " ppm")
+report.write("\n\tMedian methane: " + str(round(np.median(Methane), 2)) + " ppm")
+report.write("\n\tMinimum methane: " + str(round(np.min(Methane), 2)) + " ppm")
+report.write("\n\tMaximum methane: " + str(round(np.max(Methane), 2)) + " ppm")
+
+report.write("\n\nHumidity:\n")
+
+report.write("\n\tAverage humidity: " + str(round(np.mean(Humidity), 2)) + "%")
+report.write("\n\tMedian humidity: " + str(round(np.median(Humidity), 2)) + "%")
+report.write("\n\tMinimum humidity: " + str(round(np.min(Humidity), 2)) + "%")
+report.write("\n\tMaximum humidity: " + str(round(np.max(Humidity), 2)) + "%")
+
+report.write("\n\nTemperature:\n")
+
+report.write("\n\tAverage temperature: " + str(round(np.mean(Temperature), 2)) + " C")
+report.write("\n\tMedian temperature: " + str(round(np.median(Temperature), 2)) + " C")
+report.write("\n\tMinimum temperature: " + str(round(np.min(Temperature), 2)) + " C")
+report.write("\n\tMaximum temperature: " + str(round(np.max(Temperature), 2)) + " C")
+
+report.write("\n\nPressure:\n")
+
+report.write("\n\tAverage pressure: " + str(round(np.mean(Pressure), 2)) + " hPa")
+report.write("\n\tMedian pressure: " + str(round(np.median(Pressure), 2)) + " hPa")
+report.write("\n\tMinimum pressure: " + str(round(np.min(Pressure), 2)) + " hPa")
+report.write("\n\tMaximum pressure: " + str(round(np.max(Pressure), 2)) + " hPa")
+
+report.write("\n\nLocation:\n")
+
+report.write("\n\tLatitude range: " + str(round(np.max(Latitude) - np.min(Latitude), 2)) + "\"")
+report.write("\n\tLongitude range: " + str(round(np.max(Longitude) - np.min(Longitude), 2)) + "\"")
+report.write("\n\n\tAverage altitude: " + str(round(np.mean(Altitude), 2)) + " m")
+report.write("\n\tMinimum altitude: " + str(round(np.min(Altitude), 2)) + " m")
+report.write("\n\tMaximum altitude: " + str(round(np.max(Altitude), 2))+ " m")
 
 #To be continued...
 
