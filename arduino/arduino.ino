@@ -35,6 +35,18 @@ void setup()
   delay(300);
   // GPS
   Serial.begin(9600); // Serial Port initialization
+
+  
+
+  Serial.print("Methane (PPM) \n+");
+  
+  Serial.print("Temperature (*c) \n@");
+  
+  Serial.print("Pressure (hPa) \n#");
+  
+  Serial.print("Altitude (m) \n%");
+  
+  Serial.print("Humidity (%) \n&");
 }
 //
 void loop()
@@ -46,10 +58,10 @@ void loop()
   Wire.write(0x00);
   // stop I2C transmission
   Wire.endTransmission();
-//
+  //
   // request 2 bytes
   Wire.requestFrom(Addr, 2);
-//
+  //
   // read 2 bytes
   unsigned int data[2];
   if(Wire.available() == 2)
@@ -57,7 +69,7 @@ void loop()
     data[0] = Wire.read();
     data[1] = Wire.read();
   }
-//
+  //
   // make 12-bits
   int raw_adc = ((data[0] & 0x0F) * 256) + data[1];
   float ppm = (10000.0 / 4096.0) * raw_adc + 200.0;
@@ -72,25 +84,19 @@ void loop()
 
  // Serial.print("Time () ");
 //  sprintf("%f:%f:%f", hours, minutes, seconds)
-
-  Serial.print("Methane (PPM) \n+");
   Serial.println(ppm);
   delay(500);
   //
-  Serial.print("Temperature (*c) \n@");
   Serial.println(bme.readTemperature());
   //
   delay(500);
-  Serial.print("Pressure (hPa) \n#");
   Serial.println(bme.readPressure() / 100.0F);
   //
   delay(500);
-  Serial.print("Altitude (m) \n%");
   Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
   //
   delay(500);
   Serial.println();
-  Serial.print("Humidity (%) \n&");
   Serial.println(bme.readHumidity());
   //
   while(!Serial.available()) //waits for the serial port to be available
@@ -103,7 +109,7 @@ void loop()
       char data = Serial.read(); // Reading Serial Data and saving in data variable
       Serial.print(data);
 
-      if(data == "\n"){
+      if(data == 0x0A){
         break;
       }
       /*if(data == "$"){
@@ -125,4 +131,5 @@ void loop()
           }
         }*/
       }
+      Serial.flush();
 }
