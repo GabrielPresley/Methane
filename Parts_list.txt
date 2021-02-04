@@ -1,7 +1,0 @@
-GPS sensor: https://www.adafruit.com/product/746
-
-Methane Sensor: https://www.pololu.com/product/1633#:~:text=Overview,is%20suitable%20for%20leak%20detection
-
-Probe (Methane Sensor):
-
-Frame/drone:

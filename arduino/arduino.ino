@@ -20,7 +20,7 @@
 #define BME_MISO 12
 #define BME_MOSI 11
 #define BME_CS 10
-#define SEALEVELPRESSURE_HPA (1013.25)
+#define SEALEVELPRESSURE_HPA (1004.39)
 Adafruit_BME280 bme;
 //
 void setup()
@@ -36,17 +36,17 @@ void setup()
   // GPS
   Serial.begin(9600); // Serial Port initialization
 
-  
 
-  Serial.print("Methane (PPM) \n+");
-  
-  Serial.print("Temperature (*c) \n@");
-  
-  Serial.print("Pressure (hPa) \n#");
-  
-  Serial.print("Altitude (m) \n%");
-  
-  Serial.print("Humidity (%) \n&");
+
+  Serial.print("Methane (PPM) +");
+
+  Serial.print("Temperature (*c) @");
+
+  Serial.print("Pressure (hPa) #");
+
+  Serial.print("Altitude (m) %");
+
+  Serial.print("Humidity (%) &");
 }
 //
 void loop()
@@ -73,17 +73,10 @@ void loop()
   // make 12-bits
   int raw_adc = ((data[0] & 0x0F) * 256) + data[1];
   float ppm = (10000.0 / 4096.0) * raw_adc + 200.0;
-  float time = millis();
-  float hours = floor(time / 1000 / 60 / 60);
-  float minutes = floor(time / 1000 / 60 - hours / 60);
-  float seconds = floor(time / 1000 - hours * 60 - minutes * 60);
 
 //
   // output
-  Serial.println(); // fix methane data at end of gps :/
-
- // Serial.print("Time () ");
-//  sprintf("%f:%f:%f", hours, minutes, seconds)
+  Serial.println(); // fixed methane data at end of gps :/
   Serial.println(ppm);
   delay(500);
   //
@@ -94,6 +87,9 @@ void loop()
   //
   delay(500);
   Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
+  //
+  delay(500);
+  Serial.println(millis()/1000);
   //
   delay(500);
   Serial.println();
@@ -111,25 +107,7 @@ void loop()
 
       if(data == 0x0A){
         break;
-      }
-      /*if(data == "$"){
-        char data = Serial.read();
-          if(data == "G"){
-            char data = Serial.read();
-            if(data == "P"){
-              char data = Serial.read();
-              if(data == "G"){
-                char data = Serial.read();
-                if(data == "R"){
-                  for ( int i = 0; i < 300; i++ ) {q
-                    Serial.print(Serial.read());
-                  }
-                  break;
-                }
-              }
-            }
-          }
-        }*/
+        }
       }
       Serial.flush();
 }

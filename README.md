@@ -5,9 +5,11 @@ Monitoring programs for an aerial methane monitor.
 #### ~~~~~~~~~~~~~~~~~~~~~~  
 * README.md  
 * arduino.ino
-* sensehat.py
 * heatmap.py  
+* WindowsMap.py    
 * clean.sh  
+* raspberry.py    
+
 ### Introduction ✍️
 #### ~~~~~~~~~~~~
 
@@ -23,16 +25,22 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 ### Purpose 🥅
 #### ~~~~~~~
 ##### arduino.ino
+* Main data collection program
 * Reads data from Methane sensor
+* Reads data from BME280 sensor
 * Reads data from GPS sensor
 * Runs on Arduino Nano ✈️
 ##### sensehat.py    
-* Main data collection program
 * Responsible for photos
 * Responsible for arduino-pi communication
-* Writes to output.csv   
-* Collects Pressure, Temperature, Humidity, and time in form:  
-* ```[1004.05615234375, 26.88888931274414, 44.61138916015625, '18:07:30']  ```
+* Writes to output.csv in form   
+```
+Humidity (%) 30.83
+Methane (PPM) 558.89
+Temperature (*c) 29.12
+Pressure (hPa) 989.71
+Altitude (m) 198.05
+```
 * Runs on RPi 🛩️  
 ##### clean.sh    
 * Writes to cleanoutput.txt  
