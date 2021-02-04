@@ -9,11 +9,12 @@ Monitoring programs for an aerial methane monitor.
 * WindowsMap.py    
 * clean.sh  
 * raspberry.py    
+* Report.py    
 
 ### Introduction ✍️
 #### ~~~~~~~~~~~~
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Air pollution is a dire health and
+&nbsp;&nbsp;&nbsp;&nbsp; Air pollution is a dire health and
 environmental threat at the forefront of humanity's concerns. As a result, there
  have been many studies focused on developing different environmental monitoring
   methods. Floating air monitors and towers that are currently being employed
@@ -47,7 +48,10 @@ Altitude (m) 198.05
 * Runs on Data analysis computer 🔌
 ##### heatmap.py   
 * Generates heat map of all data    
-* Runs on data analysis computer 🔌      
+* Runs on data analysis computer 🔌   
+##### Report.py   
+* Generates a small data summary 📝    
+* Runs on Data analysis computer 🔌
 ### Dependencies 🏗️
 #### ~~~~~~~~~~~~
 ##### Python
