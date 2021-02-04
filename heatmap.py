@@ -34,6 +34,10 @@ class ButtonWindow(Gtk.Window):
 		grid2 = Gtk.Grid()
 		grid3 = Gtk.Grid()
 		grid4 = Gtk.Grid()
+		grid5 = Gtk.Grid()
+		grid6 = Gtk.Grid()
+		grid7 = Gtk.Grid()
+		grid8 = Gtk.Grid()
 
 		grid1.set_row_spacing(5)
 		grid1.set_column_spacing(5)
@@ -43,6 +47,14 @@ class ButtonWindow(Gtk.Window):
 		grid3.set_column_spacing(5)
 		grid4.set_row_spacing(5)
 		grid4.set_column_spacing(5)
+		grid5.set_row_spacing(5)
+		grid5.set_column_spacing(5)
+		grid6.set_row_spacing(5)
+		grid6.set_column_spacing(5)
+		grid7.set_row_spacing(5)
+		grid7.set_column_spacing(5)
+		grid8.set_row_spacing(5)
+		grid8.set_column_spacing(5)
 
 		txt = open("Data/Report.txt", "r")
 
@@ -165,11 +177,6 @@ class ButtonWindow(Gtk.Window):
 
 		#Create notebook
 		notebook = Gtk.Notebook()
-		page1 = Gtk.Grid()
-		page2 = Gtk.Grid()
-		page3 = Gtk.Grid()
-		page4 = Gtk.Grid()
-		page5 = Gtk.Grid()
 
 		#Create canvases
 		met = FigureCanvas(fig1)
@@ -213,6 +220,10 @@ class ButtonWindow(Gtk.Window):
 		tad2 = Gtk.Adjustment(60, 0, 90, 5, 10, 0)
 		pad1 = Gtk.Adjustment(45, 0, 360, 5, 10, 0)
 		pad2 = Gtk.Adjustment(60, 0, 90, 5, 10, 0)
+		mhistad = Gtk.Adjustment(75, 1, 100, 5, 10, 0)
+		hhistad = Gtk.Adjustment(75, 1, 100, 5, 10, 0)
+		thistad = Gtk.Adjustment(75, 1, 100, 5, 10, 0)
+		phistad = Gtk.Adjustment(75, 1, 100, 5, 10, 0)
 
 		mslide1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=mad1)
 		mslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=mad2)
@@ -222,6 +233,10 @@ class ButtonWindow(Gtk.Window):
 		tslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=tad2)
 		pslide1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=pad1)
 		pslide2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=pad2)
+		mhistslide = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=mhistad)
+		hhistslide = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=hhistad)
+		thistslide = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=thistad)
+		phistslide = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=phistad)
 
 		mslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
 		mslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
@@ -231,6 +246,10 @@ class ButtonWindow(Gtk.Window):
 		tslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
 		pslide1.connect("value-changed", self.changex, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
 		pslide2.connect("value-changed", self.changey, notebook, grid1, grid2, grid3, grid4, met, hum, tem, pre, ax1, ax2, ax3, ax4)
+		mhistslide.connect("value-changed", self.changehist, notebook, grid5, grid6, grid7, grid8, mhist, hhist, thist, phist, methane, humidity, temperature, pressure, ax5, ax6, ax7, ax8)
+		hhistslide.connect("value-changed", self.changehist, notebook, grid5, grid6, grid7, grid8, mhist, hhist, thist, phist, methane, humidity, temperature, pressure, ax5, ax6, ax7, ax8)
+		thistslide.connect("value-changed", self.changehist, notebook, grid5, grid6, grid7, grid8, mhist, hhist, thist, phist, methane, humidity, temperature, pressure, ax5, ax6, ax7, ax8)
+		phistslide.connect("value-changed", self.changehist, notebook, grid5, grid6, grid7, grid8, mhist, hhist, thist, phist, methane, humidity, temperature, pressure, ax5, ax6, ax7, ax8)
 
 		#Add everything to display
 		grid1.attach(mslide1, 1, 0, 1, 1)
@@ -245,18 +264,26 @@ class ButtonWindow(Gtk.Window):
 		grid2.attach(hum, 1, 1, 1, 1)
 		grid3.attach(tem, 1, 1, 1, 1)
 		grid4.attach(pre, 1, 1, 1, 1)
+		grid5.attach(mhist, 0, 1, 1, 1)
+		grid5.attach(mhistslide, 0, 0, 1, 1)
+		grid6.attach(hhist, 0, 1, 1, 1)
+		grid6.attach(hhistslide, 0, 0, 1, 1)
+		grid7.attach(thist, 0, 1, 1, 1)
+		grid7.attach(thistslide, 0, 0, 1, 1)
+		grid8.attach(phist, 0, 1, 1, 1)
+		grid8.attach(phistslide, 0, 0, 1, 1)
 
 		mstack.add_titled(grid1, "m3d", "3D Plot")
-		mstack.add_titled(mhist, "mhist", "Histogram")
+		mstack.add_titled(grid5, "mhist", "Histogram")
 		mstack.add_titled(mbox, "mbox", "Box Plot")
 		hstack.add_titled(grid2, "h3d", "3D Plot")
-		hstack.add_titled(hhist, "mhist", "Histogram")
+		hstack.add_titled(grid6, "mhist", "Histogram")
 		hstack.add_titled(hbox, "mbox", "Box Plot")
 		tstack.add_titled(grid3, "t3d", "3D Plot")
-		tstack.add_titled(thist, "thist", "Histogram")
+		tstack.add_titled(grid7, "thist", "Histogram")
 		tstack.add_titled(tbox, "tbox", "Box Plot")
 		pstack.add_titled(grid4, "p3d", "3D Plot")
-		pstack.add_titled(phist, "phist", "Histogram")
+		pstack.add_titled(grid8, "phist", "Histogram")
 		pstack.add_titled(pbox, "pbox", "Box Plot")
 
 		mswitch = Gtk.StackSwitcher()
@@ -322,6 +349,29 @@ class ButtonWindow(Gtk.Window):
 			grid4.remove(pre)
 			ax4.view_init(azim=ax4.azim, elev=90 - slider.get_value())
 			grid4.attach(pre, 1, 1, 1, 1)
+		notebook.show_all()
+
+	def changehist(self, slider, notebook, grid5, grid6, grid7, grid8, mhist, hhist, thist, phist, methane, humidity, temperature, pressure, ax5, ax6, ax7, ax8):
+		if (notebook.get_current_page() == 0):
+			grid5.remove(mhist)
+			ax5.cla()
+			ax5.hist(methane, bins=int(slider.get_value()))
+			grid5.attach(mhist, 0, 1, 1, 1)
+		elif (notebook.get_current_page() == 1):
+			grid6.remove(hhist)
+			ax6.cla()
+			ax6.hist(humidity, bins=int(slider.get_value()))
+			grid6.attach(hhist, 0, 1, 1, 1)
+		elif (notebook.get_current_page() == 2):
+			grid7.remove(thist)
+			ax7.cla()
+			ax7.hist(temperature, bins=int(slider.get_value()))
+			grid7.attach(thist, 0, 1, 1, 1)
+		else:
+			grid8.remove(phist)
+			ax8.cla()
+			ax8.hist(pressure, bins=int(slider.get_value()))
+			grid8.attach(phist, 0, 1, 1, 1)
 		notebook.show_all()
 
 win = ButtonWindow()
