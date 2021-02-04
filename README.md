@@ -43,34 +43,35 @@ Altitude (m) 198.05
 ```
 * Runs on RPi 🛩️  
 ##### clean.sh    
-* Writes to cleanoutput.txt  
-* Formats output.txt in form:  
-* Pressure,              temp,              Humidity,              time  
-* ``` [1004.05615234375    26.88888931274414    44.61138916015625    '18:07:30']  ```  
+* Formats output.
 * Runs on Data analysis computer 🔌
 ##### heatmap.py   
-* Generates heat map of Methane data    
+* Generates heat map of all data    
 * Runs on data analysis computer 🔌      
 ### Dependencies 🏗️
 #### ~~~~~~~~~~~~
 ##### Python
-* PiCamera
-* random
-* SenseHat
-* math
-* matplotlib.pyplot
-* pandas
-* serial
-* shutil
-* threading
-* time
+* csv    
+* gi (Gtk, Gio)    
+* math    
+* matplotlib (FigureCanvasGTK3Agg, Figure)    
+* numpy    
+* pandas     
+* picamera (PiCamera)    
+* serial    
+* shutil (copyfile)    
+* time (sleep, strftime)    
+
 ##### C++
-* Adafruit_GPS.h
+* Adafruit_BME280.h    
+* Adafruit_Sensor.h    
+* Wire.h    
 
 ### Install ⬇️
 #### ~~~~~~~
-* Download all files to ~/ on RPi
-* Flash arduino.ino to Arduino Nano
+* Download raspberry.py to ~/ on RPi.     
+- (dont forget to add "python ~/raspberry.py" to your .bashrc)    
+* Flash arduino.ino to Arduino Nano    
 
 ### Contributing 🕸️
 #### ~~~~~~~~~~~~
