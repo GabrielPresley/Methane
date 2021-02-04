@@ -1,30 +1,28 @@
-Methane:
 
-	Average methane: 484.34 ppm
-	Median methane: 471.0 ppm
-	Minimum methane: 405.08 ppm
-	Maximum methane: 605.27 ppm
+
+Methane:
+	Average Methane:484.34 ppm
+	Median  Methane:471.0 ppm
+	Minimum Methane:405.08 ppm
+	Maximum Methane:605.27 ppm
 
 Humidity:
-
-	Average humidity: 60.7%
-	Median humidity: 62.44%
-	Minimum humidity: 31.75%
-	Maximum humidity: 91.56%
+	Average Humidity:60.7%
+	Median  Humidity:62.44%
+	Minimum Humidity:31.75%
+	Maximum Humidity:91.56%
 
 Temperature:
-
-	Average temperature: 11.12 C
-	Median temperature: 9.75 C
-	Minimum temperature: 2.95 C
-	Maximum temperature: 22.18 C
+	Average Temperature:11.12*C
+	Median  Temperature:9.75*C
+	Minimum Temperature:2.95*C
+	Maximum Temperature:22.18*C
 
 Pressure:
-
-	Average pressure: 1001.37 hPa
-	Median pressure: 1002.73 hPa
-	Minimum pressure: 991.36 hPa
-	Maximum pressure: 1004.39 hPa
+	Average Pressure:1001.37 hPa
+	Median  Pressure:1002.73 hPa
+	Minimum Pressure:991.36 hPa
+	Maximum Pressure:1004.39 hPa
 
 Location:
 
