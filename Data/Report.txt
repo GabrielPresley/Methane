@@ -28,9 +28,11 @@ Pressure:
 
 Location:
 
-	Latitude range: 1.47"
-	Longitude range: 2.52"
+	Latitude range: 1.47minutes
+	Longitude range: 2.52minutes
 
 	Average altitude: 99.47 m
 	Minimum altitude: 73.97 m
 	Maximum altitude: 183.82 m
+
+15.93km
