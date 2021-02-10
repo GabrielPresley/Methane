@@ -21,5 +21,5 @@ arduinodata = ""
 while arduinodata != "'":
     arduinodata = str(ser.read())
 while True:
-    arduinodata = str(ser.read())
     w.write(arduinodata)
+    arduinodata = str(ser.read())
