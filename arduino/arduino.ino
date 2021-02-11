@@ -77,22 +77,27 @@ void loop()
 //
   // output
   Serial.println(); // fixed methane data at end of gps :/
+  Serial.print("+");
   Serial.println(ppm);
   delay(500);
   //
+  Serial.print("@");
   Serial.println(bme.readTemperature());
   //
   delay(500);
+  Serial.print("#");
   Serial.println(bme.readPressure() / 100.0F);
   //
   delay(500);
+  Serial.print("%");
   Serial.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
   //
   delay(500);
+  Serial.print(":");
   Serial.println(millis()/1000);
   //
   delay(500);
-  Serial.println();
+  Serial.print("&");
   Serial.println(bme.readHumidity());
   //
   while(!Serial.available()) //waits for the serial port to be available
