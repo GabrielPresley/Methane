@@ -62,7 +62,7 @@ Altitude (m) 198.05
 * numpy    
 * pandas     
 * picamera (PiCamera)    
-* serial    
+* serial (*WARNING:* DO NOT INSTALL SERIAL; INSTEAD PYSERIAL)    
 * shutil (copyfile)    
 * time (sleep, strftime)    
 
