@@ -48,9 +48,9 @@ class ButtonWindow(Gtk.Window):
 		"""
 
 		class page:
-			def __init__(self, lat=[], lon=[], alt=[], data=[], name="", text=""):
+			def __init__(self, time=[], lat=[], lon=[], alt=[], data=[], name="", text=""):
 				class stack:
-					def __init__(self, lat, lon, alt, data, name):
+					def __init__(self, time, lat, lon, alt, data, name):
 						class grid:
 
 							# Updates scatter plot azimuth when slider is moved
@@ -74,7 +74,7 @@ class ButtonWindow(Gtk.Window):
 								grid.attach(fig, column, row, 1, 1)
 								grid.show_all()
 
-							def __init__(self, plottype, lat, lon, alt, data, name):
+							def __init__(self, plottype, time, lat, lon, alt, data, name):
 
 								# Create a scatter plot graph
 								class plot3d:
@@ -93,7 +93,7 @@ class ButtonWindow(Gtk.Window):
 
 								# Create a histogram graph
 								class histogram:
-									def __init__(self, data):
+									def __init__(self, data, name):
 										fig = Figure()
 										self.ax = fig.gca()
 										self.ax.hist(data, bins=75)
@@ -104,7 +104,7 @@ class ButtonWindow(Gtk.Window):
 
 								# Create a boxplot graph
 								class boxplot:
-									def __init__(self, data):
+									def __init__(self, data, name):
 										fig = Figure()
 										self.ax = fig.gca()
 										self.ax.boxplot(data)
@@ -112,6 +112,16 @@ class ButtonWindow(Gtk.Window):
 
 										self.canvas = FigureCanvas(fig)
 										self.canvas.set_size_request(800, 800)
+
+								class plot2d:
+									def __init__(self, time, data, name):
+										fig = Figure()
+										self.ax = fig.gca()
+										self.plot(data)
+										self.ax.set_title("%s vs. Time" %name)
+										self.ax.set_xlabel("Time (s)")
+										self.ax.set_ylabel(name)
+
 								self.grid = Gtk.Grid()
 								self.grid.set_row_spacing(5)
 								self.grid.set_column_spacing(5)
@@ -134,7 +144,7 @@ class ButtonWindow(Gtk.Window):
 								elif (plottype == "histogram"):
 									slide = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=Gtk.Adjustment(75, 0, 100, 5, 10, 0))
 
-									plot = histogram(data)
+									plot = histogram(data, name)
 
 									self.grid.attach(plot.canvas, 0, 1, 1, 1)
 									self.grid.attach(slide, 0, 0, 1, 1)
@@ -143,7 +153,12 @@ class ButtonWindow(Gtk.Window):
 
 								# Create a boxplot grid
 								elif (plottype == "box"):
-									plot = boxplot(data)
+									plot = boxplot(data, name)
+
+									self.grid.attach(plot.canvas, 0, 0, 1, 1)
+
+								elif (plottype == "2d"):
+									plot = plot2d(time, data, name)
 
 									self.grid.attach(plot.canvas, 0, 0, 1, 1)
 
@@ -151,13 +166,15 @@ class ButtonWindow(Gtk.Window):
 						self.stack = Gtk.Stack()
 						self.switch = Gtk.StackSwitcher()
 
-						grid1 = grid("scatter", lat, lon, alt, data, name)
-						grid2 = grid("histogram", lat, lon, alt, data, name)
-						grid3 = grid("box", lat, lon, alt, data, name)
+						grid1 = grid("scatter", time, lat, lon, alt, data, name)
+						grid2 = grid("histogram", time, lat, lon, alt, data, name)
+						grid3 = grid("box", time, lat, lon, alt, data, name)
+						grid4 = grid("time", time, lat, lon, alt, data, name)
 
 						self.stack.add_titled(grid1.grid, "3d", "3D Plot")
 						self.stack.add_titled(grid2.grid, "hist", "Histogram")
 						self.stack.add_titled(grid3.grid, "box", "Box Plot")
+						self.stack.add_titled(grid4.grid, "2d", "2D Plot")
 
 						self.switch.set_stack(self.stack)
 
@@ -190,15 +207,16 @@ class ButtonWindow(Gtk.Window):
 		altitude = results[4][2:]
 		latitude = results[5][2:]
 		longitude = results[6][2:]
+		time = results[7][2:]
 
 		# Create pages and add them to notebook
 		notebook = Gtk.Notebook()
 
-		page1 = page(latitude, longitude, altitude, methane, "Methane")
-		page2 = page(latitude, longitude, altitude, humidity, "Humidity")
-		page3 = page(latitude, longitude, altitude, temperature, "Temperature")
-		page4 = page(latitude, longitude, altitude, pressure, "Pressure")
-		page5= page(text=report)
+		page1 = page(time, latitude, longitude, altitude, methane, "Methane")
+		page2 = page(time, latitude, longitude, altitude, humidity, "Humidity")
+		page3 = page(time, latitude, longitude, altitude, temperature, "Temperature")
+		page4 = page(time, latitude, longitude, altitude, pressure, "Pressure")
+		page5 = page(text=report)
 
 		notebook.append_page(page1.graph, Gtk.Label("Methane"))
 		notebook.append_page(page2.graph, Gtk.Label("Humidity"))
