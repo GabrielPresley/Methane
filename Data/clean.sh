@@ -53,6 +53,10 @@ grep -oP '(?<=,A,).*(?=,N,)' /tmp/step1 >> /tmp/step2
 echo "! -LON ! " >> /tmp/step2
 grep -oP '(?<=,N,).*(?=,W,)' /tmp/step1 >> /tmp/step2
 #
+echo "! -SEC ! " >> /tmp/step2
+grep -oP '(?<=^:).*' /tmp/step1 >> /tmp/step2
+#
+
 sed -i 's/\(^.\{1,10\}\).*/\1/' /tmp/step2
 #
 cat /tmp/step2 | datamash transpose --field-separator=, > $2
@@ -70,14 +74,10 @@ sed -i '2~2d' $2 #Remove Lables
 sed -i '1d' $2 # Remove Empty First Line
 
 length=$(($(head -n 7 $2 | tail -n 1 | sed 's/[^,]//g' | wc -c)-$3 ))
-echo $length p
-head -n 1 $2 | tail -n 1 | cut -d, -f1-$length > /tmp/step0
-head -n 2 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
-head -n 3 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
-head -n 4 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
-head -n 5 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
-head -n 6 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
-head -n 7 $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
+echo $length
+for i in 1 2 3 4 5 6 7; do
+head -n $i $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
+done
 
 cat /tmp/step0 > $2
 rm /tmp/step0
