@@ -117,10 +117,13 @@ class ButtonWindow(Gtk.Window):
 									def __init__(self, time, data, name):
 										fig = Figure()
 										self.ax = fig.gca()
-										self.plot(data)
+										self.ax.plot(data)
 										self.ax.set_title("%s vs. Time" %name)
 										self.ax.set_xlabel("Time (s)")
 										self.ax.set_ylabel(name)
+
+										self.canvas = FigureCanvas(fig)
+										self.canvas.set_size_request(800, 800)
 
 								self.grid = Gtk.Grid()
 								self.grid.set_row_spacing(5)
@@ -169,7 +172,7 @@ class ButtonWindow(Gtk.Window):
 						grid1 = grid("scatter", time, lat, lon, alt, data, name)
 						grid2 = grid("histogram", time, lat, lon, alt, data, name)
 						grid3 = grid("box", time, lat, lon, alt, data, name)
-						grid4 = grid("time", time, lat, lon, alt, data, name)
+						grid4 = grid("2d", time, lat, lon, alt, data, name)
 
 						self.stack.add_titled(grid1.grid, "3d", "3D Plot")
 						self.stack.add_titled(grid2.grid, "hist", "Histogram")
