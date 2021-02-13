@@ -181,7 +181,7 @@ class ButtonWindow(Gtk.Window):
 				# Page
 				self.graph = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-				self.stack = stack(lat, lon, alt, data, name)
+				self.stack = stack(time, lat, lon, alt, data, name)
 
 				self.graph.pack_start(self.stack.switch, True, True, 0)
 				self.graph.pack_start(self.stack.stack, True, True, 0)
