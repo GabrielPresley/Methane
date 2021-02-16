@@ -31,7 +31,7 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 * Reads data from BME280 sensor
 * Reads data from GPS sensor
 * Runs on Arduino Nano ✈️
-##### sensehat.py    
+##### raspberry.py    
 * Responsible for photos
 * Responsible for arduino-pi communication
 * Writes to output.csv in form   
