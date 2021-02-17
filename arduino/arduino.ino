@@ -38,7 +38,7 @@ void setup()
 
   // Micro Sd adapter
   if (!SD.begin(chipSelect)) {
-   Serial.println("Card failed, or not present");
+   Serial.println("Card having a boomer moment");
    while (1){ //Just set pin 1 high, low a bunch for when no serial port is available
      int PIN = 1;
      pinMode(PIN, OUTPUT);
