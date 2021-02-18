@@ -1,3 +1,4 @@
+$fn = 25;
 length = 60;
 M3 = 1.65; // Hole radius for m3 hardware
 SAE6 = 1.80; // Hole radius for 6-32 hardware
