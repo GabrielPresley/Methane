@@ -18,7 +18,8 @@ import random
 import time
 import os
 #
-
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 """
 1 Notebook
 5 boxes
@@ -134,7 +135,6 @@ class ButtonWindow(Gtk.Window):
 		else:
 			for i in range(9):
 				results.append([i])
-				print(results[i])
 
 		# Grid
 		for i, name, data in zip(range(int(len(grid) / len(stack))), ["Methane", "Humidity", "Temerature", "Pressure"], [results[0], results[1], results[2], results[3]]):
