@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
@@ -33,7 +34,7 @@ notebook[box].header.dropdown
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
 		Gtk.Window.__init__(self, title="MMM Monitors Methane")
-	
+
 		def changex(slide, grid, ax, fig):
 			grid.remove(fig)
 			ax.view_init(elev=ax.elev, azim=slide.get_value())
@@ -56,34 +57,40 @@ class ButtonWindow(Gtk.Window):
 
 		def changedropdown(dropdown, results, page, grid, canvas, ax):
 			grid[4*page].remove(canvas[4*page])
-			grid[4*page+1].remove(canvas[4*page+1])	
-			grid[4*page+2].remove(canvas[4*page+2])	
-			grid[4*page+3].remove(canvas[4*page+3])			
+			grid[4*page+1].remove(canvas[4*page+1])
+			grid[4*page+2].remove(canvas[4*page+2])
+			grid[4*page+3].remove(canvas[4*page+3])
 
 			results.clear()
 			print(results)
-			with open(f"Data/{dropdown.get_active_text()}") as csvfile:
-				reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
-				for row in reader:
-					results.append(row)
+			try:
+				with open(f"Data/{dropdown.get_active_text()}") as csvfile:
+					reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
+					try:
+						for row in reader:
+							results.append(row)
 
-				print(len(results[5]),len(results[6]),len(results[4]),len(results[0]),len(results[0]) )
-				ax[4*page].cla()
-				ax[4*page+1].cla()
-				ax[4*page+2].cla()
-				ax[4*page+3].cla()
-				ax[4*page].scatter(results[5], results[6], results[4], c=results[0], s=1)
-				ax[4*page+1].hist(data, bins=75)
-				ax[4*page+2].boxplot(data)
-				ax[4*page+3].plot(results[7], results[page])
-			
+						print(len(results[5]),len(results[6]),len(results[4]),len(results[0]),len(results[0]) )
+						ax[4*page].cla()
+						ax[4*page+1].cla()
+						ax[4*page+2].cla()
+						ax[4*page+3].cla()
+						ax[4*page].scatter(results[5], results[6], results[4], c=results[0], s=1)
+						ax[4*page+1].hist(data, bins=75)
+						ax[4*page+2].boxplot(data)
+						ax[4*page+3].plot(results[7], results[page])
+					except ValueError:
+						print("Data file has not been cleaned; \nstill contains string type charecters")
+						return
+			except FileNotFoundError:
+				pass # basically hide the errors when "please choose text file is up"
 
 			grid[4*page+0].attach(canvas[4*page+0], 1, 1, 1, 1)
 			grid[4*page+1].attach(canvas[4*page+1], 0, 1, 1, 1)
 			grid[4*page+2].attach(canvas[4*page+2], 0, 0, 1, 1)
 			grid[4*page+3].attach(canvas[4*page+3], 0, 0, 1, 1)
 			print(dropdown.get_active_text())
-				
+
 
 		# Initialization
 		notebook = []
@@ -113,16 +120,21 @@ class ButtonWindow(Gtk.Window):
 
 		# Dropdown
 		for i in range(len(dropdown)):
+			dropdown[i].append_text("Please Select A File")
 			for data in os.listdir("Data/"):
 				if data.endswith(".csv"):
 					dropdown[i].append_text(data)
 			dropdown[i].set_active(0)
 			dropdown[i].connect("changed", changedropdown, results, i, grid, canvas, ax)
-
-		with open(f"Data/{dropdown[0].get_active_text()}") as csvfile:
-			reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
-			for row in reader: # each row is a list
-				results.append(row)
+		if dropdown[0].get_active_text() != "Please Select A File":
+			with open(f"Data/{dropdown[0].get_active_text()}") as csvfile:
+				reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
+				for row in reader: # each row is a list
+					results.append(row)
+		else:
+			for i in range(9):
+				results.append([i])
+				print(results[i])
 
 		# Grid
 		for i, name, data in zip(range(int(len(grid) / len(stack))), ["Methane", "Humidity", "Temerature", "Pressure"], [results[0], results[1], results[2], results[3]]):
