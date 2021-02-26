@@ -15,6 +15,7 @@ import csv
 import numpy as np
 import random
 import time
+import os
 #
 
 """
@@ -32,7 +33,7 @@ notebook[box].header.dropdown
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
 		Gtk.Window.__init__(self, title="MMM Monitors Methane")
-
+	
 		def changex(slide, grid, ax, fig):
 			grid.remove(fig)
 			ax.view_init(elev=ax.elev, azim=slide.get_value())
@@ -55,9 +56,9 @@ class ButtonWindow(Gtk.Window):
 
 		def changedropdown(dropdown, results, page, grid, canvas, ax):
 			grid[4*page].remove(canvas[4*page])
-			grid[4*page+1].remove(canvas[4*page+1])
-			grid[4*page+2].remove(canvas[4*page+2])
-			grid[4*page+3].remove(canvas[4*page+3])
+			grid[4*page+1].remove(canvas[4*page+1])	
+			grid[4*page+2].remove(canvas[4*page+2])	
+			grid[4*page+3].remove(canvas[4*page+3])			
 
 			results.clear()
 			print(results)
@@ -75,14 +76,14 @@ class ButtonWindow(Gtk.Window):
 				ax[4*page+1].hist(data, bins=75)
 				ax[4*page+2].boxplot(data)
 				ax[4*page+3].plot(results[7], results[page])
-
+			
 
 			grid[4*page+0].attach(canvas[4*page+0], 1, 1, 1, 1)
 			grid[4*page+1].attach(canvas[4*page+1], 0, 1, 1, 1)
 			grid[4*page+2].attach(canvas[4*page+2], 0, 0, 1, 1)
 			grid[4*page+3].attach(canvas[4*page+3], 0, 0, 1, 1)
 			print(dropdown.get_active_text())
-
+				
 
 		# Initialization
 		notebook = []
@@ -112,9 +113,10 @@ class ButtonWindow(Gtk.Window):
 
 		# Dropdown
 		for i in range(len(dropdown)):
-			dropdown[i].append_text("transposedcardata.csv")
-			dropdown[i].append_text("cleanwheelchair.csv")
-			dropdown[i].set_active(1)
+			for data in os.listdir("Data/"):
+				if data.endswith(".csv"):
+					dropdown[i].append_text(data)
+			dropdown[i].set_active(0)
 			dropdown[i].connect("changed", changedropdown, results, i, grid, canvas, ax)
 
 		with open(f"Data/{dropdown[0].get_active_text()}") as csvfile:
