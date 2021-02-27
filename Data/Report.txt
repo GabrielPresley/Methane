@@ -1,5 +1,3 @@
-
-
 Methane:
 	Average Methane:838.32 ppm
 	Median  Methane:837.21 ppm
@@ -25,7 +23,6 @@ Pressure:
 	Maximum Pressure:1015.02 hPa
 
 Location:
-
 	Latitude range: 0.0minutes
 	Longitude range: 0.01minutes
 
@@ -34,4 +31,4 @@ Location:
 	Maximum altitude: -87.79m
 
 Total distance travelled: 0.4km
-Average speed: 1.49m/s, (5.36km/h, 3.33mph)
+Average speed: 1.49m/s (5.36km/h, 3.33mph)

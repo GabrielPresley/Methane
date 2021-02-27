@@ -24,13 +24,13 @@ Time = results[7]
 report = open("Data/Report.txt", "w")
 
 for element, datas, unit in zip(["Methane:","Humidity:","Temperature:","Pressure:"], [results[0],results[1],results[2],results[3]], [" ppm","%","*C"," hPa"]):
-    report.write("\n\n" + element)
+    report.write(element)
     report.write("\n\tAverage "+ element + str(round(np.mean(datas), 2)) + unit)
     report.write("\n\tMedian  "+ element + str(round(np.median(datas), 2)) + unit)
     report.write("\n\tMinimum "+ element + str(round(np.min(datas), 2)) + unit)
-    report.write("\n\tMaximum "+ element + str(round(np.max(datas), 2)) + unit)
+    report.write("\n\tMaximum "+ element + str(round(np.max(datas), 2)) + unit + "\n\n")
 #
-report.write("\n\nLocation:\n")
+report.write("Location:")
 
 report.write("\n\tLatitude range: " + str(round(np.max(Latitude) - np.min(Latitude), 2)) + "minutes")
 report.write("\n\tLongitude range: " + str(round(np.max(Longitude) - np.min(Longitude), 2)) + "minutes")
@@ -45,7 +45,7 @@ for i in range(len(Latitude) - 1):
 speed = dis * 1000 / Time[-1]
 
 report.write("Total distance travelled: " + str(round(dis, 2)) + "km")
-report.write("\nAverage speed: " + str(round(speed, 2)) + "m/s, (" + str(round(speed * 3.6, 2)) + "km/h, " + str(round(speed * 2.237, 2)) + "mph)")
+report.write("\nAverage speed: " + str(round(speed, 2)) + "m/s (" + str(round(speed * 3.6, 2)) + "km/h, " + str(round(speed * 2.237, 2)) + "mph)")
 #To be continued...
 
 report.close()

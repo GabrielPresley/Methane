@@ -63,7 +63,6 @@ class ButtonWindow(Gtk.Window):
 			grid[4*page+3].remove(canvas[4*page+3])
 
 			results.clear()
-			print(results)
 			try:
 				with open(f"Data/{dropdown.get_active_text()}") as csvfile:
 					reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
@@ -71,18 +70,22 @@ class ButtonWindow(Gtk.Window):
 						for row in reader:
 							results.append(row)
 
-						print(len(results[5]),len(results[6]),len(results[4]),len(results[0]),len(results[0]) )
-						ax[4*page].cla()
-						ax[4*page+1].cla()
-						ax[4*page+2].cla()
-						ax[4*page+3].cla()
-						ax[4*page].scatter(results[5], results[6], results[4], c=results[0], s=1)
-						ax[4*page+1].hist(data, bins=75)
-						ax[4*page+2].boxplot(data)
-						ax[4*page+3].plot(results[7], results[page])
 					except ValueError:
-						print("Data file has not been cleaned; \nstill contains string type charecters")
-						return
+						print("Data file has not been cleaned or is not valid\nPlease choose a valid file")
+						results.clear()
+						for i in range(9):
+							results.append([1])
+
+						#print(len(results[5]),len(results[6]),len(results[4]),len(results[0]),len(results[0]))
+					ax[4*page].cla()
+					ax[4*page+1].cla()
+					ax[4*page+2].cla()
+					ax[4*page+3].cla()
+					ax[4*page].scatter(results[5], results[6], results[4], c=results[0], s=1)
+					ax[4*page+1].hist(results[page], bins=75)
+					ax[4*page+2].boxplot(results[page])
+					ax[4*page+3].plot(results[7], results[page])
+
 			except FileNotFoundError:
 				pass # basically hide the errors when "please choose text file is up"
 
@@ -90,7 +93,7 @@ class ButtonWindow(Gtk.Window):
 			grid[4*page+1].attach(canvas[4*page+1], 0, 1, 1, 1)
 			grid[4*page+2].attach(canvas[4*page+2], 0, 0, 1, 1)
 			grid[4*page+3].attach(canvas[4*page+3], 0, 0, 1, 1)
-			print(dropdown.get_active_text())
+			#print(dropdown.get_active_text())
 
 
 		# Initialization
@@ -114,7 +117,10 @@ class ButtonWindow(Gtk.Window):
 			for j in range(4):
 				grid.append(Gtk.Grid())
 				fig.append(Figure())
-				ax.append(fig[i].gca())
+				if (i == 0):
+					ax.append(fig[i].gca(projection='3d'))
+				else:
+					ax.append(fig[i].gca())
 				canvas.append(FigureCanvas(fig[i]))
 
 		results = []
@@ -208,6 +214,14 @@ class ButtonWindow(Gtk.Window):
 			notebook[i].pack_start(header[i], True, True, 0)
 			notebook[i].pack_start(stack[i], True, True, 0)
 			notebook1.append_page(notebook[i], Gtk.Label(label=name))
+
+		text = open("Data/Report.txt", "r")
+		report = text.read()
+		reportlabel = Gtk.Label(report)
+		reportlabel.set_alignment(0, 0)
+
+		notebook.append(reportlabel)
+		notebook1.append_page(notebook[-1], Gtk.Label(label="Report"))
 
 		self.add(notebook1)
 
