@@ -4,8 +4,8 @@
 |*  MMM Monitors Methane was made  |
 |*   for grad 2021 BSS SRM Class   |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-//            	MOSI	MISO	SCK	CS
-//Arduino Nano	11   	12	  13	10
+//              MOSI  MISO  SCK CS
+//Arduino Nano  11    12    13  10
 #include <Wire.h>
 #include <SD.h>
 #include <SPI.h>
@@ -21,7 +21,7 @@
 #define SEALEVELPRESSURE_HPA (1004.39)
 Adafruit_BME280 bme;
 //SD Card
-const int chipSelect = 4;
+const int chipSelect = 10;
 //
 void setup()
 {
@@ -37,8 +37,9 @@ void setup()
 
 
   // Micro Sd adapter
+  pinMode(10, OUTPUT);
   if (!SD.begin(chipSelect)) {
-   Serial.println("Card having a boomer moment");
+   Serial.println("Card having a boomer moment");Serial.println(chipSelect);
    while (1){ //Just set pin 1 high, low a bunch for when no serial port is available
      int PIN = 1;
      pinMode(PIN, OUTPUT);
