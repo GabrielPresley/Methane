@@ -117,9 +117,53 @@ void loop(){
       dataFile.print(data);
 
       if(data == 0x0A){
-        break;
+
+        char[] prevdata = new char[6];
+
+        char[] checkdata = new char[6] {0x24, 0x47, 0x50, 0x47, 0x47, 0x41};
+
+        while(Serial.available()){
+            char data = Serial.read();
+
+            bool cont = true;
+
+            for(int i = 0; i < 6; i++){
+
+              if(i != 5){
+                prevdata[i] = data;
+              }else{
+                prevdata[i] = prevdata[i + 1]
+              }
+
+              if(!(prevdata[i] == checkdata[i])){
+                cont = false;
+                break;
+              }
+
+            }
+
+            if(cont){
+              for(int i = 0; i < 6; i++){
+                dataFile.print(prevdata[i]);
+              }
+
+              while(Serial.available()){
+                char data = Serial.read(); // Reading Serial Data and saving in data variable
+                dataFile.print(data);
+
+                if(data == 0x0A){
+                  break;
+                }
+
+              }
+              break;
+            }
         }
+
+        break;
       }
-      Serial.flush();
+    }
+
+    Serial.flush();
 dataFile.close();
 }
