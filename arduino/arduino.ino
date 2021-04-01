@@ -116,11 +116,11 @@ void loop(){
       char data = Serial.read(); // Reading Serial Data and saving in data variable
       dataFile.print(data);
 
-      if(data == 0x0A){
+      if(data == 0x0A){ // 0x0A = \n
 
-        char[] prevdata = new char[6];
+        char prevdata[6] = {0}; // i just set it to a zero array
 
-        char[] checkdata = new char[6] {0x24, 0x47, 0x50, 0x47, 0x47, 0x41};
+        char checkdata[6] = {0x24, 0x47, 0x50, 0x47, 0x47, 0x41}; //$GPGGA
 
         while(Serial.available()){
             char data = Serial.read();
@@ -132,7 +132,7 @@ void loop(){
               if(i != 5){
                 prevdata[i] = data;
               }else{
-                prevdata[i] = prevdata[i + 1]
+                prevdata[i] = prevdata[i + 1];
               }
 
               if(!(prevdata[i] == checkdata[i])){
