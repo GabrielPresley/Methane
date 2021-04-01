@@ -150,9 +150,7 @@ void loop(){
             }
 
             if(prevdata == checkdata){
-              for(int i = 0; i < 6; i++){
-                dataFile.print(prevdata[i]); // Should print $GPGGA
-              }
+              dataFile.print(prevdata[i]); // Should print $GPGGA
 
               while(Serial.available()){
                 char data = Serial.read(); // Reading Serial Data and saving in data variable
