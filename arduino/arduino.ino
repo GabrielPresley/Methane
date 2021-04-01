@@ -140,18 +140,16 @@ void loop(){
                 123456
                 234567
               */
-
-
-              // if(!(prevdata == checkdata)){ //if prevdata == checkdata do cont
-              //   cont = false;
-              //   break;
-              // }
-
             }
-
-            if(prevdata == checkdata){
-              dataFile.print(prevdata[i]); // Should print $GPGGA
-
+            int c = 0;
+            for(int x = 0; x < 6; x++){
+              if(prevdata[x] == checkdata[x]);
+                c++;
+            }
+            if(c == 5){
+              for(int i = 0; i < 6; i++){
+                dataFile.print(prevdata[i]); // Should print $GPGGA
+              }
               while(Serial.available()){
                 char data = Serial.read(); // Reading Serial Data and saving in data variable
                 dataFile.print(data);
