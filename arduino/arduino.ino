@@ -118,33 +118,40 @@ void loop(){
 
       if(data == 0x0A){ // 0x0A = \n
 
-        char prevdata[6] = {0}; // i just set it to a zero array
+        char prevdata[6] = {}; // start a clear array
 
         char checkdata[6] = {0x24, 0x47, 0x50, 0x47, 0x47, 0x41}; //$GPGGA
 
         while(Serial.available()){
             char data = Serial.read();
 
-            bool cont = true;
+            //bool cont = true;
 
             for(int i = 0; i < 6; i++){
 
               if(i != 5){
-                prevdata[i] = data;
+                prevdata[i] = prevdata[i + 1]; // Change the current charecter to the next charecter
               }else{
-                prevdata[i] = prevdata[i + 1];
+                prevdata[5] = data; // change the last charecter to a new charecter
               }
+              /*
+              IE:
+                012345
+                123456
+                234567
+              */
 
-              if(!(prevdata[i] == checkdata[i])){
-                cont = false;
-                break;
-              }
+
+              // if(!(prevdata == checkdata)){ //if prevdata == checkdata do cont
+              //   cont = false;
+              //   break;
+              // }
 
             }
 
-            if(cont){
+            if(prevdata == checkdata){
               for(int i = 0; i < 6; i++){
-                dataFile.print(prevdata[i]);
+                dataFile.print(prevdata[i]); // Should print $GPGGA
               }
 
               while(Serial.available()){
