@@ -39,9 +39,9 @@ void setup()
   // Micro Sd adapter
   pinMode(10, OUTPUT);
   if (!SD.begin(chipSelect)) {
-   Serial.println("Card having a boomer moment");Serial.println(chipSelect);
+   Serial.println("Card having a boomer moment");
    while (1){ //Just set pin 1 high, low a bunch for when no serial port is available
-     int PIN = 1;
+     int PIN = 2;
      pinMode(PIN, OUTPUT);
      digitalWrite(PIN, HIGH);
      delay(500);
@@ -56,6 +56,7 @@ void setup()
   dataFile.println("Pressure:#");
   dataFile.println("Altitude:%");
   dataFile.println("Humidity:&");
+  dataFile.close();
 }
 //
 void loop(){
