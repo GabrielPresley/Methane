@@ -5,10 +5,9 @@ Monitoring programs for an aerial methane monitor.
 #### ~~~~~~~~~~~~~~~~~~~~~~  
 * README.md  
 * arduino.ino
-* heatmap.py  
+* heatmapV2.py  
 * WindowsMap.py    
 * clean.sh  
-* raspberry.py    
 * Report.py    
 
 ### Introduction ✍️
@@ -27,10 +26,13 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 #### ~~~~~~~
 ##### arduino.ino
 * Main data collection program
-* Reads data from Methane sensor
-* Reads data from BME280 sensor
-* Reads data from GPS sensor
+* Reads data from Methane sensor     
+* Reads data from BME280 sensor     
+* Reads data from GPS sensor     
+* Writes to output.csv file    
 * Runs on Arduino Nano ✈️
+<<<<<<< HEAD
+=======
 ##### raspberry.py    
 * Responsible for photos
 * Responsible for arduino-pi communication
@@ -43,10 +45,11 @@ Pressure (hPa) 989.71
 Altitude (m) 198.05
 ```
 * Runs on RPi 🛩️  
+>>>>>>> testing
 ##### clean.sh    
 * Formats output.
 * Runs on Data analysis computer 🔌
-##### heatmap.py   
+##### heatmapV2.py   
 * Generates heat map of all data    
 * Runs on data analysis computer 🔌   
 ##### Report.py   
@@ -61,20 +64,17 @@ Altitude (m) 198.05
 * matplotlib (FigureCanvasGTK3Agg, Figure)    
 * numpy    
 * pandas     
-* picamera (PiCamera)    
-* serial (*WARNING:* DO NOT INSTALL SERIAL; INSTEAD PYSERIAL)    
-* shutil (copyfile)    
 * time (sleep, strftime)    
 
 ##### C++
-* Adafruit_BME280.h    
-* Adafruit_Sensor.h    
 * Wire.h    
+* SD.h    
+* SPI.h    
+* Adafruit_Sensor.h    
+* Adafruit_BME280.h     
 
 ### Install ⬇️
 #### ~~~~~~~
-* Download raspberry.py to ~/ on RPi.     
-- (dont forget to add "python ~/raspberry.py" to your .bashrc)    
 * Flash arduino.ino to Arduino Nano    
 
 ### Contributing 🕸️
