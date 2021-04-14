@@ -31,6 +31,21 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 * Reads data from GPS sensor     
 * Writes to output.csv file    
 * Runs on Arduino Nano ✈️
+<<<<<<< HEAD
+=======
+##### raspberry.py    
+* Responsible for photos
+* Responsible for arduino-pi communication
+* Writes to output.csv in form   
+```
+Humidity (%) 30.83
+Methane (PPM) 558.89
+Temperature (*c) 29.12
+Pressure (hPa) 989.71
+Altitude (m) 198.05
+```
+* Runs on RPi 🛩️  
+>>>>>>> testing
 ##### clean.sh    
 * Formats output.
 * Runs on Data analysis computer 🔌

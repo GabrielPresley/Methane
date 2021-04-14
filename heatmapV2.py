@@ -199,7 +199,7 @@ class ButtonWindow(Gtk.Window):
 		report = text.read()
 
 		results = []
-		with open("Data/transposedcardata.csv") as csvfile:
+		with open("Data/cleanwheelchair.csv") as csvfile:
 			reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
 			for row in reader: # each row is a list
 				results.append(row)

@@ -75,7 +75,7 @@ def readlist(string):
     return lis
 
 def loadData(slot, key):
-    file = open("TransposedTestData.csv", "r")
+    file = open("Data/transposedcardata.csv", "r")
 
     line = datamap[key]
 
@@ -121,7 +121,7 @@ updates  = [updateGraph, updateGraph1, updateGraph2, updateGraph3]
 
 datamap = {"Pressure": 0, "Tempature": 1, "Humidity": 2, "Time": 3}
 
-data[5][4]
+data =  [[], [], [], []]
 
 dropdown = []
 selection = []

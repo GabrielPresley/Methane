@@ -75,7 +75,7 @@ rm /tmp/step2
 sed -i '2~2d' $2 #Remove Lables
 sed -i '1d' $2 # Remove Empty First Line
 #
-length=$(($(head -n 7 $2 | tail -n 1 | sed 's/[^,]//g' | wc -c)-$3 )) # Counts data point in line 7
+length=$(($(head -n 1 $2 | tail -n 1 | sed 's/[^,]//g' | wc -c)-$3 )) # Counts data point in line 7
 echo $length
 for i in 1 2 3 4 5 6 7 8; do
 head -n $i $2 | tail -n 1 | cut -d, -f1-$length >> /tmp/step0
