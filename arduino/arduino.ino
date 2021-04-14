@@ -49,7 +49,7 @@ void setup()
      delay(500);
    }
   }
-  File dataFile = SD.open("output.csv", FILE_WRITE);
+  File dataFile = SD.open("output.txt", FILE_WRITE);
   Serial.println("card initialized.");
   dataFile.println("Methane:+");
   dataFile.println("Temperature:@");
@@ -61,7 +61,7 @@ void setup()
 //
 void loop(){
 //
-  File dataFile = SD.open("output.csv", FILE_WRITE);
+  File dataFile = SD.open("output.txt", FILE_WRITE);
   // start I2C
   Wire.beginTransmission(Addr);
   // data register
