@@ -111,7 +111,7 @@ void loop(){
   dataFile.println(bme.readHumidity());
   //
   while(!Serial.available()){} // wait for serial availablity
-
+  delay(500);
   while(Serial.available()) // Check for availablity of data at Serial Port
     {
       char data = Serial.read(); // Reading Serial Data and saving in data variable
@@ -144,10 +144,13 @@ void loop(){
             }
             int c = 0;
             for(int x = 0; x < 6; x++){
-              if(prevdata[x] == checkdata[x]);
-                c++;
+              if(prevdata[x] == checkdata[x]){
+                c++; //increments for each character that matches the check data
+	      }else{
+		break; //no point in loop once one character is off
+	      }
             }
-            if(c == 5){
+            if(c == 6){ //makes sure all characters are right
               for(int i = 0; i < 6; i++){
                 dataFile.print(prevdata[i]); // Should print $GPGGA
               }
@@ -155,7 +158,7 @@ void loop(){
                 char data = Serial.read(); // Reading Serial Data and saving in data variable
                 dataFile.print(data);
 
-                if(data == 0x0A){
+                if(data == 0x0A){ //stops at the end of the line
                   break;
                 }
 
