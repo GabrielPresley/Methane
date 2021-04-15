@@ -111,64 +111,38 @@ void loop(){
   dataFile.println(bme.readHumidity());
   //
   while(!Serial.available()){} // wait for serial availablity
-  delay(500);
-  while(Serial.available()) // Check for availablity of data at Serial Port
+  
+  bool cont = true;
+  char prev[] = new char[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  char test[] = new char[] {'$', 'G', 'P', 'G', 'L' 'L'};
+  
+  while(cont) // Check for availablity of data at Serial Port
     {
       char data = Serial.read(); // Reading Serial Data and saving in data variable
-      dataFile.print(data);
 
-      if(data == 0x0A){ // 0x0A = \n
-
-        char prevdata[6] = {}; // start a clear array
-
-        char checkdata[6] = {0x24, 0x47, 0x50, 0x47, 0x47, 0x41}; //$GPGGA
-
-        while(Serial.available()){
-            char data = Serial.read();
-
-            //bool cont = true;
-
-            for(int i = 0; i < 6; i++){
-
-              if(i != 5){
-                prevdata[i] = prevdata[i + 1]; // Change the current charecter to the next charecter
-              }else{
-                prevdata[5] = data; // change the last charecter to a new charecter
-              }
-              /*
-              IE:
-                012345
-                123456
-                234567
-              */
-            }
-            int c = 0;
-            for(int x = 0; x < 6; x++){
-              if(prevdata[x] == checkdata[x]){
-                c++; //increments for each character that matches the check data
-	      }else{
-		break; //no point in loop once one character is off
-	      }
-            }
-            if(c == 6){ //makes sure all characters are right
-              for(int i = 0; i < 6; i++){
-                dataFile.print(prevdata[i]); // Should print $GPGGA
-              }
-              while(Serial.available()){
-                char data = Serial.read(); // Reading Serial Data and saving in data variable
-                dataFile.print(data);
-
-                if(data == 0x0A){ //stops at the end of the line
-                  break;
-                }
-
-              }
-              break;
-            }
+      int match = 0;
+      for(int i = 0; i < 6; i++){
+        if(i > 4){
+          prev[i] = data;
+        }else{
+          prev[i] = prev[i+1];
         }
 
+        if{prev[i] == test[i]){
+          match++;
+        }
+      }
+
+      if(match == 6){
         break;
       }
+      
+      if(data == 0x0A or data == 0x00){
+        
+      }else{
+        dataFile.print(data);
+      }
+            
     }
 
     Serial.flush();
