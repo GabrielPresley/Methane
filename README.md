@@ -5,7 +5,7 @@ Monitoring programs for an aerial methane monitor.
 #### ~~~~~~~~~~~~~~~~~~~~~~  
 * README.md  
 * arduino.ino
-* heatmapV2.py  
+* heatmap.py  
 * WindowsMap.py    
 * clean.sh  
 * Report.py    
@@ -29,28 +29,14 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 * Reads data from Methane sensor     
 * Reads data from BME280 sensor     
 * Reads data from GPS sensor     
-* Writes to output.csv file    
+* Writes to output.csv file on micro sd card    
 * Runs on Arduino Nano ✈️
-<<<<<<< HEAD
-=======
-##### raspberry.py    
-* Responsible for photos
-* Responsible for arduino-pi communication
-* Writes to output.csv in form   
-```
-Humidity (%) 30.83
-Methane (PPM) 558.89
-Temperature (*c) 29.12
-Pressure (hPa) 989.71
-Altitude (m) 198.05
-```
-* Runs on RPi 🛩️  
->>>>>>> testing
+TODO: ADD DATA EXAMPLE
 ##### clean.sh    
 * Formats output.
 * Runs on Data analysis computer 🔌
-##### heatmapV2.py   
-* Generates heat map of all data    
+##### heatmap.py   
+* Generates graphs and other useful data visualisation     
 * Runs on data analysis computer 🔌   
 ##### Report.py   
 * Generates a small data summary 📝    
