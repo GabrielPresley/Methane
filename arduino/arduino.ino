@@ -110,8 +110,9 @@ void loop(){
   dataFile.print("&");
   dataFile.println(bme.readHumidity());
   //
+  Serial.println("phase 1");
   while(!Serial.available()){} // wait for serial availablity
-  
+  Serial.println("phase 2");
   bool cont = true;
   char prev[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
   char test[] = {'$', 'G', 'P', 'G', 'L', 'L'};
@@ -120,6 +121,8 @@ void loop(){
     {
 
       char data = Serial.read(); // Reading Serial Data and saving in data variable
+
+      Serial.print(data);
 
       int match = 0;
       for(int i = 0; i < 6; i++){
@@ -134,12 +137,13 @@ void loop(){
         }
       }
 
+      
       if(match == 6){
         break;
       }
       
       if(data == 0x0A or data == 0x00){
-        
+        Serial.println(match);
       }else{
         dataFile.print(data);
       }
