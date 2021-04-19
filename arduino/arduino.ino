@@ -113,11 +113,12 @@ void loop(){
   while(!Serial.available()){} // wait for serial availablity
   
   bool cont = true;
-  char prev[] = new char[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-  char test[] = new char[] {'$', 'G', 'P', 'G', 'L' 'L'};
+  char prev[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+  char test[] = {'$', 'G', 'P', 'G', 'L', 'L'};
   
   while(cont) // Check for availablity of data at Serial Port
     {
+
       char data = Serial.read(); // Reading Serial Data and saving in data variable
 
       int match = 0;
@@ -128,7 +129,7 @@ void loop(){
           prev[i] = prev[i+1];
         }
 
-        if{prev[i] == test[i]){
+        if(prev[i] == test[i]){
           match++;
         }
       }
