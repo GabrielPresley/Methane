@@ -113,7 +113,7 @@ void loop(){
         dataFile.print(data);
         Serial.print(data);
 
-        if(data == 0x47){ //0x24=$
+        if(data == 0x24){ //0x24=$
           i++;
           if(i == 12){ //THIS NUMBER IS ARBITRARY
               break;
