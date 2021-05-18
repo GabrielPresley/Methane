@@ -38,17 +38,12 @@ void setup()
 
   // Micro Sd adapter
   pinMode(10, OUTPUT);
-  if (!SD.begin(chipSelect)) {
-   Serial.println("Card having a boomer moment");
-   while (1){ //Just set pin 1 high, low a bunch for when no serial port is available
-     int PIN = 2;
-     pinMode(PIN, OUTPUT);
-     digitalWrite(PIN, HIGH);
-     delay(500);
-     digitalWrite(PIN, LOW);
-     delay(500);
-   }
+
+  while(!SD.begin(chipSelect)) {
+    Serial.println("Card having a boomer moment");
   }
+
+
   File dataFile = SD.open("output.csv", FILE_WRITE);
   Serial.println("card initialized.");
   dataFile.println("Methane:+");
@@ -56,7 +51,6 @@ void setup()
   dataFile.println("Pressure:#");
   dataFile.println("Altitude:%");
   dataFile.println("Humidity:&");
-  dataFile.close();
 }
 //
 void loop(){
@@ -110,46 +104,25 @@ void loop(){
   dataFile.print("&");
   dataFile.println(bme.readHumidity());
   //
-  Serial.println("phase 1");
   while(!Serial.available()){} // wait for serial availablity
-  Serial.println("phase 2");
-  bool cont = true;
-  char prev[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-  char test[] = {'$', 'G', 'P', 'G', 'L', 'L'};
-  
-  while(cont) // Check for availablity of data at Serial Port
+  int i = 0;
+  while(1) // Check for availablity of data at Serial Port
     {
-
-      char data = Serial.read(); // Reading Serial Data and saving in data variable
-
-      Serial.print(data);
-
-      int match = 0;
-      for(int i = 0; i < 6; i++){
-        if(i > 4){
-          prev[i] = data;
-        }else{
-          prev[i] = prev[i+1];
-        }
-
-        if(prev[i] == test[i]){
-          match++;
-        }
-      }
-
-      
-      if(match == 6){
-        break;
-      }
-      
-      if(data == 0x0A or data == 0x00){
-        Serial.println(match);
-      }else{
+      if(Serial.available()){
+        char data = Serial.read(); // Reading Serial Data and saving in data variable
         dataFile.print(data);
-      }
-            
-    }
+        Serial.print(data);
 
-    Serial.flush();
+        if(data == 0x47){ //0x24=$
+          i++;
+          if(i == 12){ //THIS NUMBER IS ARBITRARY
+              break;
+              i = 0;
+            }
+          }
+        }
+      }
+
+      Serial.flush();
 dataFile.close();
 }
