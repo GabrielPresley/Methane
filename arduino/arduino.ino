@@ -115,7 +115,7 @@ void loop(){
 
         if(data == 0x24){ //0x24=$
           i++;
-          if(i == 12){ //THIS NUMBER IS ARBITRARY
+          if(i == 7){ //THIS NUMBER IS ARBITRARY
               break;
               i = 0;
             }
