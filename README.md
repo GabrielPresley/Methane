@@ -6,9 +6,16 @@ Monitoring programs for an aerial methane monitor.
 * README.md  
 * arduino.ino
 * heatmap.py  
-* WindowsMap.py    
-* clean.sh  
 * Report.py    
+* WindowsMap.p    
+* clean.sh  
+
+### Included 3D Designs 🗼  
+#### ~~~~~~~~~~~~~~~~~~~~~~  
+* GPSBracket.scad
+* sdMount.scad
+* undercarriage.scad
+
 
 ### Introduction ✍️
 #### ~~~~~~~~~~~~
@@ -30,20 +37,19 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 * Reads data from BME280 sensor     
 * Reads data from GPS sensor     
 * Writes to output.csv file on micro sd card    
-* Runs on Arduino Nano ✈️
-TODO: ADD DATA EXAMPLE
+* Runs on Arduino Nano ✈️    
 ##### clean.sh    
-* Formats output.
-* Runs on Data analysis computer 🔌
+* Formats output.    
+* Runs on Data analysis computer 🔌    
 ##### heatmap.py   
-* Generates graphs and other useful data visualisation     
-* Runs on data analysis computer 🔌   
-##### Report.py   
+* Generates graphs and other useful data visualisation    
+* Runs on data analysis computer 🔌    
+##### Report.py    
 * Generates a small data summary 📝    
-* Runs on Data analysis computer 🔌
-### Dependencies 🏗️
-#### ~~~~~~~~~~~~
-##### Python
+* Runs on Data analysis computer 🔌    
+### Dependencies 🏗️    
+#### ~~~~~~~~~~~~    
+##### Python    
 * csv    
 * gi (Gtk, Gio)    
 * math    
