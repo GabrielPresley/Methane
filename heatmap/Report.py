@@ -4,7 +4,7 @@ import math
 
 #Open data
 results = []
-with open("Data/transposedcardata.csv") as csvfile:
+with open("../Data/transposedcardata.csv") as csvfile:
     reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
     for row in reader:
         results.append(row)
@@ -21,7 +21,7 @@ Longitude = results[6]
 Time = results[7]
 
 #Write out a bunch of nerd stuff
-report = open("Data/Report.txt", "w")
+report = open("../Data/Report.txt", "w")
 
 for element, datas, unit in zip(["Methane:","Humidity:","Temperature:","Pressure:"], [results[0],results[1],results[2],results[3]], [" ppm","%","*C"," hPa"]):
     report.write(element)

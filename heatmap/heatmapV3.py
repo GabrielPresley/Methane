@@ -36,17 +36,6 @@ class ButtonWindow(Gtk.Window):
 	def __init__(self):
 		Gtk.Window.__init__(self, title="MMM Monitors Methane")
 
-		def changex(slide, grid, ax, fig):
-			grid.remove(fig)
-			ax.view_init(elev=ax.elev, azim=slide.get_value())
-			grid.attach(fig, 1, 1, 1, 1)
-
-		# Updates scatter plot elevation when slider is moved
-		def changey(slide, grid, ax, fig):
-			grid.remove(fig)
-			ax.view_init(elev=90 - slide.get_value(), azim=ax.azim)
-			grid.attach(fig, 1, 1, 1, 1)
-
 		# Updates histogram bins when slider is moved
 		def changehist(slide, grid, ax, fig, data, name):
 			grid.remove(fig)
@@ -64,7 +53,7 @@ class ButtonWindow(Gtk.Window):
 
 			results.clear()
 			try:
-				with open(f"Data/{dropdown.get_active_text()}") as csvfile:
+				with open(f"../Data/{dropdown.get_active_text()}") as csvfile:
 					reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
 					try:
 						for row in reader:
@@ -128,19 +117,19 @@ class ButtonWindow(Gtk.Window):
 		# Dropdown
 		for i in range(len(dropdown)):
 			dropdown[i].append_text("Please Select A File")
-			for data in os.listdir("Data/"):
+			for data in os.listdir("../Data/"):
 				if data.endswith(".csv"):
 					dropdown[i].append_text(data)
 			dropdown[i].set_active(0)
 			dropdown[i].connect("changed", changedropdown, results, i, grid, canvas, ax)
 		if dropdown[0].get_active_text() != "Please Select A File":
-			with open(f"Data/{dropdown[0].get_active_text()}") as csvfile:
+			with open(f"../Data/{dropdown[0].get_active_text()}") as csvfile:
 				reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
 				for row in reader: # each row is a list
 					results.append(row)
 		else:
 			for i in range(9):
-				results.append([i])
+				results.append([1])
 
 		# Grid
 		for i, name, data in zip(range(int(len(grid) / len(stack))), ["Methane", "Humidity", "Temerature", "Pressure"], [results[0], results[1], results[2], results[3]]):
@@ -157,15 +146,7 @@ class ButtonWindow(Gtk.Window):
 					canvas[4*i+j] = FigureCanvas(fig[4*i+j])
 					canvas[4*i+j].set_size_request(800, 800)
 
-					slider1 = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL, adjustment=Gtk.Adjustment(45, 0, 360, 5, 10, 0))
-					slider2 = Gtk.Scale(orientation=Gtk.Orientation.VERTICAL, adjustment=Gtk.Adjustment(30, 0, 90, 5, 10, 0))
-
-					grid[4*i+j].attach(canvas[4*i+j], 1, 1, 1, 1)
-					grid[4*i+j].attach(slider1, 1, 0, 1, 1)
-					grid[4*i+j].attach(slider2, 0, 1, 1, 1)
-
-					slider1.connect("value-changed", changex, grid[4*i+j], ax[4*i+j], canvas[4*i+j])
-					slider2.connect("value-changed", changey, grid[4*i+j], ax[4*i+j], canvas[4*i+j])
+					grid[4*i+j].attach(canvas[4*i+j], 0, 0, 1, 1)
 
 				if (j == 1):
 					ax[4*i+j] = fig[4*i+j].gca()
@@ -215,7 +196,7 @@ class ButtonWindow(Gtk.Window):
 			notebook[i].pack_start(stack[i], True, True, 0)
 			notebook1.append_page(notebook[i], Gtk.Label(label=name))
 
-		text = open("Data/Report.txt", "r")
+		text = open("../Data/Report.txt", "r")
 		report = text.read()
 		reportlabel = Gtk.Label(report)
 		reportlabel.set_alignment(0, 0)

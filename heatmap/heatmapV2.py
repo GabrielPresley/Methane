@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning) 
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
@@ -16,6 +16,7 @@ import csv
 import numpy as np
 import random
 import time
+import sys
 #
 class ButtonWindow(Gtk.Window):
 	def __init__(self):
@@ -195,11 +196,11 @@ class ButtonWindow(Gtk.Window):
 				self.label.set_alignment(0, 0)
 
 		# Open files
-		text = open("Data/Report.txt", "r")
+		text = open("../Data/Report.txt", "r")
 		report = text.read()
 
 		results = []
-		with open("Data/cleanwheelchair.csv") as csvfile:
+		with open(f"../Data/{sys.argv[1]}") as csvfile:
 			reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC) # change contents to floats
 			for row in reader: # each row is a list
 				results.append(row)
