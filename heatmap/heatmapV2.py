@@ -207,25 +207,27 @@ class ButtonWindow(Gtk.Window):
 
 		results = np.array(results)
 		methane = results[0][2:]
-		humidity = results[1][2:]
-		temperature = results[2][2:]
-		pressure = results[3][2:]
-		altitude = results[4][2:]
-		latitude = results[5][2:]
-		longitude = results[6][2:]
-		time = results[7][2:]
+		temperature = results[1][2:]
+		pressure = results[2][2:]
+		#altitude = results[3][2:]
+		#time = results[4][2:]
+		#humidity = results[5][2:]
+		time = results[6][2:]
+		longitude = results[7][2:]
+		latitude = results[8][2:]
+		altitude = results[9][2:]
 
 		# Create pages and add them to notebook
 		notebook = Gtk.Notebook()
 
 		page1 = page(time, latitude, longitude, altitude, methane, "Methane")
-		page2 = page(time, latitude, longitude, altitude, humidity, "Humidity")
+		#page2 = page(time, latitude, longitude, altitude, humidity, "Humidity")
 		page3 = page(time, latitude, longitude, altitude, temperature, "Temperature")
 		page4 = page(time, latitude, longitude, altitude, pressure, "Pressure")
 		page5 = page(text=report)
 
 		notebook.append_page(page1.graph, Gtk.Label("Methane"))
-		notebook.append_page(page2.graph, Gtk.Label("Humidity"))
+		#notebook.append_page(page2.graph, Gtk.Label("Humidity"))
 		notebook.append_page(page3.graph, Gtk.Label("Temperature"))
 		notebook.append_page(page4.graph, Gtk.Label("Pressure"))
 		notebook.append_page(page5.label, Gtk.Label("Report"))
