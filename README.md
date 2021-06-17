@@ -74,7 +74,7 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 ##### Heatmap
 - Navigate to the heatmap directory
 - Run: python heatmapV2.py {filename}
- Where {filename} is a cleaned file in the data directory
+  Where {filename} is a cleaned file in the data directory
 
 ### Contributing 🕸️
 #### ~~~~~~~~~~~~
