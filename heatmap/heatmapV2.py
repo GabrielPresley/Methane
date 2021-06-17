@@ -17,6 +17,8 @@ import numpy as np
 import random
 import time
 import sys
+
+import Report
 #
 class ButtonWindow(Gtk.Window):
 	def __init__(self):

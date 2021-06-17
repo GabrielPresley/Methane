@@ -1,10 +1,11 @@
 import csv
 import numpy as np
 import math
+import sys
 
 #Open data
 results = []
-with open("../Data/transposedcardata.csv") as csvfile:
+with open(f"../Data/{sys.argv[1]}") as csvfile:
     reader = csv.reader(csvfile, quoting=csv.QUOTE_NONNUMERIC)
     for row in reader:
         results.append(row)
