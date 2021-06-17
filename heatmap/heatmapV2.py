@@ -224,13 +224,15 @@ class ButtonWindow(Gtk.Window):
 		#page2 = page(time, latitude, longitude, altitude, humidity, "Humidity")
 		page3 = page(time, latitude, longitude, altitude, temperature, "Temperature")
 		page4 = page(time, latitude, longitude, altitude, pressure, "Pressure")
-		page5 = page(text=report)
+		page5 = page(time, latitude, longitude, altitude, altitude, "Altitude")
+		page6 = page(text=report)
 
 		notebook.append_page(page1.graph, Gtk.Label("Methane"))
 		#notebook.append_page(page2.graph, Gtk.Label("Humidity"))
 		notebook.append_page(page3.graph, Gtk.Label("Temperature"))
 		notebook.append_page(page4.graph, Gtk.Label("Pressure"))
-		notebook.append_page(page5.label, Gtk.Label("Report"))
+		notebook.append_page(page5.graph, Gtk.Label("Altitude"))
+		notebook.append_page(page6.label, Gtk.Label("Report"))
 
 		self.add(notebook)
 
