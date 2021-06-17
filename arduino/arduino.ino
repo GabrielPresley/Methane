@@ -97,10 +97,6 @@ void loop(){
   dataFile.println(bme.readAltitude(SEALEVELPRESSURE_HPA));
   //
   delay(500);
-  dataFile.print(":");
-  dataFile.println(millis()/1000);
-  //
-  delay(500);
   dataFile.print("&");
   dataFile.println(bme.readHumidity());
   //
