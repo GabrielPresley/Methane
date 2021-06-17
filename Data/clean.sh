@@ -24,7 +24,7 @@ perl -p -i -e 's/^\s*$//g;' $1 #remove empty lines
 # 	i=$((i+1))
 # done <$1
 
-for i in "+" "@" "#" "%" ":"
+for i in "+" "@" "#" "%" ":" "&"
 do
 	regex='(?<=^\'$i').*\b'       #
 	grep -oP $regex $1 >> $output #clear the output file and add Methane data
