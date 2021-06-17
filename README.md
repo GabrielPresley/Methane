@@ -67,7 +67,14 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 
 ### Install ⬇️
 #### ~~~~~~~
-* Flash arduino.ino to Arduino Nano    
+* Flash arduino.ino to Arduino Nano
+
+### Usage
+#### ~~~~~
+##### Heatmap
+- Navigate to the heatmap directory
+- Run: python heatmapV2.py {filename}
+Where {filename} is a cleaned file in the data directory
 
 ### Contributing 🕸️
 #### ~~~~~~~~~~~~
