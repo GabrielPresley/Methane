@@ -86,7 +86,9 @@ class ButtonWindow(Gtk.Window):
 									def __init__(self, lat, lon, alt, data, name):
 										fig = Figure()
 										self.ax = fig.gca(projection='3d')
-										self.ax.scatter(latitude, longitude, altitude, c=data, s=1)
+										if (len(sys.argv) > 2 and sys.argv[2] == "-l"):
+											self.ax.plot3D(latitude, longitude, altitude, "blue")
+										self.ax.scatter(latitude, longitude, altitude, "-", c=data, s=2)
 										self.ax.set_title("%s Heatmap" %name)
 										self.ax.set_xlabel("x (m)")
 										self.ax.set_ylabel("y (m)")
