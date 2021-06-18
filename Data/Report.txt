@@ -1,34 +1,34 @@
 Methane:
-	Average Methane:838.32 ppm
-	Median  Methane:837.21 ppm
-	Minimum Methane:834.77 ppm
-	Maximum Methane:886.04 ppm
+	Average Methane:359.78 ppm
+	Median  Methane:333.06 ppm
+	Minimum Methane:200.0 ppm
+	Maximum Methane:1286.43 ppm
 
 Humidity:
-	Average Humidity:31.41%
-	Median  Humidity:31.18%
-	Minimum Humidity:31.1%
-	Maximum Humidity:36.97%
+	Average Humidity:20.78%
+	Median  Humidity:19.66%
+	Minimum Humidity:18.78%
+	Maximum Humidity:25.44%
 
 Temperature:
-	Average Temperature:28.54*C
-	Median  Temperature:28.54*C
-	Minimum Temperature:28.44*C
-	Maximum Temperature:28.61*C
+	Average Temperature:1002.73*C
+	Median  Temperature:1001.94*C
+	Minimum Temperature:993.05*C
+	Maximum Temperature:1009.71*C
 
 Pressure:
-	Average Pressure:1014.95 hPa
-	Median  Pressure:1014.95 hPa
-	Minimum Pressure:1014.89 hPa
-	Maximum Pressure:1015.02 hPa
+	Average Pressure:14.02 hPa
+	Median  Pressure:19.66 hPa
+	Minimum Pressure:-44.63 hPa
+	Maximum Pressure:97.16 hPa
 
 Location:
-	Latitude range: 0.0minutes
-	Longitude range: 0.01minutes
+	Latitude range: 24.57minutes
+	Longitude range: 5232.0minutes
 
-	Average altitude: -88.37m
-	Minimum altitude: -88.9m
-	Maximum altitude: -87.79m
+	Average altitude: 380.72m
+	Minimum altitude: 2.0m
+	Maximum altitude: 759.0m
 
-Total distance travelled: 0.4km
-Average speed: 1.49m/s (5.36km/h, 3.33mph)
+Total distance travelled: 6340.21km
+Average speed: 510.75m/s (1838.7km/h, 1142.55mph)
