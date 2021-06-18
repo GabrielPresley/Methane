@@ -86,9 +86,23 @@ class ButtonWindow(Gtk.Window):
 									def __init__(self, lat, lon, alt, data, name):
 										fig = Figure()
 										self.ax = fig.gca(projection='3d')
-										if (len(sys.argv) > 2 and sys.argv[2] == "-l"):
-											self.ax.plot3D(latitude, longitude, altitude, "blue")
-										self.ax.scatter(latitude, longitude, altitude, "-", c=data, s=2)
+										s = False
+										for i in range(len(sys.argv)):
+											if (sys.argv[i] == "-l"):
+												try:
+													self.ax.plot3D(latitude, longitude, altitude, sys.argv[i+1])
+												except ValueError:
+													print("Colour not recognized")
+												except IndexError:
+													print("Please input a colour")
+											elif (sys.argv[i] == "-s"):
+												s = True;
+												try:
+													self.ax.scatter(latitude, longitude, altitude, c=data, s=int(sys.argv[i+1]))
+												except IndexError:
+													print("Please input a point size")
+										if (s != True):
+											self.ax.scatter(latitude, longitude, altitude, c=data, s=1)
 										self.ax.set_title("%s Heatmap" %name)
 										self.ax.set_xlabel("x (m)")
 										self.ax.set_ylabel("y (m)")
