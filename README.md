@@ -1,6 +1,10 @@
 # MMM Monitors Methane ✈️
 Monitoring programs for an aerial methane monitor.  
 
+![progress.png](https://raw.githubusercontent.com/Earth13wells/Methane/main/Images/progress.png)   
+
+#### Left shows initial testing versus final hardware results    
+
 ### Included Program Files 🎪  
 #### ~~~~~~~~~~~~~~~~~~~~~~  
 * README.md  
@@ -76,8 +80,10 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 - Run: python heatmapV2.py {filename}
 - Where Ede {filename} is a cleaned file in the data directory
 - Optionally, you can include -l or -s for line colour and point size respectively
-- eg. python heatmapV2.py output.txt -l blue -s 6
+- eg. python heatmapV2.py output.txt -l blue -s 6    
+    
+![Image of  drone w/ hardware](https://raw.githubusercontent.com/Earth13wells/Methane/main/Images/image1.jpg)   
 
-### Contributing 🕸️
+### Contributing 🕸️    
 #### ~~~~~~~~~~~~
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
