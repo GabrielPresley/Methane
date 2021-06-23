@@ -74,7 +74,9 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 ##### Heatmap
 - Navigate to the heatmap directory
 - Run: python heatmapV2.py {filename}
-- Where {filename} is a cleaned file in the data directory
+- Where Ede {filename} is a cleaned file in the data directory
+- Optionally, you can include -l or -s for line colour and point size respectively
+- eg. python heatmapV2.py output.txt -l blue -s 6
 
 ### Contributing 🕸️
 #### ~~~~~~~~~~~~
