@@ -77,11 +77,11 @@ environmental threat at the forefront of humanity's concerns. As a result, there
 #### ~~~~~
 ##### Heatmap
 - Navigate to the heatmap directory
-- Run: python heatmapV2.py {filename}
+- Run: python heatmapV2.py [filename]
 - Where Ede {filename} is a cleaned file in the data directory
 - Optionally, you can include -l or -s for line colour and point size respectively
 - eg. python heatmapV2.py output.txt -l blue -s 6    
-    
+![Heatmap Picture](https://raw.githubusercontent.com/Earth13wells/Methane/main/Images/heatmap_preview.png)
 ![Image of  drone w/ hardware](https://raw.githubusercontent.com/Earth13wells/Methane/main/Images/image1.jpg)   
 
 ### Contributing 🕸️    
