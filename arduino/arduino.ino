@@ -53,7 +53,7 @@ void setup()
   dataFile.println("Humidity:&");
 }
 //
-void loop(){
+void loop() {
 //
   File dataFile = SD.open("output.csv", FILE_WRITE);
   // start I2C
